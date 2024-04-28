@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
 
         if("user@mail.ru".equals(authenticationInfo.getLogin())) {
 
-            return new User("user", "admin");
+            return new User("Admin", "admin");
 
         }
 
