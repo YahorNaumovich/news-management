@@ -13,137 +13,81 @@
 
 <header>
   <h1>News Portal</h1>
-  <div class="auth-links"><a href="Controller?command=GO_TO_LOGIN_PAGE"
-       >Sign in</a
-       ><a href="Controller?command=GO_TO_REGISTRATION_PAGE"
-        >Sign up</a
-        ></div>
+      <c:if test="${not (sessionScope.user.name eq null) }">
+  <div class="auth-links">
+          <c:out value="${sessionScope.user.name}"/>
+  </div>
+      </c:if>
+        <c:if test="${(sessionScope.user.name eq null) }">
+  <div class="auth-links">
+  <a href="Controller?command=GO_TO_LOGIN_PAGE"><c:out value="Sign in"/></a>
+  <a href="Controller?command=GO_TO_REGISTRATION_PAGE"><c:out value="Sign up"/></a>
+  </div>
+        </c:if>
 </header>
 
+<div class="main-container">
 <main>
   <div class="news-item">
     <h2 class="news-title">Breaking News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Morbi quis placerat massa. Sed et leo at mauris mollis scelerisque.</p>
   </div>
 
-  <div class="news-item">
+  <div class="news-item r1c2">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
-  <div class="news-item">
+  <div class="news-item r2c2">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
-  <div class="news-item">
+  <div class="news-item r2c1">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consecem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
-
   <div class="news-item">
     <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
-  <div class="news-item">
-    <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
-  <div class="news-item">
-    <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
-  <div class="news-item">
-    <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
-  <div class="news-item">
-    <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
-  <div class="news-item">
-    <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
-  <div class="news-item">
-    <h2 class="news-title">Another News: Example Headline</h2>
-    <p class="news-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
 
   <!-- Repeat the same structure for other news items -->
 
 </main>
+</div>
 
 </body>
 </html>

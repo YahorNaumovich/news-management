@@ -29,7 +29,7 @@ public class DoAuthentication implements Command {
             HttpSession session = (HttpSession) request.getSession(true);
             session.setAttribute("user", user);
 
-            response.sendRedirect("Controller?command=go_to_main_page");
+            response.sendRedirect("Controller?command=go_to_index_page");
 
         } else {
             response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");

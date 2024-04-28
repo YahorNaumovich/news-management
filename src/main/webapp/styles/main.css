@@ -36,11 +36,19 @@ nav a {
 .auth-links a:hover {
   text-decoration: underline; /* Underline on hover */
 }
+.main-container {
+  max-width: 60vw;
+  margin: 0 auto;
+}
 main {
   padding: 20px;
   display: grid;
   gap: 45px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(
+    auto-fill,
+    25vh
+  ); /* Adjust the percentage as needed */
+  grid-auto-rows: 25vh;
 }
 .news-item {
   background-color: #fff;
@@ -62,4 +70,19 @@ main {
 }
 .news-description {
   color: #555;
+}
+
+.news-item.r2c2 {
+  grid-row: span 2; /* Spanning two rows */
+  grid-column: span 2; /* Spanning two columns */
+}
+
+.news-item.r2c1 {
+  grid-row: span 2; /* Spanning two rows */
+  grid-column: span 1; /* Spanning two columns */
+}
+
+.news-item.r1c2 {
+  grid-row: span 1; /* Spanning two rows */
+  grid-column: span 2; /* Spanning two columns */
 }
