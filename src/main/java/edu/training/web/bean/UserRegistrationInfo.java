@@ -3,7 +3,7 @@ package edu.training.web.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class UserRegInfo implements Serializable {
+public class UserRegistrationInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -13,11 +13,11 @@ public class UserRegInfo implements Serializable {
 
     private String confirmPassword;
 
-    public UserRegInfo() {
+    public UserRegistrationInfo() {
     }
 
 
-    public UserRegInfo(String login, String email, String password, String confirmPassword) {
+    public UserRegistrationInfo(String login, String email, String password, String confirmPassword) {
         super();
         this.login = login;
         this.email = email;
@@ -61,7 +61,7 @@ public class UserRegInfo implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserRegInfo that = (UserRegInfo) o;
+        UserRegistrationInfo that = (UserRegistrationInfo) o;
         return Objects.equals(login, that.login) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(confirmPassword, that.confirmPassword);
     }
 

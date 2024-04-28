@@ -1,9 +1,10 @@
 package edu.training.web.controller.concrete.impl;
 
-import edu.training.web.bean.AuthInfo;
+import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
 import edu.training.web.controller.concrete.Command;
-import edu.training.web.logic.LogicStub;
+import edu.training.web.service.ServiceProvider;
+import edu.training.web.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,8 +12,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-public class DoAuth implements Command {
-    private final LogicStub logic = new LogicStub();
+public class DoAuthentication implements Command {
+    private final UserService userService = ServiceProvider.getInstance().getUserService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,9 +22,10 @@ public class DoAuth implements Command {
         String password = request.getParameter("password");
 
         System.out.println("Perform user authentication and authorization. Login: " + login);
-        User user = logic.checkAuth(new AuthInfo(login, password));
+        User user = userService.signIn(new AuthenticationInfo(login, password));
 
         if (user != null) {
+
             HttpSession session = (HttpSession) request.getSession(true);
             session.setAttribute("user", user);
 

@@ -1,5 +1,6 @@
-package edu.training.web.controller.concrete;
+package edu.training.web.controller.concrete.impl;
 
+import edu.training.web.controller.concrete.Command;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,7 +11,9 @@ public class NoSuchCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().print("Нет такой команды!");
+
+		response.getWriter().print("No such command!");
+
 	}
 
 }

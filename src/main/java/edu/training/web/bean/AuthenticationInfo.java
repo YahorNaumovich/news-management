@@ -3,17 +3,17 @@ package edu.training.web.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class AuthInfo implements Serializable {
+public class AuthenticationInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String login;
 	private String password;
 	
-	public AuthInfo() {
+	public AuthenticationInfo() {
 
 	}
 
-	public AuthInfo(String login, String password) {
+	public AuthenticationInfo(String login, String password) {
 		super();
 		this.login = login;
 		this.password = password;
@@ -48,7 +48,7 @@ public class AuthInfo implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AuthInfo other = (AuthInfo) obj;
+		AuthenticationInfo other = (AuthenticationInfo) obj;
 		return Objects.equals(login, other.login) && Objects.equals(password, other.password);
 	}
 
