@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Fixed tiles content and added log out button">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added UserRoles enum">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/bean/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -133,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714326830730</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added UserRoles enum">
+      <option name="closed" value="true" />
+      <created>1714374287351</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714374287351</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,6 +150,7 @@
     <MESSAGE value="Added user service provider and fixed styling" />
     <MESSAGE value="Fixed tiles styling" />
     <MESSAGE value="Fixed tiles content and added log out button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed tiles content and added log out button" />
+    <MESSAGE value="Added UserRoles enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added UserRoles enum" />
   </component>
 </project>

@@ -15,7 +15,7 @@ prefix="c" %> <%@ page isELIgnored="false" %>
       <c:if test="${not (sessionScope.user.name eq null) }">
         <div class="auth-links">
           <a href="#"><c:out value="${sessionScope.user.name}" /></a>
-          <a href="#">Log out</a>
+          <a href="Controller?command=DO_LOG_OUT">Log out</a>
         </div>
       </c:if>
       <c:if test="${(sessionScope.user.name eq null) }">
