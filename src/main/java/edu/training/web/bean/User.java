@@ -1,5 +1,7 @@
 package edu.training.web.bean;
 
+import edu.training.web.service.UserRoles;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -7,9 +9,9 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String name;
-	private String role;
+	private UserRoles role;
 
-	public User(String name, String role) {
+	public User(String name, UserRoles role) {
 		super();
 		this.name = name;
 		this.role = role;
@@ -23,11 +25,11 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getRole() {
+	public UserRoles getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(UserRoles role) {
 		this.role = role;
 	}
 
