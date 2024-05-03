@@ -34,7 +34,7 @@ prefix="c" %> <%@ page isELIgnored="false" %>
       <main>
 
       		<c:forEach var="news" items="${requestScope.mainNews}">
-      		        <a class="news-item ${news.tileSize}" href="#">
+      		        <a class="news-item ${news.tileSize}" href="Controller?command=GO_TO_ARTICLE_PAGE&id=${news.id}">
       		            <div class="image-container">
       				        <img src="${news.imgPath}" alt="Article image">
       				    </div>
