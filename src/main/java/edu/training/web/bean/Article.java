@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Integer id;
+    private String id;
 
     private String title;
 
@@ -17,18 +17,18 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(Integer id, String title, String imagePath, String text) {
+    public Article(String id, String title, String imagePath, String text) {
         this.id = id;
         this.title = title;
         this.imagePath = imagePath;
         this.text = text;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -67,5 +67,15 @@ public class Article implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, imagePath, text);
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", text='" + text + '\'' +
+                '}';
     }
 }

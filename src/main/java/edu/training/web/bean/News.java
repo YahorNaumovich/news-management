@@ -17,24 +17,28 @@ public class News implements Serializable {
 
     private String tileSize;
 
+    private String articleId;
+
     public News() {
     }
 
-    public News(Integer id, String imgPath, String title, String source) {
+    public News(Integer id, String imgPath, String title, String source,String articleId) {
         super();
         this.id = id;
         this.imgPath = imgPath;
         this.title = title;
         this.source = source;
+        this.articleId = articleId;
     }
 
-    public News(Integer id, String imgPath, String title, String source, String tileSize) {
+    public News(Integer id, String imgPath, String title, String source,String articleId, String tileSize) {
         super();
         this.id = id;
         this.imgPath = imgPath;
         this.title = title;
         this.source = source;
         this.tileSize = tileSize;
+        this.articleId = articleId;
     }
 
     public Integer getId() {
@@ -77,6 +81,14 @@ public class News implements Serializable {
         this.tileSize = tileSize;
     }
 
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
+    }
+
     @Override
     public String toString() {
         return "News{" +
@@ -98,5 +110,4 @@ public class News implements Serializable {
     public int hashCode() {
         return Objects.hash(imgPath, title, source, tileSize);
     }
-
 }
