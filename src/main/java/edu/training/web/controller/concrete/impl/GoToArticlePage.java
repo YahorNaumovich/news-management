@@ -24,7 +24,8 @@ public class GoToArticlePage implements Command {
 
         for (Article article : articles) {
             if (article.getId().equals(articleId)) {
-                System.out.println(article);
+                request.setAttribute("article", article);
+                request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
             }
         }
 

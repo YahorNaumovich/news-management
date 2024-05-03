@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added article id field to the News class">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" afterDir="false" />
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Deleted go to main page command">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToArticlePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToArticlePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +20,7 @@
         <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -39,16 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/news-management/src/main/webapp/images&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Projects/news-management/src/main/webapp/images",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\news-management\src\main\webapp\images" />
@@ -61,8 +66,14 @@
       <recent name="D:\Projects\news-management\src\main\webapp\images" />
       <recent name="D:\Projects\news-management\src\main\webapp\img2" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="edu.training.web.controller.concrete.impl" />
     </key>
   </component>
   <component name="RunManager">
@@ -203,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714720781384</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Deleted go to main page command">
+      <option name="closed" value="true" />
+      <created>1714721561968</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714721561968</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,6 +250,7 @@
     <MESSAGE value="Made tiles links" />
     <MESSAGE value="Added GoToArticlePage command" />
     <MESSAGE value="Added article id field to the News class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added article id field to the News class" />
+    <MESSAGE value="Deleted go to main page command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted go to main page command" />
   </component>
 </project>
