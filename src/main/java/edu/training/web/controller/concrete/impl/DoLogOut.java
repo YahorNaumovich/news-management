@@ -13,10 +13,9 @@ public class DoLogOut implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        User user = null;
 
-        HttpSession session = (HttpSession) request.getSession(true);
-        session.setAttribute("user", user);
+        HttpSession session = (HttpSession) request.getSession(false);
+        session.removeAttribute("user");
 
         response.sendRedirect("Controller?command=go_to_index_page");
     }
