@@ -11,13 +11,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User signIn(AuthenticationInfo authenticationInfo) {
 
-        if("user@mail.ru".equals(authenticationInfo.getLogin())) {
+        return switch (authenticationInfo.getLogin()) {
+            case ("admin@mail.ru") -> new User("Admin", UserRoles.ADMINISTRATOR);
+            case ("contributor@mail.ru") -> new User("Contributor", UserRoles.CONTRIBUTOR);
+            case ("moderator@mail.ru") -> new User("Moderator", UserRoles.MODERATOR);
+            case ("reader@mail.ru") -> new User("Reader", UserRoles.READER);
+            default -> null;
+        };
 
-            return new User("Admin", UserRoles.ADMINISTRATOR);
-
-        }
-
-        return null;
     }
 
     @Override
