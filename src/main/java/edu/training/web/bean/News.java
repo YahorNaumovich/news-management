@@ -7,6 +7,8 @@ public class News implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Integer id;
+
     private String imgPath;
 
     private String title;
@@ -18,19 +20,29 @@ public class News implements Serializable {
     public News() {
     }
 
-    public News(String imgPath, String title, String source) {
+    public News(Integer id, String imgPath, String title, String source) {
         super();
+        this.id = id;
         this.imgPath = imgPath;
         this.title = title;
         this.source = source;
     }
 
-    public News(String imgPath, String title, String source, String tileSize) {
+    public News(Integer id, String imgPath, String title, String source, String tileSize) {
         super();
+        this.id = id;
         this.imgPath = imgPath;
         this.title = title;
         this.source = source;
         this.tileSize = tileSize;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getImgPath() {

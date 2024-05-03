@@ -5,6 +5,10 @@ body {
   background-color: #f8f9fa; /* Very light gray */
 }
 
+a {
+    text-decoration: none;
+}
+
 header {
   background-color: #007bff; /* Blue */
   color: #fff;
@@ -57,7 +61,7 @@ main {
   padding: 10px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition effect */
-    position: relative;
+  position: relative;
 }
 
 .news-item:hover {
