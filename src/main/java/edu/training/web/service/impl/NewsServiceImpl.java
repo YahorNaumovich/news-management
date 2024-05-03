@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsServiceImpl implements NewsService {
-    @Override
-    public List<News> lastNews() {
-        List<News> news = new ArrayList<News>();
+
+    List<News> news = new ArrayList<News>();
+    List<Article> articles = new ArrayList<Article>();
+
+    public NewsServiceImpl() {
 
         news.add(new News(1, "images/img1.jpg", "Article 1", "Owned", "1"));
         news.add(new News(2, "images/img1.jpg", "Article 2", "Source 1", "2", "r2c1"));
@@ -19,12 +21,6 @@ public class NewsServiceImpl implements NewsService {
         news.add(new News(5, "images/img1.jpg", "Article 4", "Source 2", "5", "r1c2"));
         news.add(new News(6, "images/img1.jpg", "Article 6", "Owned", "6"));
         news.add(new News(7, "images/img1.jpg", "Article 7", "Owned", "7"));
-
-        return news;
-    }
-
-    public List<Article> articles() {
-        List<Article> articles = new ArrayList<Article>();
 
         articles.add(new Article("1", "Article 1", "images/img1.jpg", "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."));
         articles.add(new Article("2", "Article 2", "images/img1.jpg", "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."));
@@ -35,6 +31,14 @@ public class NewsServiceImpl implements NewsService {
         articles.add(new Article("7", "Article 7", "images/img1.jpg", "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."));
 
 
+    }
+
+    @Override
+    public List<News> lastNews() {
+        return news;
+    }
+
+    public List<Article> articles() {
         return articles;
     }
 }
