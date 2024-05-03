@@ -16,7 +16,6 @@ public class CommandProvider {
         commands.put(CommandName.GO_TO_REGISTRATION_PAGE, new GoToRegistrationPage());
         commands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPage());
         commands.put(CommandName.GO_TO_INDEX_PAGE, new GoToIndexPage());
-        commands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPage());
         commands.put(CommandName.GO_TO_ARTICLE_PAGE, new GoToArticlePage());
 
         commands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
