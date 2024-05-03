@@ -57,6 +57,14 @@ public class News implements Serializable {
         this.source = source;
     }
 
+    public String getTileSize() {
+        return tileSize;
+    }
+
+    public void setTileSize(String tileSize) {
+        this.tileSize = tileSize;
+    }
+
     @Override
     public String toString() {
         return "News{" +
@@ -79,11 +87,4 @@ public class News implements Serializable {
         return Objects.hash(imgPath, title, source, tileSize);
     }
 
-    public String getTileSize() {
-        return tileSize;
-    }
-
-    public void setTileSize(String tileSize) {
-        this.tileSize = tileSize;
-    }
 }

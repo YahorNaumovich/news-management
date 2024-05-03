@@ -10,13 +10,10 @@ public class UserRegistrationInfo implements Serializable {
     private String login;
     private String email;
     private String password;
-
     private String confirmPassword;
 
     public UserRegistrationInfo() {
     }
-
-
     public UserRegistrationInfo(String login, String email, String password, String confirmPassword) {
         super();
         this.login = login;
