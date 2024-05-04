@@ -9,37 +9,6 @@ a {
     text-decoration: none;
 }
 
-header {
-  background-color: #007bff; /* Blue */
-  color: #fff;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
-}
-header h1 {
-  margin: 0;
-}
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 20px;
-}
-.auth-links {
-  margin-left: auto;
-}
-.auth-links a {
-  color: #f8f9fa;
-  text-decoration: none;
-  margin-left: 20px;
-}
-.auth-links a:hover {
-  text-decoration: underline; /* Underline on hover */
-}
 .main-container {
   max-width: 60vw;
   margin: 0 auto;
