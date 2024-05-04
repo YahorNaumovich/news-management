@@ -13,6 +13,12 @@ header {
 header h1 {
   margin: 0;
 }
+
+.header-links{
+margin-right: auto;
+margin-left: 20px;
+}
+
 nav a {
   color: #fff;
   text-decoration: none;
@@ -29,6 +35,24 @@ nav a {
 .auth-links a:hover {
   text-decoration: underline; /* Underline on hover */
 }
+
+.article-action-link {
+  color: #fff; /* White text */
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff; /* Blue */
+  margin-right: 10px;
+}
+
+.article-action-link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.article-action-link:last-child {
+  margin-right: 0; /* Remove right margin from the last link */
+}
+
 
 /* Style The Dropdown Button */
         .dropbtn {

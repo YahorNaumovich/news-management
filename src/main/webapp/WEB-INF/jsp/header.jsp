@@ -8,24 +8,24 @@
     <h1>News Portal</h1>
     <c:choose>
         <c:when test="${not empty sessionScope.user}">
+            <div class="header-links">
+                <c:set var="isAdmin" value="${sessionScope.user.role eq 'ADMINISTRATOR'}" />
+                <c:set var="isContributor" value="${sessionScope.user.role eq 'CONTRIBUTOR'}" />
+                <c:set var="isModerator" value="${sessionScope.user.role eq 'MODERATOR'}" />
+                <c:if test="${isAdmin or isContributor or isModerator}">
+                    <a class="article-action-link" href="#">Add article</a>
+                    <a class="article-action-link" href="#">Edit article</a>
+                </c:if>
+                <c:if test="${isAdmin or isModerator}">
+                    <a class="article-action-link" href="#">Delete article</a>
+                </c:if>
+                <c:if test="${isAdmin}">
+                    <a class="article-action-link" href="#">Manage users</a>
+                </c:if>
+            </div>
             <div class="dropdown">
                 <button class="dropbtn">${sessionScope.user.name}</button>
                 <div class="dropdown-content">
-                    <c:set var="isAdmin" value="${sessionScope.user.role eq 'ADMINISTRATOR'}" />
-                    <c:set var="isContributor" value="${sessionScope.user.role eq 'CONTRIBUTOR'}" />
-                    <c:set var="isModerator" value="${sessionScope.user.role eq 'MODERATOR'}" />
-                    <c:choose>
-                        <c:when test="${isAdmin or isContributor or isModerator}">
-                            <a href="#">Add article</a>
-                            <a href="#">Edit article</a>
-                        </c:when>
-                        <c:when test="${isAdmin or isModerator}">
-                            <a href="#">Delete article</a>
-                        </c:when>
-                        <c:when test="${isAdmin}">
-                            <a href="#">Manage users</a>
-                        </c:when>
-                    </c:choose>
                     <a href="#">Your Profile</a>
                     <a href="Controller?command=DO_LOG_OUT">Log out</a>
                 </div>
