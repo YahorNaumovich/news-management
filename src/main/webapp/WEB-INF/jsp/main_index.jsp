@@ -16,7 +16,15 @@
 <div class="main-container">
     <main>
         <c:forEach var="news" items="${requestScope.mainNews}">
-            <a class="news-item ${news.tileSize}" href="Controller?command=GO_TO_ARTICLE_PAGE&articleId=${news.articleId}">
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <c:set var="loginCommand" value="GO_TO_ARTICLE_PAGE"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="loginCommand" value="GO_TO_LOGIN_PAGE"/>
+                </c:otherwise>
+            </c:choose>
+            <a class="news-item ${news.tileSize}" href="Controller?command=${loginCommand}&articleId=${news.articleId}">
                 <div class="image-container">
                     <img src="${news.imgPath}" alt="Article image">
                 </div>
