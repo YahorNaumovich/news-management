@@ -18,6 +18,8 @@ public class CommandProvider {
         commands.put(CommandName.GO_TO_INDEX_PAGE, new GoToIndexPage());
         commands.put(CommandName.GO_TO_ARTICLE_PAGE, new GoToArticlePage());
 
+        commands.put(CommandName.ADD_ARTICLE, new AddArticle());
+
         commands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
     }
 

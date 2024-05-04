@@ -8,4 +8,5 @@ import java.util.List;
 public interface NewsService {
     List<News> lastNews();
     List<Article> articles();
+    void addArticle();
 }
