@@ -13,7 +13,7 @@
                 <c:set var="isContributor" value="${sessionScope.user.role eq 'CONTRIBUTOR'}" />
                 <c:set var="isModerator" value="${sessionScope.user.role eq 'MODERATOR'}" />
                 <c:if test="${isAdmin or isContributor or isModerator}">
-                    <a class="article-action-link" href="Controller?command=add_article">Add article</a>
+                    <a class="article-action-link" href="Controller?command=go_to_add_article_page">Add article</a>
                     <a class="article-action-link" href="#">Edit article</a>
                 </c:if>
                 <c:if test="${isAdmin or isModerator}">
