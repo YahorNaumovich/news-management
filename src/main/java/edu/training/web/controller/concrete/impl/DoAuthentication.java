@@ -3,6 +3,7 @@ package edu.training.web.controller.concrete.impl;
 import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
 import edu.training.web.controller.concrete.Command;
+import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
 import edu.training.web.service.UserService;
 import jakarta.servlet.ServletException;
@@ -22,16 +23,22 @@ public class DoAuthentication implements Command {
         String password = request.getParameter("password");
 
         System.out.println("Perform user authentication and authorization. Login: " + login);
-        User user = userService.signIn(new AuthenticationInfo(login, password));
 
-        if (user != null) {
+        User user;
+        try {
+            user = userService.signIn(new AuthenticationInfo(login, password));
 
-            HttpSession session = (HttpSession) request.getSession(true);
-            session.setAttribute("user", user);
+            if (user != null) {
 
-            response.sendRedirect("Controller?command=go_to_index_page");
+                HttpSession session = (HttpSession) request.getSession(true);
+                session.setAttribute("user", user);
 
-        } else {
+                response.sendRedirect("Controller?command=go_to_index_page");
+
+            } else {
+                response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");
+            }
+        } catch (ServiceException e) {
             response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");
         }
 
