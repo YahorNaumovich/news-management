@@ -4,33 +4,43 @@ import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
 import edu.training.web.bean.UserProfile;
 import edu.training.web.bean.UserRegistrationInfo;
+import edu.training.web.dao.AuthenticationDao;
+import edu.training.web.dao.DaoException;
+import edu.training.web.dao.DaoProvider;
+import edu.training.web.service.ServiceException;
 import edu.training.web.service.UserRoles;
 import edu.training.web.service.UserService;
 
 public class UserServiceImpl implements UserService {
+
+    private AuthenticationDao authenticationDao = DaoProvider.getInstance().getAuthenticationDao();
+
     @Override
-    public User signIn(AuthenticationInfo authenticationInfo) {
+    public User signIn(AuthenticationInfo authenticationInfo) throws ServiceException {
 
-        return switch (authenticationInfo.getLogin()) {
-            case ("admin@mail.ru") -> new User("Admin", UserRoles.ADMINISTRATOR);
-            case ("contributor@mail.ru") -> new User("Contributor", UserRoles.CONTRIBUTOR);
-            case ("moderator@mail.ru") -> new User("Moderator", UserRoles.MODERATOR);
-            case ("reader@mail.ru") -> new User("Reader", UserRoles.READER);
-            default -> null;
-        };
+        User user;
 
+        try {
+            user = authenticationDao.signIn(authenticationInfo);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+
+        return user;
     }
 
     @Override
-    public User signUp(UserRegistrationInfo userRegistrationInfo) {
+    public User signUp(UserRegistrationInfo userRegistrationInfo) throws ServiceException {
 
-        if (userRegistrationInfo.getPassword().equals(userRegistrationInfo.getConfirmPassword())) {
+        User user;
 
-            return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
-
+        try {
+            user = authenticationDao.signUp(userRegistrationInfo);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
         }
 
-        return null;
+        return user;
     }
 
     @Override
