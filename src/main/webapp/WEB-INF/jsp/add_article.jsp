@@ -71,7 +71,8 @@
 <jsp:include page="header.jsp" />
 
 <div class="container">
-<form action="add_article.jsp" method="post" enctype="multipart/form-data">
+<form action="Controller" method="post">
+    <input type="hidden" name="command" value="DO_ADD_ARTICLE"/>
         <div class="form-group">
             <label for="title">Title:</label>
             <textarea id="title" name="title" rows="2" cols="50"></textarea>
@@ -89,9 +90,9 @@
             <label for="tileSize">Tile Size:</label>
             <select id="tileSize" name="tileSize">
                 <option value="1x1">1x1</option>
-                <option value="1x2">1x2</option>
-                <option value="2x1">2x1</option>
-                <option value="2x2">2x2</option>
+                <option value="r1c2">1x2</option>
+                <option value="r2c1">2x1</option>
+                <option value="r2c2">2x2</option>
             </select>
         </div>
         <div class="form-group">

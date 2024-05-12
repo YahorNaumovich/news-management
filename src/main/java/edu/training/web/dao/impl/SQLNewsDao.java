@@ -1,5 +1,6 @@
 package edu.training.web.dao.impl;
 
+import edu.training.web.bean.AddArticleInfo;
 import edu.training.web.bean.Article;
 import edu.training.web.bean.News;
 import edu.training.web.dao.DaoException;
@@ -39,5 +40,11 @@ public class SQLNewsDao implements NewsDao {
     @Override
     public List<Article> getArticles() throws DaoException {
         return articles;
+    }
+
+    @Override
+    public void addArticle(AddArticleInfo addArticleInfo) {
+        news.add(0, new News(10, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", "10", addArticleInfo.getTileSize()));
+        articles.add(0, new Article("10",  addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
     }
 }
