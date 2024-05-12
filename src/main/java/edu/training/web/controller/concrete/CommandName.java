@@ -7,5 +7,7 @@ public enum CommandName {
 
     GO_TO_ADD_ARTICLE_PAGE,
 
+    SELECT_ARTICLE_TO_EDIT,
+
     NO_SUCH_COMMAND
 }

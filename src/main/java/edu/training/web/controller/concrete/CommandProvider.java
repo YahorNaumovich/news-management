@@ -21,6 +21,8 @@ public class CommandProvider {
 
         commands.put(CommandName.GO_TO_ADD_ARTICLE_PAGE, new GoToAddArticlePage());
 
+        commands.put(CommandName.SELECT_ARTICLE_TO_EDIT, new SelectArticleToEdit());
+
         commands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
     }
 
