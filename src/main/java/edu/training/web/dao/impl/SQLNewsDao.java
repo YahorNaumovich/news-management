@@ -43,7 +43,9 @@ public class SQLNewsDao implements NewsDao {
     }
 
     @Override
-    public void addArticle(AddArticleInfo addArticleInfo) {
+    public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
+
+        // TODO Implement unique id generation
         news.add(0, new News(10, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", "10", addArticleInfo.getTileSize()));
         articles.add(0, new Article("10",  addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
     }
