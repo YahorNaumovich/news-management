@@ -49,4 +49,9 @@ public class SQLNewsDao implements NewsDao {
         news.add(0, new News(10, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", "10", addArticleInfo.getTileSize()));
         articles.add(0, new Article("10",  addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
     }
+
+    @Override
+    public void editArticle(AddArticleInfo addArticleInfo) throws DaoException {
+        // TODO Implement article editing stub
+    }
 }

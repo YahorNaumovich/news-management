@@ -9,6 +9,6 @@ import java.util.List;
 public interface NewsDao {
     List<News> getLastNews() throws DaoException;
     List<Article> getArticles() throws DaoException;
-
     void addArticle(AddArticleInfo addArticleInfo) throws DaoException;
+    void editArticle(AddArticleInfo addArticleInfo) throws DaoException;
 }

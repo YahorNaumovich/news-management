@@ -46,4 +46,14 @@ public class NewsServiceImpl implements NewsService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public void editArticle(AddArticleInfo addArticleInfo) throws ServiceException {
+
+        try {
+            newsDao.editArticle(addArticleInfo);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }
