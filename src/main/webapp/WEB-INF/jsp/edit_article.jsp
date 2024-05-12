@@ -72,14 +72,14 @@
 
 <div class="container">
 <form action="Controller" method="post">
-    <input type="hidden" name="command" value="DO_ADD_ARTICLE"/>
+    <input type="hidden" name="command" value="DO_EDIT_ARTICLE"/>
         <div class="form-group">
             <label for="title">Title:</label>
-            <textarea id="title" name="title" rows="2" cols="50"></textarea>
+            <textarea id="title" name="title" rows="2" cols="50">${article.title}</textarea>
         </div>
         <div class="form-group">
             <label for="articleText">Article Text:</label>
-            <textarea id="articleText" name="articleText" rows="10" cols="50"></textarea>
+            <textarea id="articleText" name="articleText" rows="10" cols="50">${article.text}</textarea>
         </div>
 
         <div class="form-group">
@@ -96,7 +96,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="submit">Post Article</button>
+            <button type="submit">Edit Article</button>
         </div>
     </form>
 </div>

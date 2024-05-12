@@ -20,6 +20,7 @@ public class CommandProvider {
         commands.put(CommandName.GO_TO_ARTICLE_PAGE, new GoToArticlePage());
 
         commands.put(CommandName.GO_TO_ADD_ARTICLE_PAGE, new GoToAddArticlePage());
+        commands.put(CommandName.GO_TO_EDIT_ARTICLE_PAGE, new GoToEditArticlePage());
 
         commands.put(CommandName.SELECT_ARTICLE_TO_EDIT, new SelectArticleToEdit());
 

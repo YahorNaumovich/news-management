@@ -13,30 +13,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class GoToAddArticlePage implements Command {
-    private final NewsService newsService = ServiceProvider.getInstance().getNewsService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (request.getSession().getAttribute("isInEditMode").equals(true)) {
-            String articleId = request.getParameter("articleId");
-            System.out.println("Article id associated with this tile is: " + articleId);
-
-            List<Article> articles = null;
-            try {
-                articles = newsService.articles();
-            } catch (ServiceException e) {
-                response.sendRedirect("Controller?command=go_to_index_page");
-            }
-
-            for (Article article : articles) {
-                if (article.getId().equals(articleId)) {
-                    request.setAttribute("article", article);
-                    System.out.println("Article attribute is set");
-                    request.getRequestDispatcher("WEB-INF/jsp/add_article.jsp").forward(request, response);
-                }
-            }
-        }
 
         request.getRequestDispatcher("WEB-INF/jsp/add_article.jsp").forward(request, response);
     }

@@ -24,7 +24,7 @@
                 <c:when test="${not empty sessionScope.user}">
                     <c:set var="loginCommand" value="GO_TO_ARTICLE_PAGE"/>
                         <c:if test="${sessionScope.isInEditMode}">
-                                          <c:set var="loginCommand" value="GO_TO_ADD_ARTICLE_PAGE"/>
+                                          <c:set var="loginCommand" value="GO_TO_EDIT_ARTICLE_PAGE"/>
                                       </c:if>
                 </c:when>
                 <c:otherwise>
