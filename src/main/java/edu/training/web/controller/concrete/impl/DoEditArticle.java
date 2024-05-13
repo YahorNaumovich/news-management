@@ -22,8 +22,10 @@ public class DoEditArticle implements Command {
         String articleText = request.getParameter("articleText");
         String tileSize = request.getParameter("tileSize");
 
+        String articleId = request.getParameter("articleId");
+
         try {
-            newsService.editArticle(new AddArticleInfo(title, articleText, null, tileSize));
+            newsService.editArticle(new AddArticleInfo(title, articleText, null, tileSize), articleId);
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }

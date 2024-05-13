@@ -1,6 +1,6 @@
 package edu.training.web.controller.concrete.impl;
 
-import edu.training.web.bean.News;
+import edu.training.web.bean.NewsTile;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.NewsService;
 import edu.training.web.service.ServiceException;
@@ -21,7 +21,7 @@ public class GoToIndexPage implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        List<News> mainNews  = null;
+        List<NewsTile> mainNews  = null;
         try {
             mainNews = newsService.lastNews();
             System.out.println(mainNews);

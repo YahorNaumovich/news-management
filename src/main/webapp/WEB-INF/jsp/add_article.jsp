@@ -96,7 +96,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="submit">Post Article</button>
+            <button type="submit">Post</button>
         </div>
     </form>
 </div>

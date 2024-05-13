@@ -2,8 +2,7 @@ package edu.training.web.service.impl;
 
 import edu.training.web.bean.AddArticleInfo;
 import edu.training.web.bean.Article;
-import edu.training.web.bean.News;
-import edu.training.web.dao.AuthenticationDao;
+import edu.training.web.bean.NewsTile;
 import edu.training.web.dao.DaoException;
 import edu.training.web.dao.DaoProvider;
 import edu.training.web.dao.NewsDao;
@@ -15,13 +14,13 @@ import java.util.List;
 
 public class NewsServiceImpl implements NewsService {
 
-    List<News> news = new ArrayList<News>();
+    List<NewsTile> newsTiles = new ArrayList<NewsTile>();
     List<Article> articles = new ArrayList<Article>();
 
     private NewsDao newsDao = DaoProvider.getInstance().getNewsDao();
 
     @Override
-    public List<News> lastNews() throws ServiceException {
+    public List<NewsTile> lastNews() throws ServiceException {
         try {
             return newsDao.getLastNews();
         } catch (DaoException e) {
@@ -48,10 +47,10 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void editArticle(AddArticleInfo addArticleInfo) throws ServiceException {
+    public void editArticle(AddArticleInfo addArticleInfo, String articleId) throws ServiceException {
 
         try {
-            newsDao.editArticle(addArticleInfo);
+            newsDao.editArticle(addArticleInfo, articleId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

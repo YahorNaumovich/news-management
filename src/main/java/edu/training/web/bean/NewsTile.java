@@ -3,7 +3,7 @@ package edu.training.web.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class News implements Serializable {
+public class NewsTile implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,10 @@ public class News implements Serializable {
 
     private String articleId;
 
-    public News() {
+    public NewsTile() {
     }
 
-    public News(Integer id, String imgPath, String title, String source,String articleId) {
+    public NewsTile(Integer id, String imgPath, String title, String source, String articleId) {
         super();
         this.id = id;
         this.imgPath = imgPath;
@@ -31,7 +31,7 @@ public class News implements Serializable {
         this.articleId = articleId;
     }
 
-    public News(Integer id, String imgPath, String title, String source,String articleId, String tileSize) {
+    public NewsTile(Integer id, String imgPath, String title, String source, String articleId, String tileSize) {
         super();
         this.id = id;
         this.imgPath = imgPath;
@@ -102,8 +102,8 @@ public class News implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        News news = (News) o;
-        return Objects.equals(imgPath, news.imgPath) && Objects.equals(title, news.title) && Objects.equals(source, news.source) && Objects.equals(tileSize, news.tileSize);
+        NewsTile newsTile = (NewsTile) o;
+        return Objects.equals(imgPath, newsTile.imgPath) && Objects.equals(title, newsTile.title) && Objects.equals(source, newsTile.source) && Objects.equals(tileSize, newsTile.tileSize);
     }
 
     @Override

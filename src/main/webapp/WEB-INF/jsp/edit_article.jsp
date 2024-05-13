@@ -73,6 +73,10 @@
 <div class="container">
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="DO_EDIT_ARTICLE"/>
+            <div class="form-group">
+                <label for="articleId">Id:</label>
+                <textarea id="articleId" name="articleId" rows="1" cols="50">${article.id}</textarea>
+            </div>
         <div class="form-group">
             <label for="title">Title:</label>
             <textarea id="title" name="title" rows="2" cols="50">${article.title}</textarea>
@@ -96,7 +100,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="submit">Edit Article</button>
+            <button type="submit">Save</button>
         </div>
     </form>
 </div>

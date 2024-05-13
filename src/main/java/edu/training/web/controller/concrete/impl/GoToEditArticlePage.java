@@ -30,6 +30,7 @@ public class GoToEditArticlePage implements Command {
         for (Article article : articles) {
             if (article.getId().equals(articleId)) {
                 request.setAttribute("article", article);
+                request.setAttribute("articleId", articleId);
                 System.out.println("Article attribute is set");
                 request.getRequestDispatcher("WEB-INF/jsp/edit_article.jsp").forward(request, response);
             }
