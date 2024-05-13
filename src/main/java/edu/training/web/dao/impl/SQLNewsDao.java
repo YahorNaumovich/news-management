@@ -70,7 +70,7 @@ public class SQLNewsDao implements NewsDao {
             }
         }
 
-        newsTiles.set(newsTiles.indexOf(tileToEdit), new NewsTile(tileToEdit.getId(), "images/img1.jpg", addArticleInfo.getTitle(), "Owned", articleId, addArticleInfo.getTileSize()));
-        articles.set(articles.indexOf(articleToEdit), new Article(articleToEdit.getId(), addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
+        newsTiles.set(newsTiles.indexOf(tileToEdit), new NewsTile(tileToEdit.getId(), tileToEdit.getImgPath(), addArticleInfo.getTitle(), "Owned", articleId, addArticleInfo.getTileSize()));
+        articles.set(articles.indexOf(articleToEdit), new Article(articleToEdit.getId(), addArticleInfo.getTitle(), tileToEdit.getImgPath(), addArticleInfo.getArticleText()));
     }
 }
