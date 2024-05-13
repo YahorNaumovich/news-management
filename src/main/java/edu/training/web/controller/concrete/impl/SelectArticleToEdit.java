@@ -23,6 +23,7 @@ public class SelectArticleToEdit implements Command {
             isInEditMode = (boolean) isInEditModeAttribute;
         }
 
+        session.setAttribute("isInDeleteMode", false);
         session.setAttribute("isInEditMode", !isInEditMode);
         response.sendRedirect("Controller?command=go_to_index_page");
 

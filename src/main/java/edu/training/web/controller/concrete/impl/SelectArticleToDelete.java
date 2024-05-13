@@ -23,6 +23,7 @@ public class SelectArticleToDelete implements Command {
             isInDeleteMode = (boolean) isInDeleteModeAttribute;
         }
 
+        session.setAttribute("isInEditMode", false);
         session.setAttribute("isInDeleteMode", !isInDeleteMode);
         response.sendRedirect("Controller?command=go_to_index_page");
     }
