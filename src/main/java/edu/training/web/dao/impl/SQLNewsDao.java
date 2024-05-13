@@ -74,4 +74,11 @@ public class SQLNewsDao implements NewsDao {
         newsTiles.set(newsTiles.indexOf(tileToEdit), new NewsTile(tileToEdit.getId(), tileToEdit.getImgPath(), addArticleInfo.getTitle(), "Owned", articleId, addArticleInfo.getTileSize()));
         articles.set(articles.indexOf(articleToEdit), new Article(articleToEdit.getId(), addArticleInfo.getTitle(), tileToEdit.getImgPath(), addArticleInfo.getArticleText()));
     }
+
+    @Override
+    public void deleteArticle(String articleId) throws DaoException {
+
+        newsTiles.removeIf(newsTile -> newsTile.getArticleId().equals(articleId));
+        articles.removeIf(article -> article.getId().equals(articleId));
+    }
 }

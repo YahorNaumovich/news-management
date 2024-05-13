@@ -15,17 +15,22 @@
 
 <div class="main-container">
     <c:if test="${sessionScope.isInEditMode}">
-                      <h2 class="action-title">Select an article to edit</h2>
-                  </c:if>
+        <h2 class="action-title">Select an article to edit</h2>
+    </c:if>
+    <c:if test="${sessionScope.isInDeleteMode}">
+        <h2 class="action-title">Select an article to delete</h2>
+    </c:if>
     <main>
-
         <c:forEach var="news" items="${requestScope.mainNews}">
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <c:set var="loginCommand" value="GO_TO_ARTICLE_PAGE"/>
-                        <c:if test="${sessionScope.isInEditMode}">
-                                          <c:set var="loginCommand" value="GO_TO_EDIT_ARTICLE_PAGE"/>
-                                      </c:if>
+                    <c:if test="${sessionScope.isInEditMode}">
+                        <c:set var="loginCommand" value="GO_TO_EDIT_ARTICLE_PAGE"/>
+                    </c:if>
+                    <c:if test="${sessionScope.isInDeleteMode}">
+                        <c:set var="loginCommand" value="DO_DELETE_ARTICLE"/>
+                    </c:if>
                 </c:when>
                 <c:otherwise>
                     <c:set var="loginCommand" value="GO_TO_LOGIN_PAGE"/>

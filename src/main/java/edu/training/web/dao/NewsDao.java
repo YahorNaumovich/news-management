@@ -11,4 +11,5 @@ public interface NewsDao {
     List<Article> getArticles() throws DaoException;
     void addArticle(AddArticleInfo addArticleInfo) throws DaoException;
     void editArticle(AddArticleInfo addArticleInfo, String articleId) throws DaoException;
+    void deleteArticle(String articleId) throws DaoException;
 }

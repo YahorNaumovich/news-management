@@ -17,7 +17,7 @@
                     <a class="article-action-link" href="Controller?command=select_article_to_edit">Edit article</a>
                 </c:if>
                 <c:if test="${isAdmin or isModerator}">
-                    <a class="article-action-link" href="">Delete article</a>
+                    <a class="article-action-link" href="Controller?command=select_article_to_delete">Delete article</a>
                 </c:if>
                 <c:if test="${isAdmin}">
                     <a class="article-action-link" href="#">Manage users</a>

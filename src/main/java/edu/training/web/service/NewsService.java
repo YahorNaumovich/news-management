@@ -11,4 +11,6 @@ public interface NewsService {
     List<Article> articles() throws ServiceException;
     void addArticle(AddArticleInfo addArticleInfo) throws ServiceException;
     void editArticle(AddArticleInfo addArticleInfo, String articleId) throws ServiceException;
+
+    void deleteArticle(String articleId) throws ServiceException;
 }
