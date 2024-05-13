@@ -6,9 +6,7 @@ import edu.training.web.bean.NewsTile;
 import edu.training.web.dao.DaoException;
 import edu.training.web.dao.NewsDao;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class SQLNewsDao implements NewsDao {
 
@@ -47,9 +45,12 @@ public class SQLNewsDao implements NewsDao {
     @Override
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
 
-        // TODO Implement unique id generation
-        newsTiles.add(0, new NewsTile(10, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", "10", addArticleInfo.getTileSize()));
-        articles.add(0, new Article("10", addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
+        Random random = new Random();
+        Integer tileId = random.nextInt();
+        String uniqueId = UUID.randomUUID().toString();
+
+        newsTiles.add(0, new NewsTile(tileId, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", uniqueId, addArticleInfo.getTileSize()));
+        articles.add(0, new Article(uniqueId, addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
     }
 
     @Override

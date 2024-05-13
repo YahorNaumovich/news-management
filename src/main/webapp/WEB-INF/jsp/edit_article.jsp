@@ -75,7 +75,7 @@
     <input type="hidden" name="command" value="DO_EDIT_ARTICLE"/>
             <div class="form-group">
                 <label for="articleId">Id:</label>
-                <textarea id="articleId" name="articleId" rows="1" cols="50">${article.id}</textarea>
+                <textarea id="articleId" name="articleId" rows="1" cols="50" readonly>${article.id}</textarea>
             </div>
         <div class="form-group">
             <label for="title">Title:</label>
