@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Improved mode selection logic">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Refactored AuthenticationDao">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,7 +389,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715619270226</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Refactored AuthenticationDao">
+      <option name="closed" value="true" />
+      <created>1715676054939</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1715676054939</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -405,7 +412,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made tiles links" />
     <MESSAGE value="Added GoToArticlePage command" />
     <MESSAGE value="Added article id field to the News class" />
     <MESSAGE value="Deleted go to main page command" />
@@ -430,6 +436,7 @@
     <MESSAGE value="Added unique id generation" />
     <MESSAGE value="Added delete article functionality" />
     <MESSAGE value="Improved mode selection logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved mode selection logic" />
+    <MESSAGE value="Refactored AuthenticationDao" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored AuthenticationDao" />
   </component>
 </project>
