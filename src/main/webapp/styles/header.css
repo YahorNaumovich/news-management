@@ -41,7 +41,6 @@ nav a {
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #007bff; /* Blue */
   margin-right: 10px;
 }
 
@@ -51,6 +50,10 @@ nav a {
 
 .article-action-link:last-child {
   margin-right: 0; /* Remove right margin from the last link */
+}
+
+.active {
+  background-color: #0056b3;
 }
 
 
