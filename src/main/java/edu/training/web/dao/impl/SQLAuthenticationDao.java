@@ -8,6 +8,7 @@ import edu.training.web.dao.DaoException;
 import edu.training.web.service.UserRoles;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SQLAuthenticationDao implements AuthenticationDao {
 
@@ -39,5 +40,10 @@ public class SQLAuthenticationDao implements AuthenticationDao {
         users.put(userRegistrationInfo.getEmail(), new User(userRegistrationInfo.getLogin(), UserRoles.READER));
 
         return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
+    }
+
+    @Override
+    public Map<String, User> getAllUsers() throws DaoException {
+        return users;
     }
 }

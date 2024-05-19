@@ -24,7 +24,6 @@ public class GoToIndexPage implements Command {
         List<NewsTile> mainNews  = null;
         try {
             mainNews = newsService.lastNews();
-            System.out.println(mainNews);
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=go_to_index_page");
         }

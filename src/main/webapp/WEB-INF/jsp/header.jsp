@@ -20,7 +20,7 @@
                     <a class="article-action-link <c:if test="${sessionScope.isInDeleteMode}">active</c:if>" href="Controller?command=select_article_to_delete">Delete article</a>
                 </c:if>
                 <c:if test="${isAdmin}">
-                    <a class="article-action-link" href="#">Manage users</a>
+                    <a class="article-action-link" href="Controller?command=go_to_manage_users_page">Manage users</a>
                 </c:if>
             </div>
             <div class="dropdown">

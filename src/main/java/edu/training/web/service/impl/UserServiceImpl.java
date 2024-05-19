@@ -11,6 +11,8 @@ import edu.training.web.service.ServiceException;
 import edu.training.web.service.UserRoles;
 import edu.training.web.service.UserService;
 
+import java.util.Map;
+
 public class UserServiceImpl implements UserService {
 
     private AuthenticationDao authenticationDao = DaoProvider.getInstance().getAuthenticationDao();
@@ -41,6 +43,20 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public Map<String, User> getAllUsers() throws ServiceException {
+
+        Map<String, User> users;
+
+        try {
+            users = authenticationDao.getAllUsers();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+
+        return users;
     }
 
     @Override
