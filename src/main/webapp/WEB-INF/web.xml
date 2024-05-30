@@ -32,4 +32,9 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/Controller</url-pattern>
   </filter-mapping>
+
+  <listener>
+    <listener-class>edu.training.web.controller.listener.ServletContextListenerImpl</listener-class>
+  </listener>
+
 </web-app>
