@@ -9,10 +9,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServletContextListenerImpl implements ServletContextListener {
 
     private Connection connection;
+
+    private static final Logger logger = Logger.getLogger(ServletContextListenerImpl.class.getName());
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -28,9 +31,10 @@ public class ServletContextListenerImpl implements ServletContextListener {
 
             // Store the connection in the servlet context
             sce.getServletContext().setAttribute("DBConnection", connection);
-            System.out.println("Database connection initialized.");
+            logger.info("Database connection initialized.");
 
         } catch (ClassNotFoundException | SQLException e) {
+            logger.log(Level.SEVERE, "Error initializing database connection", e);
             throw new RuntimeException("Error initializing database connection", e);
         }
     }
@@ -41,10 +45,10 @@ public class ServletContextListenerImpl implements ServletContextListener {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Database connection closed.");
+                logger.info("Database connection closed.");
             }
         } catch (SQLException e) {
-            System.out.println("Error closing database connection");
+            logger.log(Level.SEVERE, "Error closing database connection", e);
         }
 
         // Unregister JDBC drivers
@@ -53,14 +57,14 @@ public class ServletContextListenerImpl implements ServletContextListener {
             Driver driver = drivers.nextElement();
             try {
                 DriverManager.deregisterDriver(driver);
-                System.out.println("JDBC driver unregistered: " + driver);
+                logger.info("JDBC driver unregistered: " + driver);
             } catch (SQLException e) {
-                System.out.println("Error unregistering JDBC driver: " + driver);
+                logger.log(Level.SEVERE, "Error unregistering JDBC driver: " + driver, e);
             }
         }
 
         // Stop AbandonedConnectionCleanupThread
         com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
-        System.out.println("AbandonedConnectionCleanupThread stopped.");
+        logger.info("AbandonedConnectionCleanupThread stopped.");
     }
 }
