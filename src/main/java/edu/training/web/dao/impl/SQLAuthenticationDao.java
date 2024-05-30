@@ -5,12 +5,16 @@ import edu.training.web.bean.User;
 import edu.training.web.bean.UserRegistrationInfo;
 import edu.training.web.dao.AuthenticationDao;
 import edu.training.web.dao.DaoException;
+import edu.training.web.dao.SQLBaseDao;
 import edu.training.web.service.UserRoles;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SQLAuthenticationDao implements AuthenticationDao {
+public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDao {
 
     HashMap<String, User> users = new HashMap<>();
 
@@ -44,6 +48,50 @@ public class SQLAuthenticationDao implements AuthenticationDao {
 
     @Override
     public Map<String, User> getAllUsers() throws DaoException {
-        return users;
+
+        Map<String, User> usersMap = new HashMap<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+
+            String sql = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
+
+            statement = connection.prepareStatement(sql);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String username = resultSet.getString("username");
+                String email = resultSet.getString("email");
+                String roleName = resultSet.getString("role_name");
+                UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
+
+                User user = new User(username, role);
+
+                usersMap.put(email, user);
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error retrieving users from the database", e);
+        } finally {
+            // Close resources
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    // Handle exception
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    // Handle exception
+                }
+            }
+        }
+        return usersMap;
     }
 }
