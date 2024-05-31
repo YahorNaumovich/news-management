@@ -28,97 +28,51 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
     @Override
     public User signIn(AuthenticationInfo authenticationInfo) throws DaoException {
 
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+        String signInSql = "SELECT u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
 
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(signInSql)) {
 
-            String signInSql = "SELECT u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
-
-            statement = connection.prepareStatement(signInSql);
             statement.setString(1, authenticationInfo.getLogin());
-            statement.setString(2, authenticationInfo.getPassword()); // Ensure password is hashed and checked appropriately in a real app
-            resultSet = statement.executeQuery();
+            statement.setString(2, authenticationInfo.getPassword());
 
-            if (resultSet.next()) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
 
-                String username = resultSet.getString("username");
-                String roleName = resultSet.getString("name");
-                UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
+                    String username = resultSet.getString("username");
+                    String roleName = resultSet.getString("name");
+                    UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
 
-                return new User(username, role);
+                    return new User(username, role);
 
-            } else {
-                throw new DaoException("Invalid login or password");
+                } else {
+                    throw new DaoException("Invalid login or password");
+                }
             }
-
         } catch (SQLException e) {
-
             throw new DaoException("Database error occurred during sign in", e);
-
-        } finally {
-
-            // Close resources
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
-
         }
     }
 
     @Override
     public boolean userExists(String email) throws DaoException {
 
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+        String checkUserSql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(checkUserSql)) {
 
-            String checkUserSql = "SELECT COUNT(*) FROM users WHERE email = ?";
-
-            statement = connection.prepareStatement(checkUserSql);
             statement.setString(1, email);
-            resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
-                return resultSet.getInt(1) > 0;
+            try (ResultSet resultSet = statement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
+                }
+
+                return false;
+
             }
-
-            return false;
-
         } catch (SQLException e) {
-
             throw new DaoException("Database error occurred while checking user existence", e);
-
-        } finally {
-
-            // Close resources
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
-
         }
     }
 
@@ -126,37 +80,20 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
     @Override
     public User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException {
 
-        PreparedStatement statement = null;
+        String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
 
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(insertUserSql)) {
 
-            // Insert the new user into the database
-            String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
-
-            statement = connection.prepareStatement(insertUserSql);
             statement.setString(1, userRegistrationInfo.getLogin());
             statement.setString(2, userRegistrationInfo.getEmail());
             statement.setString(3, userRegistrationInfo.getPassword());
             statement.setInt(4, 4);
-            statement.executeUpdate();
 
-            // Return the new user object
             return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
 
         } catch (SQLException e) {
 
             throw new DaoException("Database error occurred during sign up", e);
-
-        } finally {
-
-            // Close resources
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
 
         }
     }
@@ -165,50 +102,28 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
     public Map<String, User> getAllUsers() throws DaoException {
 
         Map<String, User> usersMap = new HashMap<>();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
 
-        try {
+        String sql = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
 
-            String sql = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement = connection.prepareStatement(sql);
+            try (ResultSet resultSet = statement.executeQuery()) {
 
-            resultSet = statement.executeQuery();
+                while (resultSet.next()) {
 
-            while (resultSet.next()) {
+                    String username = resultSet.getString("username");
+                    String email = resultSet.getString("email");
+                    String roleName = resultSet.getString("role_name");
+                    UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
 
-                String username = resultSet.getString("username");
-                String email = resultSet.getString("email");
-                String roleName = resultSet.getString("role_name");
-                UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
+                    User user = new User(username, role);
 
-                User user = new User(username, role);
-
-                usersMap.put(email, user);
+                    usersMap.put(email, user);
+                }
             }
-
         } catch (SQLException e) {
 
             throw new DaoException("Error retrieving users from the database", e);
-
-        } finally {
-
-            // Close resources
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    // Handle exception
-                }
-            }
 
         }
         return usersMap;
