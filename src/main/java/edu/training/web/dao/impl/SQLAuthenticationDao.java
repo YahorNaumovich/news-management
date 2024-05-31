@@ -37,11 +37,6 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
         try {
 
-            // Check if passwords match (since email check is in service layer)
-            if (!userRegistrationInfo.getPassword().equals(userRegistrationInfo.getConfirmPassword())) {
-                throw new DaoException("Passwords do not match");
-            }
-
             // Insert the new user into the database
             String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
             statement = connection.prepareStatement(insertUserSql);

@@ -34,6 +34,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User signUp(UserRegistrationInfo userRegistrationInfo) throws ServiceException {
 
+        if (!userRegistrationInfo.getPassword().equals(userRegistrationInfo.getConfirmPassword())) {
+            throw new ServiceException("Passwords do not match");
+        }
+
         User user;
 
         try {
