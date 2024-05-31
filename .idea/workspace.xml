@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Moved password match check to service">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Introduced user existence check on registration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/AuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/AuthenticationDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -463,7 +461,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717140117808</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Introduced user existence check on registration">
+      <option name="closed" value="true" />
+      <created>1717140960985</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1717140960985</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved article action links to the header" />
     <MESSAGE value="Added basic functionality to add an article" />
     <MESSAGE value="Added add_article page and form for it" />
     <MESSAGE value="Added character encoding filter" />
@@ -503,6 +508,7 @@
     <MESSAGE value="Added connection" />
     <MESSAGE value="Added AppContextListener and implemented user registration in dao" />
     <MESSAGE value="Moved password match check to service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved password match check to service" />
+    <MESSAGE value="Introduced user existence check on registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduced user existence check on registration" />
   </component>
 </project>
