@@ -19,18 +19,21 @@ public class GoToIndexPage implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        List<NewsTile> mainNews  = null;
+        List<NewsTile> mainNews = null;
         try {
             mainNews = newsService.lastNews();
+            request.setAttribute("mainNews", mainNews);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");
+            dispatcher.forward(request, response);
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=go_to_index_page");
-        }
-        request.setAttribute("mainNews", mainNews);
+            // Log the error for debugging
+            e.printStackTrace();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");
-        dispatcher.forward(request, response);
+            // Redirect to an error page or handle the error appropriately
+            request.setAttribute("errorMessage", "An error occurred while retrieving the news.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
+            dispatcher.forward(request, response);
+        }
 
     }
 }

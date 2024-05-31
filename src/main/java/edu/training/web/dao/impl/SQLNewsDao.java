@@ -5,10 +5,14 @@ import edu.training.web.bean.Article;
 import edu.training.web.bean.NewsTile;
 import edu.training.web.dao.DaoException;
 import edu.training.web.dao.NewsDao;
+import edu.training.web.dao.SQLBaseDao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
-public class SQLNewsDao implements NewsDao {
+public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
     List<NewsTile> newsTiles = new ArrayList<NewsTile>();
     List<Article> articles = new ArrayList<Article>();
@@ -34,7 +38,30 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public List<NewsTile> getLastNews() throws DaoException {
-        return newsTiles;
+
+        List<NewsTile> lastNews = new ArrayList<>();
+
+        String sql = "SELECT * FROM tiles ORDER BY ID ASC";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+
+                    Integer id = resultSet.getInt(1);
+                    String imagePath = resultSet.getString(2);
+                    String title = resultSet.getString(3);
+                    String source = resultSet.getString(4);
+                    String size = resultSet.getString(5);
+                    String articleId = resultSet.getString(6);
+
+                    lastNews.add(new NewsTile(id, imagePath, title, source, articleId, size));
+
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Database error occurred during getting last news", e);
+        }
+        return lastNews;
     }
 
     @Override
