@@ -66,7 +66,56 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
     @Override
     public List<Article> getArticles() throws DaoException {
+
+        List<Article> articles = new ArrayList<>();
+
+        String sql = "SELECT * FROM articles ORDER BY ID ASC";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+
+                    String id = resultSet.getString(1);
+                    String title = resultSet.getString(2);
+                    String imagePath = resultSet.getString(3);
+                    String articleText = resultSet.getString(4);
+
+                    articles.add(new Article(id, title, imagePath, articleText));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Database error occurred during getting articles", e);
+        }
+
         return articles;
+    }
+
+
+    @Override
+    public Article getArticleById(String articleId) throws DaoException {
+
+        String sql = "SELECT * FROM articles WHERE id = ?";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, articleId);
+
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+
+                    String id = resultSet.getString(1);
+                    String title = resultSet.getString(2);
+                    String imagePath = resultSet.getString(3);
+                    String articleText = resultSet.getString(4);
+
+                    return new Article(id, title, imagePath, articleText);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Database error occurred during getting article by id", e);
+        }
+
+        return null;
     }
 
     @Override

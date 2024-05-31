@@ -15,25 +15,22 @@ import java.util.List;
 public class GoToArticlePage implements Command {
 
     private final NewsService newsService = ServiceProvider.getInstance().getNewsService();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String articleId = request.getParameter("articleId");
         System.out.println("Article id associated with this tile is: " + articleId);
 
-        List<Article> articles = null;
+        Article article = null;
         try {
-            articles = newsService.articles();
+            article = newsService.getArticleById(articleId);
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=go_to_index_page");
         }
 
-        for (Article article : articles) {
-            if (article.getId().equals(articleId)) {
-                request.setAttribute("article", article);
-                request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
-            }
-        }
+        request.setAttribute("article", article);
+        request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
 
     }
 }

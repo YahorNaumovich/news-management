@@ -9,6 +9,8 @@ import java.util.List;
 public interface NewsService {
     List<NewsTile> lastNews() throws ServiceException;
     List<Article> articles() throws ServiceException;
+
+    Article getArticleById(String articleId) throws ServiceException;
     void addArticle(AddArticleInfo addArticleInfo) throws ServiceException;
     void editArticle(AddArticleInfo addArticleInfo, String articleId) throws ServiceException;
 

@@ -28,9 +28,19 @@ public class NewsServiceImpl implements NewsService {
         }
     }
 
+    @Override
     public List<Article> articles() throws ServiceException {
         try {
             return newsDao.getArticles();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public Article getArticleById(String articleId) throws ServiceException {
+        try {
+            return newsDao.getArticleById(articleId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
