@@ -167,8 +167,6 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
             }
         }
 
-        newsTiles.add(0, new NewsTile(tileId, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", uniqueId, addArticleInfo.getTileSize()));
-        articles.add(0, new Article(uniqueId, addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
     }
 
     @Override
