@@ -16,6 +16,7 @@ public abstract class SQLBaseDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            System.out.println("Database connection initialized");
         } catch (SQLException e) {
             System.err.println("Failed to initialize connection: " + e.getMessage());
         } catch (ClassNotFoundException e) {
