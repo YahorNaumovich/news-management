@@ -33,17 +33,39 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
     @Override
     public User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException {
 
-        if (users.containsKey(userRegistrationInfo.getEmail())) {
-            throw new DaoException("This email is already registered");
+        PreparedStatement statement = null;
+
+        try {
+
+            // Check if passwords match (since email check is in service layer)
+            if (!userRegistrationInfo.getPassword().equals(userRegistrationInfo.getConfirmPassword())) {
+                throw new DaoException("Passwords do not match");
+            }
+
+            // Insert the new user into the database
+            String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
+            statement = connection.prepareStatement(insertUserSql);
+            statement.setString(1, userRegistrationInfo.getLogin());
+            statement.setString(2, userRegistrationInfo.getEmail());
+            statement.setString(3, userRegistrationInfo.getPassword());
+            statement.setInt(4, 4);
+            statement.executeUpdate();
+
+            // Return the new user object
+            return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
+
+        } catch (SQLException e) {
+            throw new DaoException("Database error occurred during sign up", e);
+        } finally {
+            // Close resources
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    // Handle exception
+                }
+            }
         }
-
-        if (!userRegistrationInfo.getPassword().equals(userRegistrationInfo.getConfirmPassword())) {
-            throw new DaoException("Passwords do not match");
-        }
-
-        users.put(userRegistrationInfo.getEmail(), new User(userRegistrationInfo.getLogin(), UserRoles.READER));
-
-        return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
     }
 
     @Override

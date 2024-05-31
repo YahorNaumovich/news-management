@@ -33,4 +33,8 @@
     <url-pattern>/Controller</url-pattern>
   </filter-mapping>
 
+  <listener>
+    <listener-class>edu.training.web.controller.listener.AppContextListener</listener-class>
+  </listener>
+
 </web-app>
