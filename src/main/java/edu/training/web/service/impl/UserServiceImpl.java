@@ -38,6 +38,14 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException("Passwords do not match");
         }
 
+        try {
+            if (authenticationDao.userExists(userRegistrationInfo.getEmail())) {
+                throw new ServiceException("User with this email already exists");
+            }
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+
         User user;
 
         try {

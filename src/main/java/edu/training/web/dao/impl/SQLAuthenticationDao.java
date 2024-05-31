@@ -31,6 +31,43 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
     }
 
     @Override
+    public boolean userExists(String email) throws DaoException {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String checkUserSql = "SELECT COUNT(*) FROM users WHERE email = ?";
+            statement = connection.prepareStatement(checkUserSql);
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new DaoException("Database error occurred while checking user existence", e);
+        } finally {
+            // Close resources
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    // Handle exception
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    // Handle exception
+                }
+            }
+        }
+    }
+
+
+    @Override
     public User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException {
 
         PreparedStatement statement = null;

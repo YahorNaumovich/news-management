@@ -9,6 +9,7 @@ import java.util.Map;
 public interface AuthenticationDao {
     User signIn(AuthenticationInfo authenticationInfo) throws DaoException;
 
+    boolean userExists(String email) throws DaoException;
     User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException;
 
     Map<String, User> getAllUsers() throws DaoException;
