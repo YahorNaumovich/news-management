@@ -96,12 +96,12 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
         String sql = "SELECT * FROM articles WHERE id = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, articleId);
 
-            try(ResultSet resultSet = statement.executeQuery()) {
-                if(resultSet.next()) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
 
                     String id = resultSet.getString(1);
                     String title = resultSet.getString(2);
@@ -122,8 +122,50 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
 
         Random random = new Random();
-        Integer tileId = random.nextInt();
+        int tileId = random.nextInt();
         String uniqueId = UUID.randomUUID().toString();
+
+        String insertNewTileSql = "INSERT INTO tiles (id, imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertNewArticleSql = "INSERT INTO articles (id, title, imagePath, text) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement newsTileStatement = connection.prepareStatement(insertNewTileSql);
+             PreparedStatement articleStatement = connection.prepareStatement(insertNewArticleSql)
+        ) {
+
+            connection.setAutoCommit(false);
+
+            articleStatement.setString(1, uniqueId);
+            articleStatement.setString(2, addArticleInfo.getTitle());
+            articleStatement.setString(3, "images/img1.jpg");
+            articleStatement.setString(4, addArticleInfo.getArticleText());
+            articleStatement.executeUpdate();
+
+            newsTileStatement.setInt(1, tileId);
+            newsTileStatement.setString(2, "images/img1.jpg");
+            newsTileStatement.setString(3, addArticleInfo.getTitle());
+            newsTileStatement.setString(4, "Owned");
+            newsTileStatement.setString(5, addArticleInfo.getTileSize());
+            newsTileStatement.setString(6, uniqueId);
+            newsTileStatement.setInt(7, 1);
+            newsTileStatement.executeUpdate();
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            throw new DaoException("Database error occurred during adding article", e);
+        } finally {
+
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
         newsTiles.add(0, new NewsTile(tileId, "images/img1.jpg", addArticleInfo.getTitle(), "Owned", uniqueId, addArticleInfo.getTileSize()));
         articles.add(0, new Article(uniqueId, addArticleInfo.getTitle(), "images/img1.jpg", addArticleInfo.getArticleText()));
