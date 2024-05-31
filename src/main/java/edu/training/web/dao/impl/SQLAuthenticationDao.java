@@ -27,29 +27,37 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
     @Override
     public User signIn(AuthenticationInfo authenticationInfo) throws DaoException {
+
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
-            // Query to get the user by login and password
+
             String signInSql = "SELECT u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
+
             statement = connection.prepareStatement(signInSql);
             statement.setString(1, authenticationInfo.getLogin());
             statement.setString(2, authenticationInfo.getPassword()); // Ensure password is hashed and checked appropriately in a real app
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
+
                 String username = resultSet.getString("username");
                 String roleName = resultSet.getString("name");
                 UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
+
                 return new User(username, role);
+
             } else {
                 throw new DaoException("Invalid login or password");
             }
 
         } catch (SQLException e) {
+
             throw new DaoException("Database error occurred during sign in", e);
+
         } finally {
+
             // Close resources
             if (resultSet != null) {
                 try {
@@ -65,16 +73,20 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
                     // Handle exception
                 }
             }
+
         }
     }
 
     @Override
     public boolean userExists(String email) throws DaoException {
+
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
+
             String checkUserSql = "SELECT COUNT(*) FROM users WHERE email = ?";
+
             statement = connection.prepareStatement(checkUserSql);
             statement.setString(1, email);
             resultSet = statement.executeQuery();
@@ -82,10 +94,15 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
             if (resultSet.next()) {
                 return resultSet.getInt(1) > 0;
             }
+
             return false;
+
         } catch (SQLException e) {
+
             throw new DaoException("Database error occurred while checking user existence", e);
+
         } finally {
+
             // Close resources
             if (resultSet != null) {
                 try {
@@ -101,6 +118,7 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
                     // Handle exception
                 }
             }
+
         }
     }
 
@@ -114,6 +132,7 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
             // Insert the new user into the database
             String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
+
             statement = connection.prepareStatement(insertUserSql);
             statement.setString(1, userRegistrationInfo.getLogin());
             statement.setString(2, userRegistrationInfo.getEmail());
@@ -125,8 +144,11 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
             return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
 
         } catch (SQLException e) {
+
             throw new DaoException("Database error occurred during sign up", e);
+
         } finally {
+
             // Close resources
             if (statement != null) {
                 try {
@@ -135,6 +157,7 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
                     // Handle exception
                 }
             }
+
         }
     }
 
@@ -166,8 +189,11 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
             }
 
         } catch (SQLException e) {
+
             throw new DaoException("Error retrieving users from the database", e);
+
         } finally {
+
             // Close resources
             if (resultSet != null) {
                 try {
@@ -183,6 +209,7 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
                     // Handle exception
                 }
             }
+
         }
         return usersMap;
     }
