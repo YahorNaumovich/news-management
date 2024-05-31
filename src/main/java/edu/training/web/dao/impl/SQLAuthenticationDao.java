@@ -16,13 +16,7 @@ import java.util.Map;
 
 public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDao {
 
-    HashMap<String, User> users = new HashMap<>();
-
     public SQLAuthenticationDao() {
-        users.put("admin@mail.ru", new User("Admin", UserRoles.ADMINISTRATOR));
-        users.put("contributor@mail.ru", new User("Contributor", UserRoles.CONTRIBUTOR));
-        users.put("moderator@mail.ru", new User("Moderator", UserRoles.MODERATOR));
-        users.put("reader@mail.ru", new User("Reader", UserRoles.READER));
     }
 
     @Override
