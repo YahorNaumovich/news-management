@@ -219,7 +219,45 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
     @Override
     public void deleteArticle(String articleId) throws DaoException {
 
-        newsTiles.removeIf(newsTile -> newsTile.getArticleId().equals(articleId));
-        articles.removeIf(article -> article.getId().equals(articleId));
+        String deleteNewsTileSql = "DELETE FROM tiles WHERE Articles_id = ?";
+        String deleteArticleSql = "DELETE FROM articles WHERE id = ?";
+
+        try (PreparedStatement newsTileStatement = connection.prepareStatement(deleteNewsTileSql);
+             PreparedStatement articleStatement = connection.prepareStatement(deleteArticleSql)
+        ) {
+            connection.setAutoCommit(false);
+
+            // Delete the news tile
+            newsTileStatement.setString(1, articleId);
+            newsTileStatement.executeUpdate();
+
+            // Delete the article
+            articleStatement.setString(1, articleId);
+            articleStatement.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            // Rollback transaction on error
+            try {
+                if (connection != null) {
+                    connection.rollback();
+                }
+            } catch (SQLException ex) {
+                // Handle rollback exception
+                ex.printStackTrace();
+            }
+            throw new DaoException("Database error occurred during deleting article", e);
+        } finally {
+            // Reset auto-commit to true
+            try {
+                if (connection != null) {
+                    connection.setAutoCommit(true);
+                }
+            } catch (SQLException e) {
+                // Handle exception
+                e.printStackTrace();
+            }
+        }
+
     }
 }
