@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Implemented addArticle method using jdbc">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Minor fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,14 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added log out functionality">
-      <option name="closed" value="true" />
-      <created>1714374852471</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1714374852471</updated>
     </task>
     <task id="LOCAL-00007" summary="Fixed command name">
       <option name="closed" value="true" />
@@ -500,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717181900261</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Minor fix">
+      <option name="closed" value="true" />
+      <created>1717182993012</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1717182993012</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -515,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created separate page for article editing" />
     <MESSAGE value="Created newsService method for article editing" />
     <MESSAGE value="Added article editing" />
     <MESSAGE value="Fixed image being reset while editing an article" />
@@ -540,6 +540,7 @@
     <MESSAGE value="Added getArticleById methods to service and dao" />
     <MESSAGE value="fixed GoToEditArticlePage class" />
     <MESSAGE value="Implemented addArticle method using jdbc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented addArticle method using jdbc" />
+    <MESSAGE value="Minor fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
   </component>
 </project>

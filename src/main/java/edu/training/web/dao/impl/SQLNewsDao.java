@@ -171,24 +171,49 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
     @Override
     public void editArticle(AddArticleInfo addArticleInfo, String articleId) throws DaoException {
-        System.out.println(articleId);
-        NewsTile tileToEdit = null;
-        Article articleToEdit = null;
 
-        for (NewsTile newsTile : newsTiles) {
-            if (newsTile.getArticleId().equals(articleId)) {
-                tileToEdit = newsTile;
+        String updateArticleSql = "UPDATE articles SET title = ?, text = ? WHERE id = ?";
+        String updateNewsTileSql = "UPDATE tiles SET title = ?, size = ? WHERE Articles_id = ?";
+
+        try (PreparedStatement articleStatement = connection.prepareStatement(updateArticleSql);
+             PreparedStatement newsTileStatement = connection.prepareStatement(updateNewsTileSql)
+        ) {
+            connection.setAutoCommit(false);
+
+            articleStatement.setString(1, addArticleInfo.getTitle());
+            articleStatement.setString(2, addArticleInfo.getArticleText());
+            articleStatement.setString(3, articleId);
+            articleStatement.executeUpdate();
+
+            newsTileStatement.setString(1, addArticleInfo.getTitle());
+            newsTileStatement.setString(2, addArticleInfo.getTileSize());
+            newsTileStatement.setString(3, articleId);
+            newsTileStatement.executeUpdate();
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            // Rollback transaction on error
+            try {
+                if (connection != null) {
+                    connection.rollback();
+                }
+            } catch (SQLException ex) {
+                // Handle rollback exception
+                ex.printStackTrace();
+            }
+            throw new DaoException("Database error occurred during editing article", e);
+        } finally {
+            // Reset auto-commit to true
+            try {
+                if (connection != null) {
+                    connection.setAutoCommit(true);
+                }
+            } catch (SQLException e) {
+                // Handle exception
+                e.printStackTrace();
             }
         }
-
-        for (Article article : articles) {
-            if (article.getId().equals(articleId)) {
-                articleToEdit = article;
-            }
-        }
-
-        newsTiles.set(newsTiles.indexOf(tileToEdit), new NewsTile(tileToEdit.getId(), tileToEdit.getImgPath(), addArticleInfo.getTitle(), "Owned", articleId, addArticleInfo.getTileSize()));
-        articles.set(articles.indexOf(articleToEdit), new Article(articleToEdit.getId(), addArticleInfo.getTitle(), tileToEdit.getImgPath(), addArticleInfo.getArticleText()));
     }
 
     @Override
