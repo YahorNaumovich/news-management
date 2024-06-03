@@ -53,6 +53,7 @@
     <table>
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Email</th>
                 <th>Username</th>
                 <th>User Role</th>
@@ -61,6 +62,7 @@
         <tbody>
             <c:forEach var="entry" items="${requestScope.users}">
                 <tr>
+                    <td>${entry.value.id}</td>
                     <td>${entry.key}</td>
                     <td>${entry.value.name}</td>
                     <td>${entry.value.role}</td>

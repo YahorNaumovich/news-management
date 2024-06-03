@@ -22,7 +22,7 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
     @Override
     public User signIn(AuthenticationInfo authenticationInfo) throws DaoException {
 
-        String signInSql = "SELECT u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
+        String signInSql = "SELECT u.id, u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(signInSql)) {
 
@@ -32,11 +32,12 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
 
+                    int id = resultSet.getInt("id");
                     String username = resultSet.getString("username");
                     String roleName = resultSet.getString("name");
                     UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
 
-                    return new User(username, role);
+                    return new User(id, username, role);
 
                 } else {
                     throw new DaoException("Invalid login or password");
@@ -76,14 +77,29 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
         String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement statement = connection.prepareStatement(insertUserSql)) {
+        try (PreparedStatement statement = connection.prepareStatement(insertUserSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+
 
             statement.setString(1, userRegistrationInfo.getLogin());
             statement.setString(2, userRegistrationInfo.getEmail());
             statement.setString(3, userRegistrationInfo.getPassword());
             statement.setInt(4, 4);
 
-            return new User(userRegistrationInfo.getLogin(), UserRoles.READER);
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new DaoException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int id = generatedKeys.getInt(1);
+                    return new User(id, userRegistrationInfo.getLogin(), UserRoles.READER);
+                } else {
+                    throw new DaoException("Creating user failed, no ID obtained.");
+                }
+            }
 
         } catch (SQLException e) {
 
@@ -105,12 +121,13 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
                 while (resultSet.next()) {
 
+                    int id = resultSet.getInt("id");
                     String username = resultSet.getString("username");
                     String email = resultSet.getString("email");
                     String roleName = resultSet.getString("role_name");
                     UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
 
-                    User user = new User(username, role);
+                    User user = new User(id, username, role);
 
                     usersMap.put(email, user);
                 }
