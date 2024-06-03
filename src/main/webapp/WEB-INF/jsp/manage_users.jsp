@@ -83,7 +83,7 @@
                     <td>${entry.key}</td>
                     <td>${entry.value.name}</td>
                     <td>${entry.value.role}</td>
-                    <td><a class="delete-button" href="Controller?command=delete_user&userId=${entry.value.id}">Delete user</a></td>
+                    <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}">Delete user</a></td>
                 </tr>
             </c:forEach>
         </tbody>
