@@ -25,6 +25,7 @@ public class DoRegistration implements Command {
         String passwordConfirm = request.getParameter("confirmPassword");
 
         System.out.println("Performed user authentication and authorization. Login: " + login);
+
         try {
             User user = userService.signUp(new UserRegistrationInfo(login, email, password, passwordConfirm));
 

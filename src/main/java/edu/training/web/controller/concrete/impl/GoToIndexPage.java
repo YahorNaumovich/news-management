@@ -21,15 +21,15 @@ public class GoToIndexPage implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<NewsTile> mainNews = null;
         try {
+
             mainNews = newsService.lastNews();
             request.setAttribute("mainNews", mainNews);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");
             dispatcher.forward(request, response);
-        } catch (ServiceException e) {
-            // Log the error for debugging
-            e.printStackTrace();
 
-            // Redirect to an error page or handle the error appropriately
+        } catch (ServiceException e) {
+
             request.setAttribute("errorMessage", "An error occurred while retrieving the news.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
             dispatcher.forward(request, response);
