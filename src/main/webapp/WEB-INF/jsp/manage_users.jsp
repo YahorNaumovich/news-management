@@ -16,7 +16,7 @@
         }
 
         .container {
-            width: 800px;
+            width: 1000px;
             margin: 30px auto;
             background-color: #fff;
             padding: 20px;
@@ -43,6 +43,22 @@
         tr:hover {
             background-color: #f5f5f5;
         }
+
+        .delete-button {
+              color: #fff; /* White text */
+              text-decoration: none;
+              padding: 10px 20px;
+              border-radius: 5px;
+              background-color: red;
+              display: inline-block;
+              margin: 10px 10px;
+        }
+
+        .delete-button:hover {
+            background-color: orangered;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -57,6 +73,7 @@
                 <th>Email</th>
                 <th>Username</th>
                 <th>User Role</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -66,6 +83,7 @@
                     <td>${entry.key}</td>
                     <td>${entry.value.name}</td>
                     <td>${entry.value.role}</td>
+                    <td><a class="delete-button" href="Controller?command=delete_user&userId=${entry.value.id}">Delete user</a></td>
                 </tr>
             </c:forEach>
         </tbody>
