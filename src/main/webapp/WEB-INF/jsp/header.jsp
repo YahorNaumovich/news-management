@@ -5,7 +5,7 @@
 <link href="styles/header.css" rel="stylesheet">
 
 <header>
-    <h1>News Portal</h1>
+    <h1><a href="Controller?command=go_to_index_page">News Portal</a></h1>
     <c:choose>
         <c:when test="${not empty sessionScope.user}">
             <div class="header-links">
