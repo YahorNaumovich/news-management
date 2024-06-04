@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added button to delete user">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Renamed command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/listener/AppContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/listener/AppContextListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Deleted go to main page command">
-      <option name="closed" value="true" />
-      <created>1714721561968</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1714721561968</updated>
     </task>
     <task id="LOCAL-00015" summary="Added article page and styles for it">
       <option name="closed" value="true" />
@@ -501,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717431583816</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Renamed command">
+      <option name="closed" value="true" />
+      <created>1717431930883</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1717431930883</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -516,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor change in error handling" />
     <MESSAGE value="Added link highlighting when either edit or delete mode is selected" />
     <MESSAGE value="Added user management page" />
     <MESSAGE value="Added ServletContextListenerImpl to initialize jdbc connection" />
@@ -541,6 +540,7 @@
     <MESSAGE value="Added user id" />
     <MESSAGE value="Added link to go to main page to header" />
     <MESSAGE value="Added button to delete user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added button to delete user" />
+    <MESSAGE value="Renamed command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed command" />
   </component>
 </project>
