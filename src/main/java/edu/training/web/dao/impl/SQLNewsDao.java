@@ -3,16 +3,17 @@ package edu.training.web.dao.impl;
 import edu.training.web.bean.AddArticleInfo;
 import edu.training.web.bean.Article;
 import edu.training.web.bean.NewsTile;
-import edu.training.web.dao.DaoException;
-import edu.training.web.dao.NewsDao;
-import edu.training.web.dao.SQLBaseDao;
+import edu.training.web.dao.*;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class SQLNewsDao extends SQLBaseDao implements NewsDao {
+public class SQLNewsDao implements NewsDao {
+
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public SQLNewsDao() {
     }
@@ -24,7 +25,8 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
         String sql = "SELECT * FROM tiles ORDER BY ID ASC";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
 
@@ -41,6 +43,8 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
             }
         } catch (SQLException e) {
             throw new DaoException("Database error occurred during getting last news", e);
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
         return lastNews;
     }
@@ -52,7 +56,8 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
         String sql = "SELECT * FROM articles ORDER BY ID ASC";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
 
@@ -66,6 +71,8 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
             }
         } catch (SQLException e) {
             throw new DaoException("Database error occurred during getting articles", e);
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
 
         return articles;
@@ -77,7 +84,8 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
         String sql = "SELECT * FROM articles WHERE id = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, articleId);
 
@@ -94,6 +102,8 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
             }
         } catch (SQLException e) {
             throw new DaoException("Database error occurred during getting article by id", e);
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
 
         return null;
@@ -101,7 +111,6 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
 
     @Override
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
-
         Random random = new Random();
         int tileId = random.nextInt();
         String uniqueId = UUID.randomUUID().toString();
@@ -109,18 +118,22 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
         String insertNewTileSql = "INSERT INTO tiles (id, imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String insertNewArticleSql = "INSERT INTO articles (id, title, imagePath, text) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement newsTileStatement = connection.prepareStatement(insertNewTileSql);
-             PreparedStatement articleStatement = connection.prepareStatement(insertNewArticleSql)
-        ) {
+        Connection connection = null;
+        PreparedStatement newsTileStatement = null;
+        PreparedStatement articleStatement = null;
 
+        try {
+            connection = ConnectionPool.getInstance().takeConnection();
             connection.setAutoCommit(false);
 
+            articleStatement = connection.prepareStatement(insertNewArticleSql);
             articleStatement.setString(1, uniqueId);
             articleStatement.setString(2, addArticleInfo.getTitle());
             articleStatement.setString(3, "images/img1.jpg");
             articleStatement.setString(4, addArticleInfo.getArticleText());
             articleStatement.executeUpdate();
 
+            newsTileStatement = connection.prepareStatement(insertNewTileSql);
             newsTileStatement.setInt(1, tileId);
             newsTileStatement.setString(2, "images/img1.jpg");
             newsTileStatement.setString(3, addArticleInfo.getTitle());
@@ -131,7 +144,6 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
             newsTileStatement.executeUpdate();
 
             connection.commit();
-
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -139,15 +151,20 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
                 e1.printStackTrace();
             }
             throw new DaoException("Database error occurred during adding article", e);
+        } catch (ConnectionPoolException e) {
+            throw new DaoException("Connection pool error occurred during adding article", e);
         } finally {
-
-            try {
-                connection.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                ConnectionPool.getInstance().closeStatement(newsTileStatement);
+                ConnectionPool.getInstance().closeStatement(articleStatement);
+                ConnectionPool.getInstance().closeConnection(connection);
             }
         }
-
     }
 
     @Override
@@ -156,16 +173,21 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
         String updateArticleSql = "UPDATE articles SET title = ?, text = ? WHERE id = ?";
         String updateNewsTileSql = "UPDATE tiles SET title = ?, size = ? WHERE Articles_id = ?";
 
-        try (PreparedStatement articleStatement = connection.prepareStatement(updateArticleSql);
-             PreparedStatement newsTileStatement = connection.prepareStatement(updateNewsTileSql)
-        ) {
+        Connection connection = null;
+        PreparedStatement articleStatement = null;
+        PreparedStatement newsTileStatement = null;
+
+        try {
+            connection = ConnectionPool.getInstance().takeConnection();
             connection.setAutoCommit(false);
 
+            articleStatement = connection.prepareStatement(updateArticleSql);
             articleStatement.setString(1, addArticleInfo.getTitle());
             articleStatement.setString(2, addArticleInfo.getArticleText());
             articleStatement.setString(3, articleId);
             articleStatement.executeUpdate();
 
+            newsTileStatement = connection.prepareStatement(updateNewsTileSql);
             newsTileStatement.setString(1, addArticleInfo.getTitle());
             newsTileStatement.setString(2, addArticleInfo.getTileSize());
             newsTileStatement.setString(3, articleId);
@@ -174,25 +196,24 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
             connection.commit();
 
         } catch (SQLException e) {
-            // Rollback transaction on error
             try {
-                if (connection != null) {
-                    connection.rollback();
-                }
+                connection.rollback();
             } catch (SQLException ex) {
-                // Handle rollback exception
                 ex.printStackTrace();
             }
             throw new DaoException("Database error occurred during editing article", e);
+        } catch (ConnectionPoolException e) {
+            throw new DaoException("Connection pool error occurred during editing article", e);
         } finally {
-            // Reset auto-commit to true
-            try {
-                if (connection != null) {
+            if (connection != null) {
+                try {
                     connection.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                // Handle exception
-                e.printStackTrace();
+                ConnectionPool.getInstance().closeStatement(newsTileStatement);
+                ConnectionPool.getInstance().closeStatement(articleStatement);
+                ConnectionPool.getInstance().closeConnection(connection);
             }
         }
     }
@@ -203,42 +224,44 @@ public class SQLNewsDao extends SQLBaseDao implements NewsDao {
         String deleteNewsTileSql = "DELETE FROM tiles WHERE Articles_id = ?";
         String deleteArticleSql = "DELETE FROM articles WHERE id = ?";
 
-        try (PreparedStatement newsTileStatement = connection.prepareStatement(deleteNewsTileSql);
-             PreparedStatement articleStatement = connection.prepareStatement(deleteArticleSql)
-        ) {
+        Connection connection = null;
+        PreparedStatement newsTileStatement = null;
+        PreparedStatement articleStatement = null;
+
+        try {
+            connection = ConnectionPool.getInstance().takeConnection();
             connection.setAutoCommit(false);
 
-            // Delete the news tile
+            newsTileStatement = connection.prepareStatement(deleteNewsTileSql);
             newsTileStatement.setString(1, articleId);
             newsTileStatement.executeUpdate();
 
-            // Delete the article
+            articleStatement = connection.prepareStatement(deleteArticleSql);
             articleStatement.setString(1, articleId);
             articleStatement.executeUpdate();
 
             connection.commit();
+
         } catch (SQLException e) {
-            // Rollback transaction on error
             try {
-                if (connection != null) {
-                    connection.rollback();
-                }
+                connection.rollback();
             } catch (SQLException ex) {
-                // Handle rollback exception
                 ex.printStackTrace();
             }
             throw new DaoException("Database error occurred during deleting article", e);
+        } catch (ConnectionPoolException e) {
+            throw new DaoException("Connection pool error occurred during deleting article", e);
         } finally {
-            // Reset auto-commit to true
-            try {
-                if (connection != null) {
+            if (connection != null) {
+                try {
                     connection.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                // Handle exception
-                e.printStackTrace();
+                ConnectionPool.getInstance().closeStatement(newsTileStatement);
+                ConnectionPool.getInstance().closeStatement(articleStatement);
+                ConnectionPool.getInstance().closeConnection(connection);
             }
         }
-
     }
 }

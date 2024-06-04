@@ -3,18 +3,19 @@ package edu.training.web.dao.impl;
 import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
 import edu.training.web.bean.UserRegistrationInfo;
-import edu.training.web.dao.AuthenticationDao;
-import edu.training.web.dao.DaoException;
-import edu.training.web.dao.SQLBaseDao;
+import edu.training.web.dao.*;
 import edu.training.web.service.UserRoles;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDao {
+public class SQLAuthenticationDao implements AuthenticationDao {
+
+    ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public SQLAuthenticationDao() {
     }
@@ -24,7 +25,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
         String signInSql = "SELECT u.id, u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(signInSql)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(signInSql)) {
 
             statement.setString(1, authenticationInfo.getLogin());
             statement.setString(2, authenticationInfo.getPassword());
@@ -45,6 +47,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
             }
         } catch (SQLException e) {
             throw new DaoException("Database error occurred during sign in", e);
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -53,7 +57,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
         String checkUserSql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(checkUserSql)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(checkUserSql)) {
 
             statement.setString(1, email);
 
@@ -68,6 +73,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
             }
         } catch (SQLException e) {
             throw new DaoException("Database error occurred while checking user existence", e);
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,7 +84,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
         String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement statement = connection.prepareStatement(insertUserSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(insertUserSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
 
 
@@ -105,6 +113,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
             throw new DaoException("Database error occurred during sign up", e);
 
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -115,7 +125,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
         String sql = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
 
@@ -136,6 +147,8 @@ public class SQLAuthenticationDao extends SQLBaseDao implements AuthenticationDa
 
             throw new DaoException("Error retrieving users from the database", e);
 
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
         }
         return usersMap;
     }

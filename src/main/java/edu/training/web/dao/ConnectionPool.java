@@ -107,6 +107,7 @@ public class ConnectionPool {
         } catch (InterruptedException e) {
             throw new ConnectionPoolException("Error connecting to the data source", e);
         }
+        LOGGER.log(Level.INFO, "Connection is taken from the pool");
         return connection;
     }
 
@@ -121,7 +122,7 @@ public class ConnectionPool {
         closeConnection(con);
     }
 
-    private void closeResultSet(ResultSet rs) {
+    public void closeResultSet(ResultSet rs) {
         if (rs != null) {
             try {
                 rs.close();
@@ -131,7 +132,7 @@ public class ConnectionPool {
         }
     }
 
-    private void closeStatement(Statement st) {
+    public void closeStatement(Statement st) {
         if (st != null) {
             try {
                 st.close();
@@ -141,7 +142,7 @@ public class ConnectionPool {
         }
     }
 
-    private void closeConnection(Connection con) {
+    public void closeConnection(Connection con) {
         if (con != null) {
             try {
                 con.close();
@@ -172,6 +173,7 @@ public class ConnectionPool {
 
         public void reallyClose() throws SQLException {
             connection.close();
+            LOGGER.log(Level.INFO, "Connection " + this + " is closed");
         }
 
         @Override
@@ -193,6 +195,7 @@ public class ConnectionPool {
             if (!connectionQueue.offer(this)) {
                 throw new SQLException("Error allocating connection in the pool");
             }
+            LOGGER.log(Level.INFO, "Connection returned to the pool");
         }
 
         @Override

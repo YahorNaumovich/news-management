@@ -1,16 +1,10 @@
 package edu.training.web.controller.listener;
 
-import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import edu.training.web.dao.ConnectionPool;
 import edu.training.web.dao.ConnectionPoolException;
-import edu.training.web.dao.SQLBaseDao;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
