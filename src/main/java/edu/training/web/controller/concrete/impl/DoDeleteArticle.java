@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class DoDeleteArticle implements Command {
 
@@ -20,10 +22,18 @@ public class DoDeleteArticle implements Command {
 
         try {
             newsService.deleteArticle(articleId);
+            response.sendRedirect("Controller?command=go_to_index_page");
         } catch (ServiceException e) {
-            e.printStackTrace();
+            handleError(response, "Error deleting article: " + e.getMessage());
+        } catch (Exception e) {
+            handleError(response, "Unexpected error: " + e.getMessage());
         }
 
-        response.sendRedirect("Controller?command=go_to_index_page");
     }
+
+    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
+        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
+        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
+    }
+
 }

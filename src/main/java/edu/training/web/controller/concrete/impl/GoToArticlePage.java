@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class GoToArticlePage implements Command {
@@ -23,14 +25,21 @@ public class GoToArticlePage implements Command {
         System.out.println("Article id associated with this tile is: " + articleId);
 
         Article article = null;
+
         try {
             article = newsService.getArticleById(articleId);
+            request.setAttribute("article", article);
+            request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=go_to_index_page");
+            handleError(response, "Error retrieving article: " + e.getMessage());
+        } catch (Exception e) {
+            handleError(response, "Unexpected error: " + e.getMessage());
         }
 
-        request.setAttribute("article", article);
-        request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
+    }
 
+    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
+        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
+        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
     }
 }

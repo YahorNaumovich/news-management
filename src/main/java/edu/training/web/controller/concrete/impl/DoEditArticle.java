@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class DoEditArticle implements Command {
 
@@ -26,10 +28,17 @@ public class DoEditArticle implements Command {
 
         try {
             newsService.editArticle(new AddArticleInfo(title, articleText, null, tileSize), articleId);
+            response.sendRedirect("Controller?command=go_to_index_page");
         } catch (ServiceException e) {
-            throw new RuntimeException(e);
+            handleError(response, "Error editing article: " + e.getMessage());
+        } catch (Exception e) {
+            handleError(response, "Unexpected error: " + e.getMessage());
         }
-
-        response.sendRedirect("Controller?command=go_to_index_page");
     }
+
+    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
+        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
+        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
+    }
+
 }

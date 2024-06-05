@@ -30,8 +30,8 @@ public class GoToIndexPage implements Command {
 
         } catch (ServiceException e) {
 
-            request.setAttribute("errorMessage", "An error occurred while retrieving the news.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
+            request.setAttribute("errorMessage", "An error occurred while retrieving the news: " + e.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");
             dispatcher.forward(request, response);
         }
 

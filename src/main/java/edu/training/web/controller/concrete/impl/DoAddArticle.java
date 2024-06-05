@@ -12,6 +12,8 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class DoAddArticle implements Command {
 
@@ -27,24 +29,27 @@ public class DoAddArticle implements Command {
         String imagePath = null;
 
         try {
-            // File upload handling
             Part filePart = request.getPart("image");
             String fileName = getFileName(filePart);
-            imagePath = "images/" + fileName; // Adjust this path as needed
+            imagePath = "images/" + fileName;
 
-            // Write the file to the server
             filePart.write(request.getServletContext().getRealPath("") + File.separator + imagePath);
-        } catch (IOException | ServletException e) {
-            throw new RuntimeException("Error uploading file", e);
-        }
 
-        try {
             newsService.addArticle(new AddArticleInfo(title, articleText, imagePath, tileSize));
-        } catch (ServiceException e) {
-            throw new RuntimeException(e);
-        }
+            response.sendRedirect("Controller?command=go_to_index_page");
 
-        response.sendRedirect("Controller?command=go_to_index_page");
+        } catch (IOException | ServletException e) {
+            handleError(response, "Error uploading file: " + e.getMessage());
+        } catch (ServiceException e) {
+            handleError(response, "Error adding article: " + e.getMessage());
+        } catch (Exception e) {
+            handleError(response, "Unexpected error: " + e.getMessage());
+        }
+    }
+
+    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
+        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
+        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
     }
 
     // Method to extract file name from Part
