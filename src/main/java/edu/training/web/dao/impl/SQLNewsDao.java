@@ -13,7 +13,7 @@ import java.util.*;
 
 public class SQLNewsDao implements NewsDao {
 
-    private ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public SQLNewsDao() {
     }

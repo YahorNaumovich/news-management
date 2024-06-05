@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class SQLAuthenticationDao implements AuthenticationDao {
 
-    ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public SQLAuthenticationDao() {
     }
