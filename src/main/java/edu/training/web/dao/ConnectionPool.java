@@ -62,6 +62,7 @@ public class ConnectionPool {
         } catch (SQLException e) {
             throw new ConnectionPoolException("SQLException in connection pool", e);
         }
+        LOGGER.log(Level.INFO, "Connection Pool initialized successfully.");
     }
 
     public void dispose() {
@@ -88,6 +89,7 @@ public class ConnectionPool {
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error during connection pool disposal", e);
         }
+        LOGGER.log(Level.INFO, "Connection Pool disposed successfully.");
     }
 
     private void clearConnectionQueue() {
