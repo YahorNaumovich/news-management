@@ -21,7 +21,7 @@ public class GoToManageUsersPage implements Command {
         try {
             request.setAttribute("users", userService.getAllUsers());
         } catch (ServiceException e) {
-            throw new RuntimeException(e);
+            request.setAttribute("errorMessage", e.getMessage());
         }
 
         request.getRequestDispatcher("WEB-INF/jsp/manage_users.jsp").forward(request, response);

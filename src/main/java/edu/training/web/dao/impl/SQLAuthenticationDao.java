@@ -4,6 +4,7 @@ import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
 import edu.training.web.bean.UserRegistrationInfo;
 import edu.training.web.dao.*;
+import edu.training.web.service.ServiceException;
 import edu.training.web.service.UserRoles;
 
 import java.sql.Connection;

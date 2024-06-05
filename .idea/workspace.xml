@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Fixed an issue with tile id generation">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added functionality to upload an image for an article">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/bean/AddArticleInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/bean/AddArticleInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoAddArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoAddArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/add_article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/add_article.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToManageUsersPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToManageUsersPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,14 +110,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Moved article action links to the header">
-      <option name="closed" value="true" />
-      <created>1714834640672</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1714834640672</updated>
     </task>
     <task id="LOCAL-00020" summary="Added basic functionality to add an article">
       <option name="closed" value="true" />
@@ -506,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717574048680</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Added functionality to upload an image for an article">
+      <option name="closed" value="true" />
+      <created>1717576013203</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1717576013203</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added AppContextListener and implemented user registration in dao" />
     <MESSAGE value="Moved password match check to service" />
     <MESSAGE value="Introduced user existence check on registration" />
     <MESSAGE value="Added sign in dao method" />
@@ -546,6 +542,7 @@
     <MESSAGE value="Replaced BaseDao with connection pool" />
     <MESSAGE value="Fixed logging" />
     <MESSAGE value="Fixed an issue with tile id generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with tile id generation" />
+    <MESSAGE value="Added functionality to upload an image for an article" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to upload an image for an article" />
   </component>
 </project>

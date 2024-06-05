@@ -59,12 +59,23 @@
             cursor: pointer;
         }
 
+        .error-message {
+          text-align: center;
+          color: red;
+          margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
 <jsp:include page="header.jsp" />
 
 <div class="container">
+<c:if test="${not empty errorMessage}">
+        <div class="error-message">
+            ${errorMessage}
+        </div>
+</c:if>
     <h2>User Information</h2>
     <table>
         <thead>
