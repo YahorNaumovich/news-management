@@ -71,7 +71,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="container">
-<form action="Controller" method="post">
+<form action="Controller" method="post" enctype="multipart/form-data">
     <input type="hidden" name="command" value="DO_ADD_ARTICLE"/>
         <div class="form-group">
             <label for="title">Title:</label>

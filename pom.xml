@@ -45,6 +45,13 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.28</version>
     </dependency>
+
+    <!-- Apache Commons FileUpload -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.4</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>news-management</finalName>

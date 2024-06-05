@@ -127,12 +127,12 @@ public class SQLNewsDao implements NewsDao {
             articleStatement = connection.prepareStatement(insertNewArticleSql);
             articleStatement.setString(1, uniqueId);
             articleStatement.setString(2, addArticleInfo.getTitle());
-            articleStatement.setString(3, "images/img1.jpg");
+            articleStatement.setString(3, addArticleInfo.getImage());
             articleStatement.setString(4, addArticleInfo.getArticleText());
             articleStatement.executeUpdate();
 
             newsTileStatement = connection.prepareStatement(insertNewTileSql);
-            newsTileStatement.setString(1, "images/img1.jpg");
+            newsTileStatement.setString(1, addArticleInfo.getImage());
             newsTileStatement.setString(2, addArticleInfo.getTitle());
             newsTileStatement.setString(3, "Owned");
             newsTileStatement.setString(4, addArticleInfo.getTileSize());
