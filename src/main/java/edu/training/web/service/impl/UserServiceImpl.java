@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
                 throw new ServiceException("User with this email already exists");
             }
         } catch (DaoException e) {
-            throw new RuntimeException(e);
+            throw new ServiceException(e);
         }
 
         User user;
