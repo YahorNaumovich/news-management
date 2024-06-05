@@ -111,11 +111,9 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
-        Random random = new Random();
-        int tileId = random.nextInt();
         String uniqueId = UUID.randomUUID().toString();
 
-        String insertNewTileSql = "INSERT INTO tiles (id, imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertNewTileSql = "INSERT INTO tiles (imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?)";
         String insertNewArticleSql = "INSERT INTO articles (id, title, imagePath, text) VALUES (?, ?, ?, ?)";
 
         Connection connection = null;
@@ -134,13 +132,12 @@ public class SQLNewsDao implements NewsDao {
             articleStatement.executeUpdate();
 
             newsTileStatement = connection.prepareStatement(insertNewTileSql);
-            newsTileStatement.setInt(1, tileId);
-            newsTileStatement.setString(2, "images/img1.jpg");
-            newsTileStatement.setString(3, addArticleInfo.getTitle());
-            newsTileStatement.setString(4, "Owned");
-            newsTileStatement.setString(5, addArticleInfo.getTileSize());
-            newsTileStatement.setString(6, uniqueId);
-            newsTileStatement.setInt(7, 1);
+            newsTileStatement.setString(1, "images/img1.jpg");
+            newsTileStatement.setString(2, addArticleInfo.getTitle());
+            newsTileStatement.setString(3, "Owned");
+            newsTileStatement.setString(4, addArticleInfo.getTileSize());
+            newsTileStatement.setString(5, uniqueId);
+            newsTileStatement.setInt(6, 1);
             newsTileStatement.executeUpdate();
 
             connection.commit();

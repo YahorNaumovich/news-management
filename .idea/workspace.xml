@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Replaced BaseDao with connection pool">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Fixed logging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/listener/AppContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/listener/AppContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/ConnectionPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,14 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Moved header and its styles to separate jsp page">
-      <option name="closed" value="true" />
-      <created>1714806094186</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1714806094186</updated>
     </task>
     <task id="LOCAL-00018" summary="Log in is now required to view news articles">
       <option name="closed" value="true" />
@@ -502,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717521367817</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Fixed logging">
+      <option name="closed" value="true" />
+      <created>1717572556224</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1717572556224</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ServletContextListenerImpl to initialize jdbc connection" />
     <MESSAGE value="Added connection" />
     <MESSAGE value="Added AppContextListener and implemented user registration in dao" />
     <MESSAGE value="Moved password match check to service" />
@@ -542,6 +540,7 @@
     <MESSAGE value="Renamed command" />
     <MESSAGE value="Added connection pool" />
     <MESSAGE value="Replaced BaseDao with connection pool" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced BaseDao with connection pool" />
+    <MESSAGE value="Fixed logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed logging" />
   </component>
 </project>
