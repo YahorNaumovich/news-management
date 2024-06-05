@@ -4,6 +4,8 @@ import edu.training.web.bean.AddArticleInfo;
 import edu.training.web.bean.Article;
 import edu.training.web.bean.NewsTile;
 import edu.training.web.dao.*;
+import edu.training.web.dao.connectionpool.ConnectionPool;
+import edu.training.web.dao.connectionpool.ConnectionPoolException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

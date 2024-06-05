@@ -1,12 +1,8 @@
 package edu.training.web.controller.listener;
 
-import edu.training.web.dao.ConnectionPool;
-import edu.training.web.dao.ConnectionPoolException;
+import edu.training.web.dao.connectionpool.ConnectionPool;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AppContextListener implements ServletContextListener {
 

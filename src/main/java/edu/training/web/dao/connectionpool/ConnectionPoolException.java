@@ -1,4 +1,4 @@
-package edu.training.web.dao;
+package edu.training.web.dao.connectionpool;
 
 public class ConnectionPoolException extends Exception{
 
