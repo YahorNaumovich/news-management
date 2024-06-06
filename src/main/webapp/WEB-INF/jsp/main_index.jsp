@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setLocale value="${sessionScope.locale}" />
+<fmt:setBundle basename="messages" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +20,10 @@
 
 <div class="main-container">
     <c:if test="${sessionScope.isInEditMode}">
-        <h2 class="action-title">Select an article to edit</h2>
+        <h2 class="action-title"><fmt:message key="editArticleModeTitle" /></h2>
     </c:if>
     <c:if test="${sessionScope.isInDeleteMode}">
-        <h2 class="action-title">Select an article to delete</h2>
+        <h2 class="action-title"><fmt:message key="deleteArticleModeTitle" /></h2>
     </c:if>
 <div class="error-message" id="error-message">
     <c:if test="${not empty errorMessage}">
