@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Minor fix in exception handling">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" afterDir="false" />
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added a separate package for the connection pool">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/connectionpool/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/connectionpool/ConnectionPool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,22 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Added character encoding filter">
-      <option name="closed" value="true" />
-      <created>1715320735216</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1715320735216</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Added authentication dao and exceptions">
-      <option name="closed" value="true" />
-      <created>1715321717034</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1715321717034</updated>
     </task>
     <task id="LOCAL-00024" summary="Fixed exception handling in controller">
       <option name="closed" value="true" />
@@ -501,7 +485,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717597037307</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Added access modifiers to connection pool">
+      <option name="closed" value="true" />
+      <created>1717607551219</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1717607551219</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Added a separate package for the connection pool">
+      <option name="closed" value="true" />
+      <created>1717607639824</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1717607639824</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -516,8 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added sign in dao method" />
-    <MESSAGE value="Added whitespace to dao methods" />
     <MESSAGE value="Added sout" />
     <MESSAGE value="replaced finally blocks with try with resources" />
     <MESSAGE value="deleted unused code" />
@@ -541,6 +539,8 @@
     <MESSAGE value="Added functionality to upload an image for an article" />
     <MESSAGE value="Added error messages" />
     <MESSAGE value="Minor fix in exception handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fix in exception handling" />
+    <MESSAGE value="Added access modifiers to connection pool" />
+    <MESSAGE value="Added a separate package for the connection pool" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a separate package for the connection pool" />
   </component>
 </project>

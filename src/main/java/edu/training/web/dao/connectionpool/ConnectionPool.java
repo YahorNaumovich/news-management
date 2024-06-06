@@ -39,65 +39,87 @@ public class ConnectionPool {
 
         try {
             initPoolData();
-        } catch (ConnectionPoolException e) {
-            LOGGER.log(Level.SEVERE, "Error initializing connection pool", e);
+            LOGGER.log(Level.INFO, "Connection Pool initialized successfully.");
+        } catch (ClassNotFoundException e) {
+            handleInitializationException("Database driver not found: " + driverName, e);
+        } catch (SQLException e) {
+            handleInitializationException("SQLException while initializing connection pool: " + e.getMessage(), e);
+        } catch (Exception e) {
+            handleInitializationException("Unexpected exception while initializing connection pool: " + e.getMessage(), e);
         }
     }
 
-    public void initPoolData() throws ConnectionPoolException {
-        try {
-            Class.forName(driverName);
+    public void initPoolData() throws SQLException, ClassNotFoundException {
 
-            connectionQueue = new ArrayBlockingQueue<>(poolSize);
-            givenAwayConQueue = new ArrayBlockingQueue<>(poolSize);
+        Class.forName(driverName);
 
-            for (int i = 0; i < poolSize; i++) {
-                Connection connection = DriverManager.getConnection(url, login, password);
-                PooledConnection pooledConnection = new PooledConnection(connection);
-                connectionQueue.add(pooledConnection);
-            }
+        connectionQueue = new ArrayBlockingQueue<>(poolSize);
+        givenAwayConQueue = new ArrayBlockingQueue<>(poolSize);
 
-        } catch (ClassNotFoundException e) {
-            throw new ConnectionPoolException("Database driver not found", e);
-        } catch (SQLException e) {
-            throw new ConnectionPoolException("SQLException in connection pool", e);
+        for (int i = 0; i < poolSize; i++) {
+            Connection connection = DriverManager.getConnection(url, login, password);
+            PooledConnection pooledConnection = new PooledConnection(connection);
+            connectionQueue.add(pooledConnection);
         }
-        LOGGER.log(Level.INFO, "Connection Pool initialized successfully.");
+    }
+
+    private void handleInitializationException(String message, Exception e) {
+        LOGGER.log(Level.SEVERE, message, e);
+        throw new RuntimeException("Failed to initialize connection pool", e);
     }
 
     public void dispose() {
-        clearConnectionQueue();
-
-        // Deregister JDBC drivers
-
         try {
-            Enumeration<Driver> drivers = DriverManager.getDrivers();
-            while (drivers.hasMoreElements()) {
-                Driver driver = drivers.nextElement();
-                try {
-                    DriverManager.deregisterDriver(driver);
-                    LOGGER.info("Deregistered JDBC driver: " + driver);
-                } catch (SQLException e) {
-                    LOGGER.log(Level.SEVERE, "Error deregistering JDBC driver: " + driver, e);
-                }
-            }
-
-            // Stop AbandonedConnectionCleanupThread
-            com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
-            LOGGER.info("AbandonedConnectionCleanupThread stopped.");
-
+            clearConnectionQueue();
+            deregisterDrivers();
+            stopAbandonedConnectionCleanupThread();
+            LOGGER.log(Level.INFO, "Connection Pool disposed successfully.");
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error during connection pool disposal", e);
         }
-        LOGGER.log(Level.INFO, "Connection Pool disposed successfully.");
     }
 
-    private void clearConnectionQueue() {
+    private void clearConnectionQueue() throws SQLException {
+        closeConnectionsQueue(givenAwayConQueue);
+        closeConnectionsQueue(connectionQueue);
+    }
+
+    private void closeConnectionsQueue(BlockingQueue<Connection> queue) throws SQLException {
+        Connection connection;
+        while ((connection = queue.poll()) != null) {
+            try {
+                if (!connection.getAutoCommit()) {
+                    connection.commit();
+                }
+                ((PooledConnection) connection).reallyClose();
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error closing connection", e);
+                throw e;
+            }
+        }
+    }
+
+    private void deregisterDrivers() throws SQLException {
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver driver = drivers.nextElement();
+            try {
+                DriverManager.deregisterDriver(driver);
+                LOGGER.info("Deregistered JDBC driver: " + driver);
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error deregistering JDBC driver: " + driver, e);
+                throw e;
+            }
+        }
+    }
+
+    private void stopAbandonedConnectionCleanupThread() {
         try {
-            closeConnectionsQueue(givenAwayConQueue);
-            closeConnectionsQueue(connectionQueue);
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error clearing connection queue", e);
+            com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
+            LOGGER.info("AbandonedConnectionCleanupThread stopped.");
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error stopping AbandonedConnectionCleanupThread", e);
+            throw e;
         }
     }
 
@@ -113,13 +135,13 @@ public class ConnectionPool {
         return connection;
     }
 
-    public void closeConnection(ResultSet rs, PreparedStatement st, Connection con) {
+    public void closeConnection(Connection con, Statement st, ResultSet rs) {
         closeResultSet(rs);
         closeStatement(st);
         closeConnection(con);
     }
 
-    public void closeConnection(PreparedStatement st, Connection con) {
+    public void closeConnection(Connection con, Statement st) {
         closeStatement(st);
         closeConnection(con);
     }
@@ -151,16 +173,6 @@ public class ConnectionPool {
             } catch (SQLException e) {
                 LOGGER.log(Level.WARNING, "Error closing Connection", e);
             }
-        }
-    }
-
-    private void closeConnectionsQueue(BlockingQueue<Connection> queue) throws SQLException {
-        Connection connection;
-        while ((connection = queue.poll()) != null) {
-            if (!connection.getAutoCommit()) {
-                connection.commit();
-            }
-            ((PooledConnection) connection).reallyClose();
         }
     }
 
