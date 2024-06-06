@@ -13,7 +13,7 @@
       <link href="styles/login.css" rel="stylesheet">
 </head>
 <body>
-<h1><fmt:message key="loginTitle" /></h1>
+<h1><fmt:message key="loginPageTitle" /></h1>
 <div class="error-message" id="error-message">
     <c:if test="${not (param.authError eq null) }">
         <c:out value="${param.authError}"/>
@@ -26,7 +26,7 @@
                 type="text"
                 id="login"
                 name="login"
-                placeholder=<fmt:message key="loginEmailPlaceholder" />
+                placeholder="<fmt:message key="emailPlaceholder" />"
                 required
         />
     </div>
@@ -35,7 +35,7 @@
                 type="password"
                 id="password"
                 name="password"
-                placeholder=<fmt:message key="loginPasswordPlaceholder" />
+                placeholder="<fmt:message key="passwordPlaceholder" />"
                 required
         />
     </div>
