@@ -5,6 +5,7 @@
 
 <fmt:setLocale value="${sessionScope.locale}" />
 <fmt:setBundle basename="messages" />
+
 <!DOCTYPE html>
 <html>
 <head>

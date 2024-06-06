@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setLocale value="${sessionScope.locale}" />
+<fmt:setBundle basename="messages" />
 
 <!DOCTYPE html>
 <html>
@@ -74,20 +78,20 @@
 <form action="Controller" method="post" enctype="multipart/form-data">
     <input type="hidden" name="command" value="DO_ADD_ARTICLE"/>
         <div class="form-group">
-            <label for="title">Title:</label>
+            <label for="title"><fmt:message key="articleFormTitle" /></label>
             <textarea id="title" name="title" rows="2" cols="50"></textarea>
         </div>
         <div class="form-group">
-            <label for="articleText">Article Text:</label>
+            <label for="articleText"><fmt:message key="articleFormText" /></label>
             <textarea id="articleText" name="articleText" rows="10" cols="50"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="image">Image:</label>
+            <label for="image"><fmt:message key="articleFormImage" /></label>
             <input type="file" id="image" name="image" accept="image/*">
         </div>
         <div class="form-group">
-            <label for="tileSize">Tile Size:</label>
+            <label for="tileSize"><fmt:message key="articleFormTileSize" /></label>
             <select id="tileSize" name="tileSize">
                 <option value="1x1">1x1</option>
                 <option value="r1c2">1x2</option>
@@ -96,7 +100,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="submit">Post</button>
+            <button type="submit"><fmt:message key="addArticleFormAction" /></button>
         </div>
     </form>
 </div>
