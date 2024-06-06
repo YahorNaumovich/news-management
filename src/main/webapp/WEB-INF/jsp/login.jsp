@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-           prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setLocale value="${sessionScope.locale}" />
+<fmt:setBundle basename="messages" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
       <link href="styles/login.css" rel="stylesheet">
 </head>
 <body>
-<h1>Log in, please</h1>
+<h1><fmt:message key="loginTitle" /></h1>
 <div class="error-message" id="error-message">
     <c:if test="${not (param.authError eq null) }">
         <c:out value="${param.authError}"/>
@@ -24,7 +26,7 @@
                 type="text"
                 id="login"
                 name="login"
-                placeholder="Email address"
+                placeholder=<fmt:message key="loginEmailPlaceholder" />
                 required
         />
     </div>
@@ -33,20 +35,20 @@
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Password"
+                placeholder=<fmt:message key="loginPasswordPlaceholder" />
                 required
         />
     </div>
     <div>
         <input type="checkbox" id="checkbox" name="checkbox"/>
-        <label for="checkbox">Remember me</label>
+        <label for="checkbox"><fmt:message key="loginRememberMe" /></label>
     </div>
     <div>
-        <button type="submit">Sign in</button>
+        <button type="submit"><fmt:message key="signIn" /></button>
     </div>
 </form>
 <a href="Controller?command=GO_TO_REGISTRATION_PAGE"
->Register new account</a
+><fmt:message key="loginRegistration" /></a
 >
 </body>
 </html>

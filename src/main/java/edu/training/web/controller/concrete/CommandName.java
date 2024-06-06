@@ -9,5 +9,6 @@ public enum CommandName {
 
     SELECT_ARTICLE_TO_EDIT, SELECT_ARTICLE_TO_DELETE,
 
+    SET_LOCALE,
     NO_SUCH_COMMAND
 }

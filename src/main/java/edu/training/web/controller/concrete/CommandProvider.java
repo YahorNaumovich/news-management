@@ -29,6 +29,8 @@ public class CommandProvider {
         commands.put(CommandName.SELECT_ARTICLE_TO_EDIT, new SelectArticleToEdit());
         commands.put(CommandName.SELECT_ARTICLE_TO_DELETE, new SelectArticleToDelete());
 
+        commands.put(CommandName.SET_LOCALE, new SetLocale());
+
         commands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
     }
 
