@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added a separate package for the connection pool">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Refactored ConnectionPool exception handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/connectionpool/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/connectionpool/ConnectionPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLNewsDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Fixed exception handling in controller">
-      <option name="closed" value="true" />
-      <created>1715321995601</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1715321995601</updated>
     </task>
     <task id="LOCAL-00025" summary="Added newsDao">
       <option name="closed" value="true" />
@@ -501,7 +494,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717607639824</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Refactored ConnectionPool exception handling">
+      <option name="closed" value="true" />
+      <created>1717677348359</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1717677348359</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -516,7 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added sout" />
     <MESSAGE value="replaced finally blocks with try with resources" />
     <MESSAGE value="deleted unused code" />
     <MESSAGE value="Replaced getLastNews method in dao" />
@@ -541,6 +541,7 @@
     <MESSAGE value="Minor fix in exception handling" />
     <MESSAGE value="Added access modifiers to connection pool" />
     <MESSAGE value="Added a separate package for the connection pool" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a separate package for the connection pool" />
+    <MESSAGE value="Refactored ConnectionPool exception handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored ConnectionPool exception handling" />
   </component>
 </project>

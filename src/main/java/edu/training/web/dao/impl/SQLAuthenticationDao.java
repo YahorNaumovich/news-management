@@ -47,10 +47,8 @@ public class SQLAuthenticationDao implements AuthenticationDao {
                     throw new DaoException("Invalid login or password");
                 }
             }
-        } catch (SQLException e) {
-            throw new DaoException("Database error occurred during sign in", e);
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Error occurred during sign in", e);
         }
     }
 
@@ -65,18 +63,13 @@ public class SQLAuthenticationDao implements AuthenticationDao {
             statement.setString(1, email);
 
             try (ResultSet resultSet = statement.executeQuery()) {
-
                 if (resultSet.next()) {
                     return resultSet.getInt(1) > 0;
                 }
-
                 return false;
-
             }
-        } catch (SQLException e) {
-            throw new DaoException("Database error occurred while checking user existence", e);
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Error occurred while checking user existence", e);
         }
     }
 
@@ -88,8 +81,6 @@ public class SQLAuthenticationDao implements AuthenticationDao {
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(insertUserSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-
-
 
             statement.setString(1, userRegistrationInfo.getLogin());
             statement.setString(2, userRegistrationInfo.getEmail());
@@ -111,12 +102,10 @@ public class SQLAuthenticationDao implements AuthenticationDao {
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ConnectionPoolException e) {
 
-            throw new DaoException("Database error occurred during sign up", e);
+            throw new DaoException("Error occurred during sign up", e);
 
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -145,12 +134,8 @@ public class SQLAuthenticationDao implements AuthenticationDao {
                     usersMap.put(email, user);
                 }
             }
-        } catch (SQLException e) {
-
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error retrieving users from the database", e);
-
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
         }
         return usersMap;
     }

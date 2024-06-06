@@ -43,10 +43,8 @@ public class SQLNewsDao implements NewsDao {
 
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException |ConnectionPoolException e) {
             throw new DaoException("Database error occurred during getting last news", e);
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
         }
         return lastNews;
     }
@@ -71,10 +69,8 @@ public class SQLNewsDao implements NewsDao {
                     articles.add(new Article(id, title, imagePath, articleText));
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException |ConnectionPoolException e) {
             throw new DaoException("Database error occurred during getting articles", e);
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
         }
 
         return articles;
@@ -102,10 +98,8 @@ public class SQLNewsDao implements NewsDao {
                     return new Article(id, title, imagePath, articleText);
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException |ConnectionPoolException e) {
             throw new DaoException("Database error occurred during getting article by id", e);
-        } catch (ConnectionPoolException e) {
-            throw new RuntimeException(e);
         }
 
         return null;
