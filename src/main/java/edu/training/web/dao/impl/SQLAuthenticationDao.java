@@ -63,7 +63,7 @@ public class SQLAuthenticationDao implements AuthenticationDao {
             statement.setString(1, email);
 
             try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+                return !resultSet.next();
             }
 
         } catch (SQLException | ConnectionPoolException e) {
