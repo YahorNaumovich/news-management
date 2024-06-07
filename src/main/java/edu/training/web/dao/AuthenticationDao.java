@@ -12,5 +12,7 @@ public interface AuthenticationDao {
     boolean userExists(String email) throws DaoException;
     User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException;
 
+    void deleteUser(int id) throws DaoException;
+
     Map<String, User> getAllUsers() throws DaoException;
 }

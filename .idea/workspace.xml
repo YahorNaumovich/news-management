@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Fixed an issue with swapped variables in localization">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Refactored authentication dao">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/AuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/AuthenticationDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,14 +115,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Added unique id generation">
-      <option name="closed" value="true" />
-      <created>1715617217224</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1715617217224</updated>
     </task>
     <task id="LOCAL-00034" summary="Added delete article functionality">
       <option name="closed" value="true" />
@@ -503,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717752970723</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Refactored authentication dao">
+      <option name="closed" value="true" />
+      <created>1717772250764</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1717772250764</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -518,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented deleteArticle method using jdbc" />
     <MESSAGE value="Deleted unused code" />
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="Added user id" />
@@ -543,6 +547,7 @@
     <MESSAGE value="Added localization to edit/delete titles" />
     <MESSAGE value="Fixed an issue with character encoding" />
     <MESSAGE value="Fixed an issue with swapped variables in localization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with swapped variables in localization" />
+    <MESSAGE value="Refactored authentication dao" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored authentication dao" />
   </component>
 </project>

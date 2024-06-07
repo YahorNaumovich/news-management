@@ -107,6 +107,21 @@ public class SQLAuthenticationDao implements AuthenticationDao {
         }
     }
 
+
+    @Override
+    public void deleteUser(int id) throws DaoException {
+        String deleteUserSql = "DELETE FROM users WHERE id = ?";
+
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(deleteUserSql)) {
+
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Error occurred during deleting user", e);
+        }
+    }
+
     @Override
     public Map<String, User> getAllUsers() throws DaoException {
 

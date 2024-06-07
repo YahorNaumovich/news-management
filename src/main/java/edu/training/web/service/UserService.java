@@ -12,6 +12,8 @@ public interface UserService {
 
     User signUp(UserRegistrationInfo userRegistrationInfo) throws ServiceException;
 
+    void deleteUser(int id) throws ServiceException;
+
     Map<String, User> getAllUsers() throws ServiceException;
 
     UserProfile userProfile(int id);
