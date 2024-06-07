@@ -34,18 +34,18 @@ public class SQLAuthenticationDao implements AuthenticationDao {
             statement.setString(2, authenticationInfo.getPassword());
 
             try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
 
-                    int id = resultSet.getInt("id");
-                    String username = resultSet.getString("username");
-                    String roleName = resultSet.getString("name");
-                    UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
-
-                    return new User(id, username, role);
-
-                } else {
+                if (!resultSet.next()) {
                     throw new DaoException("Invalid login or password");
                 }
+
+                int id = resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String roleName = resultSet.getString("name");
+                UserRoles role = UserRoles.valueOf(roleName.toUpperCase());
+
+                return new User(id, username, role);
+
             }
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error occurred during sign in", e);
@@ -63,11 +63,9 @@ public class SQLAuthenticationDao implements AuthenticationDao {
             statement.setString(1, email);
 
             try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt(1) > 0;
-                }
-                return false;
+                return resultSet.next();
             }
+
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error occurred while checking user existence", e);
         }
