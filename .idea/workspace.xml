@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added localization to edit/delete titles">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Fixed an issue with character encoding">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,14 +110,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Added article editing">
-      <option name="closed" value="true" />
-      <created>1715586596074</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1715586596074</updated>
     </task>
     <task id="LOCAL-00032" summary="Fixed image being reset while editing an article">
       <option name="closed" value="true" />
@@ -504,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717704514271</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Fixed an issue with character encoding">
+      <option name="closed" value="true" />
+      <created>1717749575509</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1717749575510</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -519,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor fix" />
     <MESSAGE value="Implemented editArticle method using jdbc" />
     <MESSAGE value="Implemented deleteArticle method using jdbc" />
     <MESSAGE value="Deleted unused code" />
@@ -544,6 +542,7 @@
     <MESSAGE value="Added localization to add article page" />
     <MESSAGE value="Added localization to edit article page" />
     <MESSAGE value="Added localization to edit/delete titles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added localization to edit/delete titles" />
+    <MESSAGE value="Fixed an issue with character encoding" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with character encoding" />
   </component>
 </project>
