@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
+
+<fmt:setLocale value="${sessionScope.locale}" />
+<fmt:setBundle basename="messages" />
 
 <!DOCTYPE html>
 <html>
@@ -76,15 +80,14 @@
             ${errorMessage}
         </div>
 </c:if>
-    <h2>User Information</h2>
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>User Role</th>
-                <th>Actions</th>
+                <th><fmt:message key="manageUsersTableHeaderId" /></th>
+                <th><fmt:message key="manageUsersTableHeaderEmail" /></th>
+                <th><fmt:message key="manageUsersTableHeaderUsername" /></th>
+                <th><fmt:message key="manageUsersTableHeaderRole" /></th>
+                <th><fmt:message key="manageUsersTableHeaderActions" /></th>
             </tr>
         </thead>
         <tbody>
@@ -94,7 +97,7 @@
                     <td>${entry.key}</td>
                     <td>${entry.value.name}</td>
                     <td>${entry.value.role}</td>
-                    <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}">Delete user</a></td>
+                    <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}"><fmt:message key="manageUsersTableDeleteButtonLabel" /></a></td>
                 </tr>
             </c:forEach>
         </tbody>
