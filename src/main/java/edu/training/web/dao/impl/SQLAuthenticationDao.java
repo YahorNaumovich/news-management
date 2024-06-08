@@ -22,13 +22,13 @@ public class SQLAuthenticationDao implements AuthenticationDao {
     public SQLAuthenticationDao() {
     }
 
+    private static final String SIGN_IN_SQL = "SELECT u.id, u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
+
     @Override
     public User signIn(AuthenticationInfo authenticationInfo) throws DaoException {
 
-        String signInSql = "SELECT u.id, u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(signInSql)) {
+             PreparedStatement statement = connection.prepareStatement(SIGN_IN_SQL)) {
 
             statement.setString(1, authenticationInfo.getLogin());
             statement.setString(2, authenticationInfo.getPassword());
@@ -52,13 +52,13 @@ public class SQLAuthenticationDao implements AuthenticationDao {
         }
     }
 
+    private static final String CHECK_USER_EXISTS_SQL = "SELECT COUNT(*) FROM users WHERE email = ?";
+
     @Override
     public boolean userExists(String email) throws DaoException {
 
-        String checkUserSql = "SELECT COUNT(*) FROM users WHERE email = ?";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(checkUserSql)) {
+             PreparedStatement statement = connection.prepareStatement(CHECK_USER_EXISTS_SQL)) {
 
             statement.setString(1, email);
 
@@ -72,13 +72,13 @@ public class SQLAuthenticationDao implements AuthenticationDao {
     }
 
 
+    private static final String INSERT_USER_SQL = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
+
     @Override
     public User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException {
 
-        String insertUserSql = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(insertUserSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(INSERT_USER_SQL, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, userRegistrationInfo.getLogin());
             statement.setString(2, userRegistrationInfo.getEmail());
@@ -93,8 +93,10 @@ public class SQLAuthenticationDao implements AuthenticationDao {
 
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
+
                     int id = generatedKeys.getInt(1);
                     return new User(id, userRegistrationInfo.getLogin(), UserRoles.READER);
+
                 } else {
                     throw new DaoException("Creating user failed, no ID obtained.");
                 }
@@ -107,64 +109,72 @@ public class SQLAuthenticationDao implements AuthenticationDao {
         }
     }
 
+    private static final String DELETE_USER_SQL = "DELETE FROM users WHERE id = ?";
 
     @Override
     public void deleteUser(int id) throws DaoException {
-        String deleteUserSql = "DELETE FROM users WHERE id = ?";
 
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(deleteUserSql)) {
+             PreparedStatement statement = connection.prepareStatement(DELETE_USER_SQL)) {
 
             statement.setInt(1, id);
             statement.executeUpdate();
+
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error occurred during deleting user", e);
         }
     }
 
+    private static final String CHANGE_USER_ROLE_SQL = "UPDATE users SET Roles_id = ? WHERE id = ?";
+
     @Override
     public void changeUserRole(int userId, int roleId) throws DaoException {
 
-        String changeUserRoleSql = "UPDATE users SET Roles_id = ? WHERE id = ?";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(changeUserRoleSql)) {
+             PreparedStatement statement = connection.prepareStatement(CHANGE_USER_ROLE_SQL)) {
 
             statement.setInt(1, roleId);
             statement.setInt(2, userId);
             statement.executeUpdate();
+
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error occurred during changing user role", e);
         }
     }
 
+    private static final String GET_ROLE_ID = "SELECT id FROM roles WHERE name = ?";
+
     @Override
     public int getRoleId(String roleName) throws DaoException {
-        String query = "SELECT id FROM roles WHERE name = ?";
+
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(GET_ROLE_ID)) {
+
             statement.setString(1, roleName);
+
             try (ResultSet resultSet = statement.executeQuery()) {
+
                 if (resultSet.next()) {
                     return resultSet.getInt("id");
                 } else {
                     throw new SQLException("Role not found: " + roleName);
                 }
             }
+
         } catch (ConnectionPoolException | SQLException e) {
             throw new DaoException("Error occurred during getting role id", e);
         }
     }
+
+    private static final String GET_ALL_USERS = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
 
     @Override
     public Map<String, User> getAllUsers() throws DaoException {
 
         Map<String, User> usersMap = new HashMap<>();
 
-        String sql = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(GET_ALL_USERS)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
 
