@@ -14,6 +14,8 @@ public interface UserService {
 
     void deleteUser(int id) throws ServiceException;
 
+    void changeUserRole(int id, UserRoles role) throws ServiceException;
+
     Map<String, User> getAllUsers() throws ServiceException;
 
     UserProfile userProfile(int id);

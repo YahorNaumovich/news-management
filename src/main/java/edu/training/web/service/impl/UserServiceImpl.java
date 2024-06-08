@@ -67,6 +67,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changeUserRole(int userId, UserRoles role) throws ServiceException {
+        try {
+            int roleId = authenticationDao.getRoleId(role.toString());
+            authenticationDao.changeUserRole(userId, roleId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public Map<String, User> getAllUsers() throws ServiceException {
 
         Map<String, User> users;

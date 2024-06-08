@@ -70,15 +70,27 @@
         }
 
     </style>
+    <script>
+            function submitFormOnChange(selectElement) {
+                selectElement.form.submit();
+            }
+        </script>
 </head>
 <body>
 <jsp:include page="header.jsp" />
 
 <div class="container">
 <c:if test="${not empty errorMessage}">
-        <div class="error-message">
+<div class="error-message" id="error-message">
+    <c:if test="${not empty errorMessage}">
+        <div style="color: red;">
             ${errorMessage}
         </div>
+    </c:if>
+    <c:if test="${not (param.errorMessage eq null) }">
+        <c:out value="${param.errorMessage}"/>
+    </c:if>
+</div>
 </c:if>
     <table>
         <thead>
@@ -96,7 +108,17 @@
                     <td>${entry.value.id}</td>
                     <td>${entry.key}</td>
                     <td>${entry.value.name}</td>
-                    <td>${entry.value.role}</td>
+                    <td>
+                       <form action="Controller" method="post">
+                            <input type="hidden" name="command" value="DO_CHANGE_USER_ROLE"/>
+                            <input type="hidden" name="userId" value="${entry.value.id}"/>
+                            <select id="roleSelect" name="role" onchange="submitFormOnChange(this)">
+                                <c:forEach var="role" items="${roles}">
+                                    <option value="${role}" <c:if test="${role == entry.value.role}">selected</c:if>>${role}</option>
+                                </c:forEach>
+                            </select>
+                       </form>
+                    </td>
                     <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}"><fmt:message key="manageUsersTableDeleteButtonLabel" /></a></td>
                 </tr>
             </c:forEach>

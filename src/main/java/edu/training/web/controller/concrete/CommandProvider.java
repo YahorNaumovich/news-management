@@ -18,6 +18,7 @@ public class CommandProvider {
         commands.put(CommandName.DO_DELETE_ARTICLE, new DoDeleteArticle());
 
         commands.put(CommandName.DO_DELETE_USER, new DoDeleteUser());
+        commands.put(CommandName.DO_CHANGE_USER_ROLE, new DoChangeUserRole());
 
         commands.put(CommandName.GO_TO_REGISTRATION_PAGE, new GoToRegistrationPage());
         commands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPage());

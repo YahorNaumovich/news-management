@@ -3,6 +3,7 @@ package edu.training.web.controller.concrete.impl;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
+import edu.training.web.service.UserRoles;
 import edu.training.web.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class GoToManageUsersPage implements Command {
 
         try {
             request.setAttribute("users", userService.getAllUsers());
+            request.setAttribute("roles", UserRoles.values());
         } catch (ServiceException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }

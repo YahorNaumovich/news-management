@@ -123,6 +123,40 @@ public class SQLAuthenticationDao implements AuthenticationDao {
     }
 
     @Override
+    public void changeUserRole(int userId, int roleId) throws DaoException {
+
+        String changeUserRoleSql = "UPDATE users SET Roles_id = ? WHERE id = ?";
+
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(changeUserRoleSql)) {
+
+            statement.setInt(1, roleId);
+            statement.setInt(2, userId);
+            statement.executeUpdate();
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Error occurred during changing user role", e);
+        }
+    }
+
+    @Override
+    public int getRoleId(String roleName) throws DaoException {
+        String query = "SELECT id FROM roles WHERE name = ?";
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, roleName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("id");
+                } else {
+                    throw new SQLException("Role not found: " + roleName);
+                }
+            }
+        } catch (ConnectionPoolException | SQLException e) {
+            throw new DaoException("Error occurred during getting role id", e);
+        }
+    }
+
+    @Override
     public Map<String, User> getAllUsers() throws DaoException {
 
         Map<String, User> usersMap = new HashMap<>();
