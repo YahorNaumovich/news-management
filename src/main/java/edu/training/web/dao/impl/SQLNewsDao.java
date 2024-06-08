@@ -20,15 +20,15 @@ public class SQLNewsDao implements NewsDao {
     public SQLNewsDao() {
     }
 
+    private static final String GET_LAST_NEWS_SQL = "SELECT * FROM tiles ORDER BY ID ASC";
+
     @Override
     public List<NewsTile> getLastNews() throws DaoException {
 
         List<NewsTile> lastNews = new ArrayList<>();
 
-        String sql = "SELECT * FROM tiles ORDER BY ID ASC";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(GET_LAST_NEWS_SQL)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
 
@@ -49,15 +49,15 @@ public class SQLNewsDao implements NewsDao {
         return lastNews;
     }
 
+    private static final String GET_ALL_ARTICLES = "SELECT * FROM articles ORDER BY ID ASC";
+
     @Override
     public List<Article> getArticles() throws DaoException {
 
         List<Article> articles = new ArrayList<>();
 
-        String sql = "SELECT * FROM articles ORDER BY ID ASC";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(GET_ALL_ARTICLES)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
 
@@ -76,14 +76,13 @@ public class SQLNewsDao implements NewsDao {
         return articles;
     }
 
+    private static final String GET_ARTICLE_BY_ID = "SELECT * FROM articles WHERE id = ?";
 
     @Override
     public Article getArticleById(String articleId) throws DaoException {
 
-        String sql = "SELECT * FROM articles WHERE id = ?";
-
         try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(GET_ARTICLE_BY_ID)) {
 
             statement.setString(1, articleId);
 
@@ -105,12 +104,12 @@ public class SQLNewsDao implements NewsDao {
         return null;
     }
 
+    private static final String INSERT_NEW_TILE_SQL = "INSERT INTO tiles (imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_NEW_ARTICLE_SQL = "INSERT INTO articles (id, title, imagePath, text) VALUES (?, ?, ?, ?)";
+
     @Override
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
         String uniqueId = UUID.randomUUID().toString();
-
-        String insertNewTileSql = "INSERT INTO tiles (imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?)";
-        String insertNewArticleSql = "INSERT INTO articles (id, title, imagePath, text) VALUES (?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement newsTileStatement = null;
@@ -120,14 +119,14 @@ public class SQLNewsDao implements NewsDao {
             connection = ConnectionPool.getInstance().takeConnection();
             connection.setAutoCommit(false);
 
-            articleStatement = connection.prepareStatement(insertNewArticleSql);
+            articleStatement = connection.prepareStatement(INSERT_NEW_ARTICLE_SQL);
             articleStatement.setString(1, uniqueId);
             articleStatement.setString(2, addArticleInfo.getTitle());
             articleStatement.setString(3, addArticleInfo.getImage());
             articleStatement.setString(4, addArticleInfo.getArticleText());
             articleStatement.executeUpdate();
 
-            newsTileStatement = connection.prepareStatement(insertNewTileSql);
+            newsTileStatement = connection.prepareStatement(INSERT_NEW_TILE_SQL);
             newsTileStatement.setString(1, addArticleInfo.getImage());
             newsTileStatement.setString(2, addArticleInfo.getTitle());
             newsTileStatement.setString(3, "Owned");
@@ -160,11 +159,11 @@ public class SQLNewsDao implements NewsDao {
         }
     }
 
+    private static final String UPDATE_ARTICLE_SQL = "UPDATE articles SET title = ?, text = ? WHERE id = ?";
+    private static final String UPDATE_NEWS_TILE_SQL = "UPDATE tiles SET title = ?, size = ? WHERE Articles_id = ?";
+
     @Override
     public void editArticle(AddArticleInfo addArticleInfo, String articleId) throws DaoException {
-
-        String updateArticleSql = "UPDATE articles SET title = ?, text = ? WHERE id = ?";
-        String updateNewsTileSql = "UPDATE tiles SET title = ?, size = ? WHERE Articles_id = ?";
 
         Connection connection = null;
         PreparedStatement articleStatement = null;
@@ -174,13 +173,13 @@ public class SQLNewsDao implements NewsDao {
             connection = ConnectionPool.getInstance().takeConnection();
             connection.setAutoCommit(false);
 
-            articleStatement = connection.prepareStatement(updateArticleSql);
+            articleStatement = connection.prepareStatement(UPDATE_ARTICLE_SQL);
             articleStatement.setString(1, addArticleInfo.getTitle());
             articleStatement.setString(2, addArticleInfo.getArticleText());
             articleStatement.setString(3, articleId);
             articleStatement.executeUpdate();
 
-            newsTileStatement = connection.prepareStatement(updateNewsTileSql);
+            newsTileStatement = connection.prepareStatement(UPDATE_NEWS_TILE_SQL);
             newsTileStatement.setString(1, addArticleInfo.getTitle());
             newsTileStatement.setString(2, addArticleInfo.getTileSize());
             newsTileStatement.setString(3, articleId);
@@ -211,11 +210,11 @@ public class SQLNewsDao implements NewsDao {
         }
     }
 
+    private static final String DELETE_TILE_SQL = "DELETE FROM tiles WHERE Articles_id = ?";
+    private static final String DELETE_ARTICLE_SQL = "DELETE FROM articles WHERE id = ?";
+
     @Override
     public void deleteArticle(String articleId) throws DaoException {
-
-        String deleteNewsTileSql = "DELETE FROM tiles WHERE Articles_id = ?";
-        String deleteArticleSql = "DELETE FROM articles WHERE id = ?";
 
         Connection connection = null;
         PreparedStatement newsTileStatement = null;
@@ -225,11 +224,11 @@ public class SQLNewsDao implements NewsDao {
             connection = ConnectionPool.getInstance().takeConnection();
             connection.setAutoCommit(false);
 
-            newsTileStatement = connection.prepareStatement(deleteNewsTileSql);
+            newsTileStatement = connection.prepareStatement(DELETE_TILE_SQL);
             newsTileStatement.setString(1, articleId);
             newsTileStatement.executeUpdate();
 
-            articleStatement = connection.prepareStatement(deleteArticleSql);
+            articleStatement = connection.prepareStatement(DELETE_ARTICLE_SQL);
             articleStatement.setString(1, articleId);
             articleStatement.executeUpdate();
 
