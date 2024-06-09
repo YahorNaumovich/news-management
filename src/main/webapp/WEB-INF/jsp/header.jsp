@@ -9,8 +9,8 @@
 <link href="styles/header.css" rel="stylesheet">
 
 <div class="language-selector">
-    <a href="Controller?command=set_Locale&lang=en">English</a> |
-    <a href="Controller?command=set_Locale&lang=ru">Русский</a>
+    <a href="Controller?command=set_Locale&lang=en">EN</a> |
+    <a href="Controller?command=set_Locale&lang=ru">RU</a>
 </div>
 
 <header>
