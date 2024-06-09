@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Moved query strings to static final variables">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Changed language selector style and placement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/header.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,14 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Added link highlighting when either edit or delete mode is selected">
-      <option name="closed" value="true" />
-      <created>1716142896684</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1716142896684</updated>
     </task>
     <task id="LOCAL-00039" summary="Added user management page">
       <option name="closed" value="true" />
@@ -504,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717862577311</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Changed language selector style and placement">
+      <option name="closed" value="true" />
+      <created>1717918410132</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1717918410132</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -519,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added button to delete user" />
     <MESSAGE value="Renamed command" />
     <MESSAGE value="Added connection pool" />
     <MESSAGE value="Replaced BaseDao with connection pool" />
@@ -544,6 +544,7 @@
     <MESSAGE value="Fixed an error in userExists method" />
     <MESSAGE value="Added functionality to change user roles" />
     <MESSAGE value="Moved query strings to static final variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved query strings to static final variables" />
+    <MESSAGE value="Changed language selector style and placement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed language selector style and placement" />
   </component>
 </project>

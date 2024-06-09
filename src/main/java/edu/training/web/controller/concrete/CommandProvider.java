@@ -29,6 +29,8 @@ public class CommandProvider {
         commands.put(CommandName.GO_TO_EDIT_ARTICLE_PAGE, new GoToEditArticlePage());
         commands.put(CommandName.GO_TO_MANAGE_USERS_PAGE, new GoToManageUsersPage());
 
+        commands.put(CommandName.GO_TO_USER_PROFILE_PAGE, new GoToUserProfilePage());
+
         commands.put(CommandName.SELECT_ARTICLE_TO_EDIT, new SelectArticleToEdit());
         commands.put(CommandName.SELECT_ARTICLE_TO_DELETE, new SelectArticleToDelete());
 

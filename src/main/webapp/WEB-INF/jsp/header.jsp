@@ -35,7 +35,7 @@
             <div class="dropdown">
                 <button class="dropbtn">${sessionScope.user.name}</button>
                 <div class="dropdown-content">
-                    <a href="#"><fmt:message key="yourProfile" /></a>
+                    <a href="Controller?command=GO_TO_USER_PROFILE_PAGE"><fmt:message key="yourProfile" /></a>
                     <a href="Controller?command=DO_LOG_OUT"><fmt:message key="logout" /></a>
                 </div>
             </div>
