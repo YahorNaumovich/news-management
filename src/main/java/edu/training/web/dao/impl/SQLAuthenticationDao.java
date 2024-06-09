@@ -166,6 +166,23 @@ public class SQLAuthenticationDao implements AuthenticationDao {
         }
     }
 
+    private static final String CHANGE_USER_PASSWORD_SQL = "UPDATE users SET password = ? WHERE id = ?";
+
+    @Override
+    public void changeUserPassword(int id, String newPassword) throws DaoException {
+
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(CHANGE_USER_PASSWORD_SQL)) {
+
+            statement.setString(1, newPassword);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Error occurred during changing user password", e);
+        }
+    }
+
     private static final String GET_ALL_USERS = "SELECT u.id, u.username, u.email, r.name AS role_name FROM users u INNER JOIN roles r ON u.Roles_id = r.id";
 
     @Override

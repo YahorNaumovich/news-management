@@ -20,5 +20,7 @@ public interface AuthenticationDao {
 
     int getRoleId(String roleName) throws DaoException;
 
+    void changeUserPassword(int id, String newPassword) throws DaoException;
+
     Map<String, User> getAllUsers() throws DaoException;
 }

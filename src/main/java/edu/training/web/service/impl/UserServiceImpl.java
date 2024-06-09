@@ -77,6 +77,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changeUserPassword(int id, String newPassword, String confirmPassword) throws ServiceException {
+        if (!newPassword.equals(confirmPassword)) {
+            throw new ServiceException("Passwords do not match");
+        }
+        try {
+            authenticationDao.changeUserPassword(id, newPassword);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public Map<String, User> getAllUsers() throws ServiceException {
 
         Map<String, User> users;
