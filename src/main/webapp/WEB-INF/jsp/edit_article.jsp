@@ -76,7 +76,7 @@
 
 <div class="container">
 <form action="Controller" method="post">
-    <input type="hidden" name="command" value="DO_EDIT_ARTICLE"/>
+    <input type="hidden" name="command" value="do_edit_article"/>
             <div class="form-group">
                 <label for="articleId"><fmt:message key="articleFormId" /></label>
                 <textarea id="articleId" name="articleId" rows="1" cols="50" readonly>${article.id}</textarea>

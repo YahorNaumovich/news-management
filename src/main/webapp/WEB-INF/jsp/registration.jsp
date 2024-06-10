@@ -21,7 +21,7 @@
     </c:if>
 </div>
 <form action="Controller" method="post">
-    <input type="hidden" name="command" value="DO_REGISTRATION"/>
+    <input type="hidden" name="command" value="do_registration"/>
     <div>
         <input type="text" id="username" name="username" placeholder="<fmt:message key="usernamePlaceholder" />" required>
     </div>

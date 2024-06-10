@@ -35,15 +35,15 @@
             <div class="dropdown">
                 <button class="dropbtn">${sessionScope.user.name}</button>
                 <div class="dropdown-content">
-                    <a href="Controller?command=GO_TO_USER_PROFILE_PAGE"><fmt:message key="yourProfile" /></a>
-                    <a href="Controller?command=DO_LOG_OUT"><fmt:message key="logout" /></a>
+                    <a href="Controller?command=go_to_user_profile_page"><fmt:message key="yourProfile" /></a>
+                    <a href="Controller?command=do_log_out"><fmt:message key="logout" /></a>
                 </div>
             </div>
         </c:when>
         <c:otherwise>
             <div class="auth-links">
-                <a href="Controller?command=GO_TO_LOGIN_PAGE"><fmt:message key="signIn" /></a>
-                <a href="Controller?command=GO_TO_REGISTRATION_PAGE"><fmt:message key="signUp" /></a>
+                <a href="Controller?command=go_to_login_page"><fmt:message key="signIn" /></a>
+                <a href="Controller?command=go_to_registration_page"><fmt:message key="signUp" /></a>
             </div>
         </c:otherwise>
     </c:choose>

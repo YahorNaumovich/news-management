@@ -96,7 +96,7 @@
     <div class="info-value">${sessionScope.user.role}</div>
 
     <form class="user-form" action="Controller" method="post">
-        <input type="hidden" name="command" value="DO_CHANGE_USER_PASSWORD" />
+        <input type="hidden" name="command" value="do_change_user_password" />
         <input type="hidden" name="userId" value="${sessionScope.user.id}" />
         <div class="form-field">
             <label for="new-password" class="info-label"><fmt:message key="userProfileNewPassword" /></label>

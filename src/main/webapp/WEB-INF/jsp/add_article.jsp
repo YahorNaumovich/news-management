@@ -76,7 +76,7 @@
 
 <div class="container">
 <form action="Controller" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="command" value="DO_ADD_ARTICLE"/>
+    <input type="hidden" name="command" value="do_add_article"/>
         <div class="form-group">
             <label for="title"><fmt:message key="articleFormTitle" /></label>
             <textarea id="title" name="title" rows="2" cols="50"></textarea>

@@ -21,7 +21,7 @@
     </c:if>
 </div>
 <form action="Controller" method="post">
-    <input type="hidden" name="command" value="DO_AUTH"/>
+    <input type="hidden" name="command" value="do_auth"/>
     <div>
         <input
                 type="text"

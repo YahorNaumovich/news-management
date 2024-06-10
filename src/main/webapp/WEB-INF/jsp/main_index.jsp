@@ -39,16 +39,16 @@
         <c:forEach var="news" items="${requestScope.mainNews}">
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <c:set var="loginCommand" value="GO_TO_ARTICLE_PAGE"/>
+                    <c:set var="loginCommand" value="go_to_article_page"/>
                     <c:if test="${sessionScope.isInEditMode}">
-                        <c:set var="loginCommand" value="GO_TO_EDIT_ARTICLE_PAGE"/>
+                        <c:set var="loginCommand" value="go_to_edit_article_page"/>
                     </c:if>
                     <c:if test="${sessionScope.isInDeleteMode}">
-                        <c:set var="loginCommand" value="DO_DELETE_ARTICLE"/>
+                        <c:set var="loginCommand" value="do_delete_article"/>
                     </c:if>
                 </c:when>
                 <c:otherwise>
-                    <c:set var="loginCommand" value="GO_TO_LOGIN_PAGE"/>
+                    <c:set var="loginCommand" value="go_to_login_page"/>
                 </c:otherwise>
             </c:choose>
             <a class="news-item ${news.tileSize}" href="Controller?command=${loginCommand}&articleId=${news.articleId}">

@@ -110,7 +110,7 @@
                     <td>${entry.value.name}</td>
                     <td>
                        <form action="Controller" method="post">
-                            <input type="hidden" name="command" value="DO_CHANGE_USER_ROLE"/>
+                            <input type="hidden" name="command" value="do_change_user_role"/>
                             <input type="hidden" name="userId" value="${entry.value.id}"/>
                             <select id="roleSelect" name="role" onchange="submitFormOnChange(this)">
                                 <c:forEach var="role" items="${roles}">
