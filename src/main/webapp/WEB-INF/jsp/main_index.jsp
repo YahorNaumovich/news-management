@@ -25,16 +25,16 @@
     <c:if test="${sessionScope.isInDeleteMode}">
         <h2 class="action-title"><fmt:message key="deleteArticleModeTitle" /></h2>
     </c:if>
-<div class="error-message" id="error-message">
-    <c:if test="${not empty errorMessage}">
-        <div style="color: red;">
-            ${errorMessage}
-        </div>
-    </c:if>
-    <c:if test="${not (param.errorMessage eq null) }">
-        <c:out value="${param.errorMessage}"/>
-    </c:if>
-</div>
+    <div class="error-message" id="error-message">
+        <c:if test="${not empty errorMessage}">
+            <div style="color: red;">
+                ${errorMessage}
+            </div>
+        </c:if>
+        <c:if test="${not (param.errorMessage eq null) }">
+            <c:out value="${param.errorMessage}"/>
+        </c:if>
+    </div>
     <main>
         <c:forEach var="news" items="${requestScope.mainNews}">
             <c:choose>

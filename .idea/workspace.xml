@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added localization for user profile page">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Changed command names to lowercase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/add_article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/add_article.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/edit_article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/edit_article.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" afterDir="false" />
@@ -117,14 +116,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Added AppContextListener and implemented user registration in dao">
-      <option name="closed" value="true" />
-      <created>1717139931838</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1717139931838</updated>
     </task>
     <task id="LOCAL-00044" summary="Moved password match check to service">
       <option name="closed" value="true" />
@@ -510,7 +501,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718005659371</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Changed command names to lowercase">
+      <option name="closed" value="true" />
+      <created>1718005880867</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1718005880867</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed an issue with tile id generation" />
     <MESSAGE value="Added functionality to upload an image for an article" />
     <MESSAGE value="Added error messages" />
     <MESSAGE value="Minor fix in exception handling" />
@@ -550,6 +548,7 @@
     <MESSAGE value="Added functionality to change user password" />
     <MESSAGE value="Updated form margins" />
     <MESSAGE value="Added localization for user profile page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added localization for user profile page" />
+    <MESSAGE value="Changed command names to lowercase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed command names to lowercase" />
   </component>
 </project>

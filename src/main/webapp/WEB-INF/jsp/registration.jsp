@@ -11,7 +11,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Регистрация</title>
-      <link href="styles/registration.css" rel="stylesheet">
+    <link href="styles/registration.css" rel="stylesheet">
 </head>
 <body>
 <h1><fmt:message key="registrationPageTitle" /></h1>
