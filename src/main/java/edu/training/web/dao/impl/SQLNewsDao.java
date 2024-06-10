@@ -23,7 +23,7 @@ public class SQLNewsDao implements NewsDao {
     private static final String GET_LAST_NEWS_SQL = "SELECT * FROM tiles ORDER BY ID ASC";
 
     @Override
-    public List<NewsTile> getLastNews() throws DaoException {
+    public List<NewsTile> getTiles() throws DaoException {
 
         List<NewsTile> lastNews = new ArrayList<>();
 

@@ -7,7 +7,7 @@ import edu.training.web.bean.NewsTile;
 import java.util.List;
 
 public interface NewsDao {
-    List<NewsTile> getLastNews() throws DaoException;
+    List<NewsTile> getTiles() throws DaoException;
     List<Article> getArticles() throws DaoException;
 
     Article getArticleById(String articleId) throws DaoException;
