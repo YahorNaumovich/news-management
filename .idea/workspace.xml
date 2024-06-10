@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added user profile page">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added functionality to change user password">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/CommandProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/AuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/AuthenticationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/dao/impl/SQLAuthenticationDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_profile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,14 +110,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Added user management page">
-      <option name="closed" value="true" />
-      <created>1716155846494</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1716155846494</updated>
     </task>
     <task id="LOCAL-00041" summary="Added ServletContextListenerImpl to initialize jdbc connection">
       <option name="closed" value="true" />
@@ -509,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717965985417</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Added functionality to change user password">
+      <option name="closed" value="true" />
+      <created>1717968014780</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1717968014780</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added connection pool" />
     <MESSAGE value="Replaced BaseDao with connection pool" />
     <MESSAGE value="Fixed logging" />
     <MESSAGE value="Fixed an issue with tile id generation" />
@@ -549,6 +542,7 @@
     <MESSAGE value="Moved query strings to static final variables" />
     <MESSAGE value="Changed language selector style and placement" />
     <MESSAGE value="Added user profile page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added user profile page" />
+    <MESSAGE value="Added functionality to change user password" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to change user password" />
   </component>
 </project>

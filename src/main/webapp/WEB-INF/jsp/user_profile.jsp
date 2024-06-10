@@ -61,6 +61,10 @@
             background-color: #0056b3;
         }
 
+        .user-form{
+            margin-top: 20px;
+        }
+
         .form-field {
             grid-column: span 2;
         }
@@ -91,7 +95,7 @@
     <div class="info-label">Your role:</div>
     <div class="info-value">${sessionScope.user.role}</div>
 
-    <form action="Controller" method="post">
+    <form class="user-form" action="Controller" method="post">
         <input type="hidden" name="command" value="DO_CHANGE_USER_PASSWORD" />
         <input type="hidden" name="userId" value="${sessionScope.user.id}" />
         <div class="form-field">
