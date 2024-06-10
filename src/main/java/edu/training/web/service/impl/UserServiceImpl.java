@@ -101,9 +101,4 @@ public class UserServiceImpl implements UserService {
 
         return users;
     }
-
-    @Override
-    public UserProfile userProfile(int id) {
-        return null;
-    }
 }

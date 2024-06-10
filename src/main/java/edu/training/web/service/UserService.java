@@ -19,6 +19,4 @@ public interface UserService {
     void changeUserPassword(int id, String newPassword, String confirmPassword) throws ServiceException;
 
     Map<String, User> getAllUsers() throws ServiceException;
-
-    UserProfile userProfile(int id);
 }
