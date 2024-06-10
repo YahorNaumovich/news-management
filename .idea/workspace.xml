@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added functionality to change user password">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Updated form margins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_profile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,14 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Added ServletContextListenerImpl to initialize jdbc connection">
-      <option name="closed" value="true" />
-      <created>1717099492803</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1717099492803</updated>
     </task>
     <task id="LOCAL-00042" summary="Added connection">
       <option name="closed" value="true" />
@@ -503,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717968014780</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Updated form margins">
+      <option name="closed" value="true" />
+      <created>1717998950061</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1717998950061</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -518,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Replaced BaseDao with connection pool" />
     <MESSAGE value="Fixed logging" />
     <MESSAGE value="Fixed an issue with tile id generation" />
     <MESSAGE value="Added functionality to upload an image for an article" />
@@ -543,6 +544,7 @@
     <MESSAGE value="Changed language selector style and placement" />
     <MESSAGE value="Added user profile page" />
     <MESSAGE value="Added functionality to change user password" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to change user password" />
+    <MESSAGE value="Updated form margins" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated form margins" />
   </component>
 </project>
