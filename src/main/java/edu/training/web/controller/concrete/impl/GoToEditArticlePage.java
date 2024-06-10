@@ -26,10 +26,13 @@ public class GoToEditArticlePage implements Command {
         Article article = null;
 
         try {
+
             article = newsService.getArticleById(articleId);
+
             request.setAttribute("article", article);
             request.setAttribute("articleId", articleId);
             request.getRequestDispatcher("WEB-INF/jsp/edit_article.jsp").forward(request, response);
+
         } catch (ServiceException e) {
             handleError(response, "Error retrieving article: " + e.getMessage());
         } catch (Exception e) {

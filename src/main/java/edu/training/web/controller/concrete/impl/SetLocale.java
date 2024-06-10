@@ -12,7 +12,9 @@ import java.util.Objects;
 public class SetLocale implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String lang = request.getParameter("lang");
+
         Locale locale = new Locale(lang);
         request.getSession().setAttribute("locale", locale);
         // Redirect back to the original page

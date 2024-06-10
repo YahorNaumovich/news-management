@@ -20,9 +20,10 @@ public class DoDeleteUser implements Command {
 
         int userId = Integer.parseInt(request.getParameter("userId"));
 
-
         try {
+
             userService.deleteUser(userId);
+
         } catch (ServiceException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }

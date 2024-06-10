@@ -27,9 +27,11 @@ public class GoToArticlePage implements Command {
         Article article = null;
 
         try {
+
             article = newsService.getArticleById(articleId);
             request.setAttribute("article", article);
             request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
+
         } catch (ServiceException e) {
             handleError(response, "Error retrieving article: " + e.getMessage());
         } catch (Exception e) {

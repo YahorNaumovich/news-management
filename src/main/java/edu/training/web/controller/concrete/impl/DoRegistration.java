@@ -24,9 +24,8 @@ public class DoRegistration implements Command {
         String password = request.getParameter("password");
         String passwordConfirm = request.getParameter("confirmPassword");
 
-        System.out.println("Performed user authentication and authorization. Login: " + login);
-
         try {
+
             User user = userService.signUp(new UserRegistrationInfo(login, email, password, passwordConfirm));
 
             if (user != null) {
@@ -39,6 +38,7 @@ public class DoRegistration implements Command {
             } else {
                 response.sendRedirect("Controller?command=go_to_registration_page&authError=Passwords do not match");
             }
+
         } catch (ServiceException e) {
             String errorMessage = e.getMessage();
             response.sendRedirect("Controller?command=go_to_registration_page&authError=" + errorMessage);

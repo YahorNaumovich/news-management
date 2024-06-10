@@ -11,7 +11,7 @@
 <head>
     <meta charset="ISO-8859-1"/>
     <title>Войти</title>
-      <link href="styles/login.css" rel="stylesheet">
+    <link href="styles/login.css" rel="stylesheet">
 </head>
 <body>
 <h1><fmt:message key="loginPageTitle" /></h1>
@@ -24,20 +24,20 @@
     <input type="hidden" name="command" value="do_auth"/>
     <div>
         <input
-                type="text"
-                id="login"
-                name="login"
-                placeholder="<fmt:message key="emailPlaceholder" />"
-                required
+            type="text"
+            id="login"
+            name="login"
+            placeholder="<fmt:message key="emailPlaceholder" />"
+            required
         />
     </div>
-    <div> 
+    <div>
         <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="<fmt:message key="passwordPlaceholder" />"
-                required
+            type="password"
+            id="password"
+            name="password"
+            placeholder="<fmt:message key="passwordPlaceholder" />"
+            required
         />
     </div>
     <div>
@@ -48,8 +48,8 @@
         <button type="submit"><fmt:message key="signIn" /></button>
     </div>
 </form>
-<a href="Controller?command=GO_TO_REGISTRATION_PAGE"
-><fmt:message key="loginRegistration" /></a
->
+<a href="Controller?command=GO_TO_REGISTRATION_PAGE">
+    <fmt:message key="loginRegistration" />
+</a>
 </body>
 </html>

@@ -19,12 +19,14 @@ public class GoToIndexPage implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<NewsTile> mainNews = null;
+
         try {
 
             mainNews = newsService.lastNews();
-            request.setAttribute("mainNews", mainNews);
 
+            request.setAttribute("mainNews", mainNews);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");
             dispatcher.forward(request, response);
 
@@ -33,6 +35,7 @@ public class GoToIndexPage implements Command {
             request.setAttribute("errorMessage", "An error occurred while retrieving the news: " + e.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");
             dispatcher.forward(request, response);
+
         }
 
     }

@@ -24,8 +24,11 @@ public class DoChangeUserPassword implements Command {
         String confirmPassword = request.getParameter("confirmPassword");
 
         try {
+
             userService.changeUserPassword(userId, newPassword, confirmPassword);
+
             response.sendRedirect("Controller?command=go_to_user_profile_page");
+
         } catch (ServiceException e) {
             String encodedMessage = URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8);
             response.sendRedirect("Controller?command=go_to_user_profile_page&errorMessage=" + encodedMessage);

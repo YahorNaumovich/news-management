@@ -29,6 +29,7 @@ public class DoAddArticle implements Command {
         String imagePath = null;
 
         try {
+
             Part filePart = request.getPart("image");
             String fileName = getFileName(filePart);
             imagePath = "images/" + fileName;

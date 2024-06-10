@@ -27,8 +27,10 @@ public class DoEditArticle implements Command {
         String articleId = request.getParameter("articleId");
 
         try {
+
             newsService.editArticle(new AddArticleInfo(title, articleText, null, tileSize), articleId);
             response.sendRedirect("Controller?command=go_to_index_page");
+
         } catch (ServiceException e) {
             handleError(response, "Error editing article: " + e.getMessage());
         } catch (Exception e) {

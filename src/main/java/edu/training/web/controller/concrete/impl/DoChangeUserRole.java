@@ -27,7 +27,9 @@ public class DoChangeUserRole implements Command {
         UserRoles role = UserRoles.valueOf(userRole);
 
         try {
+
             userService.changeUserRole(id, role);
+
         } catch (ServiceException e) {
             String  encodedMessage = URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8);
             response.sendRedirect("Controller?command=go_to_manage_users_page&errorMessage=" + encodedMessage);

@@ -18,10 +18,11 @@ public class GoToManageUsersPage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         try {
+
             request.setAttribute("users", userService.getAllUsers());
             request.setAttribute("roles", UserRoles.values());
+
         } catch (ServiceException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }

@@ -21,8 +21,10 @@ public class DoDeleteArticle implements Command {
         String articleId = request.getParameter("articleId");
 
         try {
+
             newsService.deleteArticle(articleId);
             response.sendRedirect("Controller?command=go_to_index_page");
+
         } catch (ServiceException e) {
             handleError(response, "Error deleting article: " + e.getMessage());
         } catch (Exception e) {

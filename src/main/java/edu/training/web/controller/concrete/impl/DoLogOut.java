@@ -18,5 +18,6 @@ public class DoLogOut implements Command {
         session.removeAttribute("user");
 
         response.sendRedirect("Controller?command=go_to_index_page");
+
     }
 }

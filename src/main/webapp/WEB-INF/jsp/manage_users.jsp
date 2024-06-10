@@ -49,13 +49,13 @@
         }
 
         .delete-button {
-              color: #fff; /* White text */
-              text-decoration: none;
-              padding: 10px 20px;
-              border-radius: 5px;
-              background-color: red;
-              display: inline-block;
-              margin: 10px 10px;
+            color: #fff; /* White text */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: red;
+            display: inline-block;
+            margin: 10px 10px;
         }
 
         .delete-button:hover {
@@ -64,33 +64,33 @@
         }
 
         .error-message {
-          text-align: center;
-          color: red;
-          margin-bottom: 10px;
+            text-align: center;
+            color: red;
+            margin-bottom: 10px;
         }
 
     </style>
     <script>
-            function submitFormOnChange(selectElement) {
-                selectElement.form.submit();
-            }
-        </script>
+        function submitFormOnChange(selectElement) {
+            selectElement.form.submit();
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="header.jsp" />
 
 <div class="container">
 <c:if test="${not empty errorMessage}">
-<div class="error-message" id="error-message">
-    <c:if test="${not empty errorMessage}">
-        <div style="color: red;">
-            ${errorMessage}
-        </div>
-    </c:if>
-    <c:if test="${not (param.errorMessage eq null) }">
-        <c:out value="${param.errorMessage}"/>
-    </c:if>
-</div>
+    <div class="error-message" id="error-message">
+        <c:if test="${not empty errorMessage}">
+            <div style="color: red;">
+                ${errorMessage}
+            </div>
+        </c:if>
+        <c:if test="${not (param.errorMessage eq null) }">
+            <c:out value="${param.errorMessage}"/>
+        </c:if>
+    </div>
 </c:if>
     <table>
         <thead>
@@ -109,7 +109,7 @@
                     <td>${entry.key}</td>
                     <td>${entry.value.name}</td>
                     <td>
-                       <form action="Controller" method="post">
+                        <form action="Controller" method="post">
                             <input type="hidden" name="command" value="do_change_user_role"/>
                             <input type="hidden" name="userId" value="${entry.value.id}"/>
                             <select id="roleSelect" name="role" onchange="submitFormOnChange(this)">
@@ -117,7 +117,7 @@
                                     <option value="${role}" <c:if test="${role == entry.value.role}">selected</c:if>>${role}</option>
                                 </c:forEach>
                             </select>
-                       </form>
+                        </form>
                     </td>
                     <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}"><fmt:message key="manageUsersTableDeleteButtonLabel" /></a></td>
                 </tr>

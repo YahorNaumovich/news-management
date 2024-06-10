@@ -25,7 +25,9 @@ public class DoAuthentication implements Command {
         System.out.println("Perform user authentication and authorization. Login: " + login);
 
         User user;
+
         try {
+
             user = userService.signIn(new AuthenticationInfo(login, password));
 
             if (user != null) {
@@ -38,6 +40,7 @@ public class DoAuthentication implements Command {
             } else {
                 response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");
             }
+
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");
         }

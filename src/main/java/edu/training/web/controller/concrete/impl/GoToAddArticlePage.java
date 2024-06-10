@@ -18,5 +18,6 @@ public class GoToAddArticlePage implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getRequestDispatcher("WEB-INF/jsp/add_article.jsp").forward(request, response);
+
     }
 }
