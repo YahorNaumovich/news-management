@@ -84,7 +84,7 @@
     <div class="error-message" id="error-message">
         <c:if test="${not empty errorMessage}">
             <div style="color: red;">
-                ${errorMessage}
+                <fmt:message key="${errorMessage}"/>
             </div>
         </c:if>
         <c:if test="${not (param.errorMessage eq null) }">

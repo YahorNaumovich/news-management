@@ -93,6 +93,10 @@ public class UserServiceImpl implements UserService {
 
         Map<String, User> users;
 
+        if (true) {
+            throw new ServiceException("Error");
+        }
+
         try {
             users = authenticationDao.getAllUsers();
         } catch (DaoException e) {

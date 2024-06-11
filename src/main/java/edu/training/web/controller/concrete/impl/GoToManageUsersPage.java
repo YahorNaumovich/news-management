@@ -19,12 +19,11 @@ public class GoToManageUsersPage implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-
             request.setAttribute("users", userService.getAllUsers());
             request.setAttribute("roles", UserRoles.values());
 
         } catch (ServiceException e) {
-            request.setAttribute("errorMessage", e.getMessage());
+            request.setAttribute("errorMessage", "error.user.list");
         }
 
         request.getRequestDispatcher("WEB-INF/jsp/manage_users.jsp").forward(request, response);
