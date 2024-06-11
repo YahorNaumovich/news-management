@@ -12,10 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SQLNewsDao implements NewsDao {
 
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+    private static final Logger LOGGER = Logger.getLogger(SQLNewsDao.class.getName());
 
     public SQLNewsDao() {
     }
@@ -24,6 +28,8 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public List<NewsTile> getTiles() throws DaoException {
+
+        LOGGER.log(Level.INFO, "Method getTiles is called");
 
         List<NewsTile> lastNews = new ArrayList<>();
 
@@ -42,8 +48,13 @@ public class SQLNewsDao implements NewsDao {
                 }
             }
         } catch (SQLException | ConnectionPoolException e) {
+
+            LOGGER.log(Level.INFO, "Database error occurred during getting last news", e);
             throw new DaoException("Database error occurred during getting last news", e);
+
         }
+
+        LOGGER.log(Level.INFO, "Method getTiles is finished");
         return lastNews;
     }
 
@@ -51,6 +62,8 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public List<Article> getArticles() throws DaoException {
+
+        LOGGER.log(Level.INFO, "Method getArticles is called");
 
         List<Article> articles = new ArrayList<>();
 
@@ -70,9 +83,13 @@ public class SQLNewsDao implements NewsDao {
 
             }
         } catch (SQLException | ConnectionPoolException e) {
+
+            LOGGER.log(Level.INFO, "Database error occurred during getting articles", e);
             throw new DaoException("Database error occurred during getting articles", e);
+
         }
 
+        LOGGER.log(Level.INFO, "Method getArticles is finished");
         return articles;
     }
 
@@ -80,6 +97,8 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public Article getArticleById(int articleId) throws DaoException {
+
+        LOGGER.log(Level.INFO, "Method getArticleById is called");
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ARTICLE_BY_ID)) {
@@ -95,14 +114,19 @@ public class SQLNewsDao implements NewsDao {
                     String imagePath = resultSet.getString(3);
                     String articleText = resultSet.getString(4);
 
+                    LOGGER.log(Level.INFO, "Article {0} found", articleId);
                     return new Article(id, title, imagePath, articleText);
                 }
 
             }
         } catch (SQLException | ConnectionPoolException e) {
+
+            LOGGER.log(Level.INFO, "Database error occurred during getting article by id", e);
             throw new DaoException("Database error occurred during getting article by id", e);
+
         }
 
+        LOGGER.log(Level.INFO, "No article found");
         return null;
     }
 
@@ -111,6 +135,8 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
+
+        LOGGER.log(Level.INFO, "Method addArticle is called");
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_NEW_ARTICLE_SQL)) {
@@ -122,8 +148,13 @@ public class SQLNewsDao implements NewsDao {
             statement.setInt(5, 1);
             statement.executeUpdate();
 
+            LOGGER.log(Level.INFO, "Article {0} successfully added", addArticleInfo.getTitle());
+
         } catch (SQLException | ConnectionPoolException e) {
+
+            LOGGER.log(Level.INFO, "Database error occurred during adding article", e);
             throw new DaoException("Database error occurred during adding article", e);
+
         }
     }
 
@@ -131,6 +162,8 @@ public class SQLNewsDao implements NewsDao {
 
     @Override
     public void editArticle(AddArticleInfo addArticleInfo, int articleId) throws DaoException {
+
+        LOGGER.log(Level.INFO, "Method editArticle is called");
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_ARTICLE_SQL)) {
@@ -141,8 +174,13 @@ public class SQLNewsDao implements NewsDao {
             statement.setInt(4, articleId);
             statement.executeUpdate();
 
+            LOGGER.log(Level.INFO, "Article {0} successfully edited", articleId);
+
         } catch (SQLException | ConnectionPoolException e) {
+
+            LOGGER.log(Level.INFO, "Database error occurred during editing article", e);
             throw new DaoException("Database error occurred during editing article", e);
+
         }
     }
 
@@ -151,14 +189,21 @@ public class SQLNewsDao implements NewsDao {
     @Override
     public void deleteArticle(int articleId) throws DaoException {
 
+        LOGGER.log(Level.INFO, "Method deleteArticle is called");
+
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_ARTICLE_SQL)) {
 
             statement.setInt(1, articleId);
             statement.executeUpdate();
 
+            LOGGER.log(Level.INFO, "Article {0} successfully deleted", articleId);
+
         } catch (SQLException | ConnectionPoolException e) {
+
+            LOGGER.log(Level.INFO, "Database error occurred during deleting article", e);
             throw new DaoException("Database error occurred during deleting article", e);
+
         }
     }
 }
