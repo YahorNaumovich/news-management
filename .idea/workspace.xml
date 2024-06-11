@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added logging for service methods">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added validation on user registration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/registration.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/registration.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,14 +125,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Minor fix">
-      <option name="closed" value="true" />
-      <created>1717182993012</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1717182993012</updated>
     </task>
     <task id="LOCAL-00056" summary="Implemented editArticle method using jdbc">
       <option name="closed" value="true" />
@@ -522,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718134662124</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Added validation on user registration">
+      <option name="closed" value="true" />
+      <created>1718145145302</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145145302</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -537,7 +533,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added localization to edit article page" />
     <MESSAGE value="Added localization to edit/delete titles" />
     <MESSAGE value="Fixed an issue with character encoding" />
     <MESSAGE value="Fixed an issue with swapped variables in localization" />
@@ -562,6 +557,7 @@
     <MESSAGE value="Added logging to dao methods" />
     <MESSAGE value="Removed sout" />
     <MESSAGE value="Added logging for service methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging for service methods" />
+    <MESSAGE value="Added validation on user registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added validation on user registration" />
   </component>
 </project>
