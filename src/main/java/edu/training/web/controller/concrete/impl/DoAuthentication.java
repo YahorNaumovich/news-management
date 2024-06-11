@@ -22,8 +22,6 @@ public class DoAuthentication implements Command {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        System.out.println("Perform user authentication and authorization. Login: " + login);
-
         User user;
 
         try {
