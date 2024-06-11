@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added logging to dao methods">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToArticlePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToArticlePage.java" afterDir="false" />
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Removed sout">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,14 +125,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00053" summary="fixed GoToEditArticlePage class">
-      <option name="closed" value="true" />
-      <created>1717177350351</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1717177350351</updated>
     </task>
     <task id="LOCAL-00054" summary="Implemented addArticle method using jdbc">
       <option name="closed" value="true" />
@@ -516,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718132143905</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Removed sout">
+      <option name="closed" value="true" />
+      <created>1718132232758</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1718132232758</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -552,10 +554,10 @@
     <MESSAGE value="Added error message localization for manage_users.jsp" />
     <MESSAGE value="Added localization for user delete error" />
     <MESSAGE value="Fixed error handling and added localization for errors" />
-    <MESSAGE value="Removed sout" />
     <MESSAGE value="Deleted unused bean" />
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="Added logging to dao methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging to dao methods" />
+    <MESSAGE value="Removed sout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed sout" />
   </component>
 </project>
