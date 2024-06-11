@@ -80,16 +80,16 @@
 <jsp:include page="header.jsp" />
 
 <div class="container">
-<c:if test="${not empty errorMessage}">
-    <div class="error-message" id="error-message">
-        <c:if test="${not empty errorMessage}">
-            <div style="color: red;">
-                <fmt:message key="${errorMessage}"/>
-            </div>
-        </c:if>
-        <c:if test="${not (param.errorMessage eq null) }">
-            <c:out value="${param.errorMessage}"/>
-        </c:if>
+<c:if test="${not empty sessionScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${sessionScope.errorMessage}"/>
+    </div>
+    <c:remove var="errorMessage" scope="session"/>
+</c:if>
+
+<c:if test="${not empty requestScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${requestScope.errorMessage}"/>
     </div>
 </c:if>
     <table>

@@ -25,7 +25,9 @@ public class DoDeleteUser implements Command {
             userService.deleteUser(userId);
 
         } catch (ServiceException e) {
-            request.setAttribute("errorMessage", e.getMessage());
+            request.getSession().setAttribute("errorMessage", "error.user.delete");
+            response.sendRedirect("Controller?command=go_to_manage_users_page");
+            return;
         }
 
         response.sendRedirect("Controller?command=go_to_manage_users_page");

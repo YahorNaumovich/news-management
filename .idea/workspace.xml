@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Fixed userExists method">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added error message localization for manage_users.jsp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToManageUsersPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/GoToManageUsersPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoDeleteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoDeleteUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
@@ -128,14 +128,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Added sign in dao method">
-      <option name="closed" value="true" />
-      <created>1717153827300</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1717153827300</updated>
     </task>
     <task id="LOCAL-00047" summary="Added whitespace to dao methods">
       <option name="closed" value="true" />
@@ -521,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718105591620</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Added error message localization for manage_users.jsp">
+      <option name="closed" value="true" />
+      <created>1718115513912</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1718115513912</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -536,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor fix in exception handling" />
     <MESSAGE value="Added access modifiers to connection pool" />
     <MESSAGE value="Added a separate package for the connection pool" />
     <MESSAGE value="Refactored ConnectionPool exception handling" />
@@ -561,6 +560,7 @@
     <MESSAGE value="Deleted non-implemented method" />
     <MESSAGE value="Renamed method" />
     <MESSAGE value="Fixed userExists method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed userExists method" />
+    <MESSAGE value="Added error message localization for manage_users.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added error message localization for manage_users.jsp" />
   </component>
 </project>

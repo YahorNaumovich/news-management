@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int id) throws ServiceException {
+
         try {
             authenticationDao.deleteUser(id);
         } catch (DaoException e) {
@@ -92,10 +93,6 @@ public class UserServiceImpl implements UserService {
     public Map<String, User> getAllUsers() throws ServiceException {
 
         Map<String, User> users;
-
-        if (true) {
-            throw new ServiceException("Error");
-        }
 
         try {
             users = authenticationDao.getAllUsers();
