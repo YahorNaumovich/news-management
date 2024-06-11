@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public class DoChangeUserPassword implements Command {
 
-    UserService userService = ServiceProvider.getInstance().getUserService();
+    private final UserService userService = ServiceProvider.getInstance().getUserService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

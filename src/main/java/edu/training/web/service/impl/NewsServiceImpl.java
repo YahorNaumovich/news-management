@@ -9,18 +9,14 @@ import edu.training.web.dao.NewsDao;
 import edu.training.web.service.NewsService;
 import edu.training.web.service.ServiceException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewsServiceImpl implements NewsService {
 
-    List<NewsTile> newsTiles = new ArrayList<NewsTile>();
-    List<Article> articles = new ArrayList<Article>();
-
-    private NewsDao newsDao = DaoProvider.getInstance().getNewsDao();
+    private final NewsDao newsDao = DaoProvider.getInstance().getNewsDao();
 
     @Override
-    public List<NewsTile> lastNews() throws ServiceException {
+    public List<NewsTile> getLastNews() throws ServiceException {
         try {
             return newsDao.getTiles();
         } catch (DaoException e) {
@@ -29,7 +25,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<Article> articles() throws ServiceException {
+    public List<Article> getArticles() throws ServiceException {
         try {
             return newsDao.getArticles();
         } catch (DaoException e) {

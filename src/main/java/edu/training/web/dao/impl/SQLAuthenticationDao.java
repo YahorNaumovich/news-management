@@ -25,7 +25,7 @@ public class SQLAuthenticationDao implements AuthenticationDao {
     private static final String SIGN_IN_SQL = "SELECT u.id, u.username, u.email, r.name FROM users u JOIN roles r ON u.Roles_id = r.id WHERE u.email = ? AND u.password = ?";
 
     @Override
-    public User signIn(AuthenticationInfo authenticationInfo) throws DaoException {
+    public User signInUser(AuthenticationInfo authenticationInfo) throws DaoException {
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(SIGN_IN_SQL)) {
@@ -82,7 +82,7 @@ public class SQLAuthenticationDao implements AuthenticationDao {
     private static final String INSERT_USER_SQL = "INSERT INTO users (username, email, password, Roles_id) VALUES (?, ?, ?, ?)";
 
     @Override
-    public User signUp(UserRegistrationInfo userRegistrationInfo) throws DaoException {
+    public User signUpUser(UserRegistrationInfo userRegistrationInfo) throws DaoException {
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_USER_SQL, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -152,7 +152,7 @@ public class SQLAuthenticationDao implements AuthenticationDao {
     private static final String GET_ROLE_ID = "SELECT id FROM roles WHERE name = ?";
 
     @Override
-    public int getRoleId(String roleName) throws DaoException {
+    public int getUserRoleId(String roleName) throws DaoException {
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ROLE_ID)) {

@@ -20,11 +20,11 @@ public class GoToIndexPage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<NewsTile> mainNews = null;
+        List<NewsTile> mainNews;
 
         try {
 
-            mainNews = newsService.lastNews();
+            mainNews = newsService.getLastNews();
 
             request.setAttribute("mainNews", mainNews);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main_index.jsp");

@@ -7,8 +7,8 @@ import edu.training.web.bean.NewsTile;
 import java.util.List;
 
 public interface NewsService {
-    List<NewsTile> lastNews() throws ServiceException;
-    List<Article> articles() throws ServiceException;
+    List<NewsTile> getLastNews() throws ServiceException;
+    List<Article> getArticles() throws ServiceException;
 
     Article getArticleById(int articleId) throws ServiceException;
     void addArticle(AddArticleInfo addArticleInfo) throws ServiceException;

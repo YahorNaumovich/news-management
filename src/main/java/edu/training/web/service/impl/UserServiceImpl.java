@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class UserServiceImpl implements UserService {
 
-    private AuthenticationDao authenticationDao = DaoProvider.getInstance().getAuthenticationDao();
+    private final AuthenticationDao authenticationDao = DaoProvider.getInstance().getAuthenticationDao();
 
     @Override
     public User signIn(AuthenticationInfo authenticationInfo) throws ServiceException {
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
         User user;
 
         try {
-            user = authenticationDao.signIn(authenticationInfo);
+            user = authenticationDao.signInUser(authenticationInfo);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         User user;
 
         try {
-            user = authenticationDao.signUp(userRegistrationInfo);
+            user = authenticationDao.signUpUser(userRegistrationInfo);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changeUserRole(int userId, UserRoles role) throws ServiceException {
         try {
-            int roleId = authenticationDao.getRoleId(role.toString());
+            int roleId = authenticationDao.getUserRoleId(role.toString());
             authenticationDao.changeUserRole(userId, roleId);
         } catch (DaoException e) {
             throw new ServiceException(e);
