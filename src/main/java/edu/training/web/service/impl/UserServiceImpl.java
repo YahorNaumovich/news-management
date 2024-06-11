@@ -2,7 +2,6 @@ package edu.training.web.service.impl;
 
 import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
-import edu.training.web.bean.UserProfile;
 import edu.training.web.bean.UserRegistrationInfo;
 import edu.training.web.dao.AuthenticationDao;
 import edu.training.web.dao.DaoException;

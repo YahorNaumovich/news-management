@@ -2,7 +2,6 @@ package edu.training.web.service;
 
 import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
-import edu.training.web.bean.UserProfile;
 import edu.training.web.bean.UserRegistrationInfo;
 
 import java.util.Map;
