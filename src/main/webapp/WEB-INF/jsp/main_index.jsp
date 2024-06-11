@@ -51,13 +51,13 @@
                     <c:set var="loginCommand" value="go_to_login_page"/>
                 </c:otherwise>
             </c:choose>
-            <a class="news-item ${news.tileSize}" href="Controller?command=${loginCommand}&articleId=${news.articleId}">
+            <a class="news-item ${news.tileSize}" href="Controller?command=${loginCommand}&articleId=${news.id}">
                 <div class="image-container">
                     <img src="${news.imgPath}" alt="Article image">
                 </div>
                 <div class="text-content">
                     <h2 class="news-title">${news.title}</h3>
-                    <p class="news-text">${news.source}</p>
+                    <p class="news-text">Author</p>
                 </div>
             </a>
         </c:forEach>

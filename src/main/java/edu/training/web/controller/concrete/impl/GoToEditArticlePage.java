@@ -21,7 +21,7 @@ public class GoToEditArticlePage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String articleId = request.getParameter("articleId");
+        int articleId = Integer.parseInt(request.getParameter("articleId"));
 
         Article article = null;
 

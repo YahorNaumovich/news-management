@@ -22,7 +22,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public List<NewsTile> lastNews() throws ServiceException {
         try {
-            return newsDao.getLastNews();
+            return newsDao.getTiles();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -38,7 +38,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Article getArticleById(String articleId) throws ServiceException {
+    public Article getArticleById(int articleId) throws ServiceException {
         try {
             return newsDao.getArticleById(articleId);
         } catch (DaoException e) {
@@ -57,7 +57,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void editArticle(AddArticleInfo addArticleInfo, String articleId) throws ServiceException {
+    public void editArticle(AddArticleInfo addArticleInfo, int articleId) throws ServiceException {
 
         try {
             newsDao.editArticle(addArticleInfo, articleId);
@@ -67,7 +67,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void deleteArticle(String articleId) throws ServiceException {
+    public void deleteArticle(int articleId) throws ServiceException {
 
         try {
             newsDao.deleteArticle(articleId);

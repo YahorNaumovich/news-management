@@ -24,7 +24,7 @@ public class DoEditArticle implements Command {
         String articleText = request.getParameter("articleText");
         String tileSize = request.getParameter("tileSize");
 
-        String articleId = request.getParameter("articleId");
+        int articleId = Integer.parseInt(request.getParameter("articleId"));
 
         try {
 

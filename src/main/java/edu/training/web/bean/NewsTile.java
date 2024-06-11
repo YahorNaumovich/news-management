@@ -13,32 +13,25 @@ public class NewsTile implements Serializable {
 
     private String title;
 
-    private String source;
-
     private String tileSize;
 
-    private String articleId;
 
     public NewsTile() {
     }
 
-    public NewsTile(Integer id, String imgPath, String title, String source, String articleId) {
+    public NewsTile(Integer id, String imgPath, String title) {
         super();
         this.id = id;
         this.imgPath = imgPath;
         this.title = title;
-        this.source = source;
-        this.articleId = articleId;
     }
 
-    public NewsTile(Integer id, String imgPath, String title, String source, String articleId, String tileSize) {
+    public NewsTile(Integer id, String imgPath, String title, String tileSize) {
         super();
         this.id = id;
         this.imgPath = imgPath;
         this.title = title;
-        this.source = source;
         this.tileSize = tileSize;
-        this.articleId = articleId;
     }
 
     public Integer getId() {
@@ -65,14 +58,6 @@ public class NewsTile implements Serializable {
         this.title = title;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getTileSize() {
         return tileSize;
     }
@@ -81,33 +66,26 @@ public class NewsTile implements Serializable {
         this.tileSize = tileSize;
     }
 
-    public String getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(String articleId) {
-        this.articleId = articleId;
-    }
-
-    @Override
-    public String toString() {
-        return "News{" +
-                "imgPath='" + imgPath + '\'' +
-                ", title='" + title + '\'' +
-                ", source='" + source + '\'' +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NewsTile newsTile = (NewsTile) o;
-        return Objects.equals(imgPath, newsTile.imgPath) && Objects.equals(title, newsTile.title) && Objects.equals(source, newsTile.source) && Objects.equals(tileSize, newsTile.tileSize);
+        return Objects.equals(id, newsTile.id) && Objects.equals(imgPath, newsTile.imgPath) && Objects.equals(title, newsTile.title) && Objects.equals(tileSize, newsTile.tileSize);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(imgPath, title, source, tileSize);
+        return Objects.hash(id, imgPath, title, tileSize);
+    }
+
+    @Override
+    public String toString() {
+        return "NewsTile{" +
+                "id=" + id +
+                ", imgPath='" + imgPath + '\'' +
+                ", title='" + title + '\'' +
+                ", tileSize='" + tileSize + '\'' +
+                '}';
     }
 }

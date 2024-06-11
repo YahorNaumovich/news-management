@@ -20,7 +20,7 @@ public class SQLNewsDao implements NewsDao {
     public SQLNewsDao() {
     }
 
-    private static final String GET_LAST_NEWS_SQL = "SELECT * FROM tiles ORDER BY ID ASC";
+    private static final String GET_LAST_NEWS_SQL = "SELECT id, imagePath, title, size FROM articles ORDER BY ID ASC";
 
     @Override
     public List<NewsTile> getTiles() throws DaoException {
@@ -35,21 +35,19 @@ public class SQLNewsDao implements NewsDao {
                     Integer id = resultSet.getInt(1);
                     String imagePath = resultSet.getString(2);
                     String title = resultSet.getString(3);
-                    String source = resultSet.getString(4);
-                    String size = resultSet.getString(5);
-                    String articleId = resultSet.getString(6);
+                    String size = resultSet.getString(4);
 
-                    lastNews.add(new NewsTile(id, imagePath, title, source, articleId, size));
+                    lastNews.add(new NewsTile(id, imagePath, title, size));
 
                 }
             }
-        } catch (SQLException |ConnectionPoolException e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Database error occurred during getting last news", e);
         }
         return lastNews;
     }
 
-    private static final String GET_ALL_ARTICLES = "SELECT * FROM articles ORDER BY ID ASC";
+    private static final String GET_ALL_ARTICLES = "SELECT id, imagePath, title, text FROM articles ORDER BY ID ASC";
 
     @Override
     public List<Article> getArticles() throws DaoException {
@@ -59,201 +57,108 @@ public class SQLNewsDao implements NewsDao {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ALL_ARTICLES)) {
             try (ResultSet resultSet = statement.executeQuery()) {
+
                 while (resultSet.next()) {
 
-                    String id = resultSet.getString(1);
-                    String title = resultSet.getString(2);
-                    String imagePath = resultSet.getString(3);
+                    int id = resultSet.getInt(1);
+                    String imagePath = resultSet.getString(2);
+                    String title = resultSet.getString(3);
                     String articleText = resultSet.getString(4);
 
                     articles.add(new Article(id, title, imagePath, articleText));
                 }
+
             }
-        } catch (SQLException |ConnectionPoolException e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Database error occurred during getting articles", e);
         }
 
         return articles;
     }
 
-    private static final String GET_ARTICLE_BY_ID = "SELECT * FROM articles WHERE id = ?";
+    private static final String GET_ARTICLE_BY_ID = "SELECT id, imagePath, title, text FROM articles WHERE id = ?";
 
     @Override
-    public Article getArticleById(String articleId) throws DaoException {
+    public Article getArticleById(int articleId) throws DaoException {
 
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ARTICLE_BY_ID)) {
 
-            statement.setString(1, articleId);
+            statement.setInt(1, articleId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
+
                 if (resultSet.next()) {
 
-                    String id = resultSet.getString(1);
+                    int id = resultSet.getInt(1);
                     String title = resultSet.getString(2);
                     String imagePath = resultSet.getString(3);
                     String articleText = resultSet.getString(4);
 
                     return new Article(id, title, imagePath, articleText);
                 }
+
             }
-        } catch (SQLException |ConnectionPoolException e) {
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Database error occurred during getting article by id", e);
         }
 
         return null;
     }
 
-    private static final String INSERT_NEW_TILE_SQL = "INSERT INTO tiles (imagePath, title, source, size, Articles_id, Creator_id) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String INSERT_NEW_ARTICLE_SQL = "INSERT INTO articles (id, title, imagePath, text) VALUES (?, ?, ?, ?)";
+
+    private static final String INSERT_NEW_ARTICLE_SQL = "INSERT INTO articles (imagePath, title, text, size, Creator_id) VALUES (?, ?, ?, ?, ?)";
 
     @Override
     public void addArticle(AddArticleInfo addArticleInfo) throws DaoException {
-        String uniqueId = UUID.randomUUID().toString();
 
-        Connection connection = null;
-        PreparedStatement newsTileStatement = null;
-        PreparedStatement articleStatement = null;
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(INSERT_NEW_ARTICLE_SQL)) {
 
-        try {
-            connection = ConnectionPool.getInstance().takeConnection();
-            connection.setAutoCommit(false);
+            statement.setString(1, addArticleInfo.getImage());
+            statement.setString(2, addArticleInfo.getTitle());
+            statement.setString(3, addArticleInfo.getArticleText());
+            statement.setString(4, addArticleInfo.getTileSize());
+            statement.setInt(5, 1);
+            statement.executeUpdate();
 
-            articleStatement = connection.prepareStatement(INSERT_NEW_ARTICLE_SQL);
-            articleStatement.setString(1, uniqueId);
-            articleStatement.setString(2, addArticleInfo.getTitle());
-            articleStatement.setString(3, addArticleInfo.getImage());
-            articleStatement.setString(4, addArticleInfo.getArticleText());
-            articleStatement.executeUpdate();
-
-            newsTileStatement = connection.prepareStatement(INSERT_NEW_TILE_SQL);
-            newsTileStatement.setString(1, addArticleInfo.getImage());
-            newsTileStatement.setString(2, addArticleInfo.getTitle());
-            newsTileStatement.setString(3, "Owned");
-            newsTileStatement.setString(4, addArticleInfo.getTileSize());
-            newsTileStatement.setString(5, uniqueId);
-            newsTileStatement.setInt(6, 1);
-            newsTileStatement.executeUpdate();
-
-            connection.commit();
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Database error occurred during adding article", e);
-        } catch (ConnectionPoolException e) {
-            throw new DaoException("Connection pool error occurred during adding article", e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.setAutoCommit(true);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                ConnectionPool.getInstance().closeStatement(newsTileStatement);
-                ConnectionPool.getInstance().closeStatement(articleStatement);
-                ConnectionPool.getInstance().closeConnection(connection);
-            }
         }
     }
 
-    private static final String UPDATE_ARTICLE_SQL = "UPDATE articles SET title = ?, text = ? WHERE id = ?";
-    private static final String UPDATE_NEWS_TILE_SQL = "UPDATE tiles SET title = ?, size = ? WHERE Articles_id = ?";
+    private static final String UPDATE_ARTICLE_SQL = "UPDATE articles SET title = ?, text = ?, size = ? WHERE id = ?";
 
     @Override
-    public void editArticle(AddArticleInfo addArticleInfo, String articleId) throws DaoException {
+    public void editArticle(AddArticleInfo addArticleInfo, int articleId) throws DaoException {
 
-        Connection connection = null;
-        PreparedStatement articleStatement = null;
-        PreparedStatement newsTileStatement = null;
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_ARTICLE_SQL)) {
 
-        try {
-            connection = ConnectionPool.getInstance().takeConnection();
-            connection.setAutoCommit(false);
+            statement.setString(1, addArticleInfo.getTitle());
+            statement.setString(2, addArticleInfo.getArticleText());
+            statement.setString(3, addArticleInfo.getTileSize());
+            statement.setInt(4, articleId);
+            statement.executeUpdate();
 
-            articleStatement = connection.prepareStatement(UPDATE_ARTICLE_SQL);
-            articleStatement.setString(1, addArticleInfo.getTitle());
-            articleStatement.setString(2, addArticleInfo.getArticleText());
-            articleStatement.setString(3, articleId);
-            articleStatement.executeUpdate();
-
-            newsTileStatement = connection.prepareStatement(UPDATE_NEWS_TILE_SQL);
-            newsTileStatement.setString(1, addArticleInfo.getTitle());
-            newsTileStatement.setString(2, addArticleInfo.getTileSize());
-            newsTileStatement.setString(3, articleId);
-            newsTileStatement.executeUpdate();
-
-            connection.commit();
-
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Database error occurred during editing article", e);
-        } catch (ConnectionPoolException e) {
-            throw new DaoException("Connection pool error occurred during editing article", e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.setAutoCommit(true);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                ConnectionPool.getInstance().closeStatement(newsTileStatement);
-                ConnectionPool.getInstance().closeStatement(articleStatement);
-                ConnectionPool.getInstance().closeConnection(connection);
-            }
         }
     }
 
-    private static final String DELETE_TILE_SQL = "DELETE FROM tiles WHERE Articles_id = ?";
     private static final String DELETE_ARTICLE_SQL = "DELETE FROM articles WHERE id = ?";
 
     @Override
-    public void deleteArticle(String articleId) throws DaoException {
+    public void deleteArticle(int articleId) throws DaoException {
 
-        Connection connection = null;
-        PreparedStatement newsTileStatement = null;
-        PreparedStatement articleStatement = null;
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_ARTICLE_SQL)) {
 
-        try {
-            connection = ConnectionPool.getInstance().takeConnection();
-            connection.setAutoCommit(false);
+            statement.setInt(1, articleId);
+            statement.executeUpdate();
 
-            newsTileStatement = connection.prepareStatement(DELETE_TILE_SQL);
-            newsTileStatement.setString(1, articleId);
-            newsTileStatement.executeUpdate();
-
-            articleStatement = connection.prepareStatement(DELETE_ARTICLE_SQL);
-            articleStatement.setString(1, articleId);
-            articleStatement.executeUpdate();
-
-            connection.commit();
-
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Database error occurred during deleting article", e);
-        } catch (ConnectionPoolException e) {
-            throw new DaoException("Connection pool error occurred during deleting article", e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.setAutoCommit(true);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                ConnectionPool.getInstance().closeStatement(newsTileStatement);
-                ConnectionPool.getInstance().closeStatement(articleStatement);
-                ConnectionPool.getInstance().closeConnection(connection);
-            }
         }
     }
 }

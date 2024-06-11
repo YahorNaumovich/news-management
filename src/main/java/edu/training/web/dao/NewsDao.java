@@ -10,8 +10,8 @@ public interface NewsDao {
     List<NewsTile> getTiles() throws DaoException;
     List<Article> getArticles() throws DaoException;
 
-    Article getArticleById(String articleId) throws DaoException;
+    Article getArticleById(int articleId) throws DaoException;
     void addArticle(AddArticleInfo addArticleInfo) throws DaoException;
-    void editArticle(AddArticleInfo addArticleInfo, String articleId) throws DaoException;
-    void deleteArticle(String articleId) throws DaoException;
+    void editArticle(AddArticleInfo addArticleInfo, int articleId) throws DaoException;
+    void deleteArticle(int articleId) throws DaoException;
 }

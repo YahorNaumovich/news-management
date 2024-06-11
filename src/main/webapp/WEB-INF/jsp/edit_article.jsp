@@ -97,7 +97,7 @@
         <div class="form-group">
             <label for="tileSize"><fmt:message key="articleFormTileSize" /></label>
             <select id="tileSize" name="tileSize">
-                <option value="1x1">1x1</option>
+                <option value="r1c1">1x1</option>
                 <option value="r1c2">1x2</option>
                 <option value="r2c1">2x1</option>
                 <option value="r2c2">2x2</option>
