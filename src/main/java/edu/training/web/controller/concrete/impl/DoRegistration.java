@@ -6,6 +6,7 @@ import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
 import edu.training.web.service.UserService;
+import edu.training.web.service.UserValidatorService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,6 +17,8 @@ import java.io.IOException;
 public class DoRegistration implements Command {
     private final UserService userService = ServiceProvider.getInstance().getUserService();
 
+    private final UserValidatorService userValidatorService = ServiceProvider.getInstance().getUserValidatorService();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -25,6 +28,19 @@ public class DoRegistration implements Command {
         String passwordConfirm = request.getParameter("confirmPassword");
 
         try {
+
+            if (!userValidatorService.doPasswordsMatch(password, passwordConfirm)) {
+                request.getSession().setAttribute("errorMessage", "error.user.passwordMismatch");
+                response.sendRedirect("Controller?command=go_to_registration_page");
+                return;
+            }
+
+            if (userValidatorService.doesUserExist(email)) {
+                request.getSession().setAttribute("errorMessage", "error.user.userAlreadyExists");
+                response.sendRedirect("Controller?command=go_to_registration_page");
+                return;
+            }
+
 
             User user = userService.signUp(new UserRegistrationInfo(login, email, password, passwordConfirm));
 

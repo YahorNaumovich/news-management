@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Removed sout">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added logging for service methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles/registration.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles/registration.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,14 +129,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Implemented addArticle method using jdbc">
-      <option name="closed" value="true" />
-      <created>1717181900261</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1717181900261</updated>
     </task>
     <task id="LOCAL-00055" summary="Minor fix">
       <option name="closed" value="true" />
@@ -518,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718132232758</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Added logging for service methods">
+      <option name="closed" value="true" />
+      <created>1718134662124</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1718134662124</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,7 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added localization to add article page" />
     <MESSAGE value="Added localization to edit article page" />
     <MESSAGE value="Added localization to edit/delete titles" />
     <MESSAGE value="Fixed an issue with character encoding" />
@@ -558,6 +561,7 @@
     <MESSAGE value="Code cleanup" />
     <MESSAGE value="Added logging to dao methods" />
     <MESSAGE value="Removed sout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed sout" />
+    <MESSAGE value="Added logging for service methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added logging for service methods" />
   </component>
 </project>

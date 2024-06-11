@@ -46,18 +46,6 @@ public class UserServiceImpl implements UserService {
 
         LOGGER.log(Level.INFO, "Method signUp is called");
 
-        if (!userRegistrationInfo.getPassword().equals(userRegistrationInfo.getConfirmPassword())) {
-            throw new ServiceException("Passwords do not match");
-        }
-
-        try {
-            if (authenticationDao.userExists(userRegistrationInfo.getEmail())) {
-                throw new ServiceException("User with this email already exists");
-            }
-        } catch (DaoException e) {
-            throw new ServiceException(e);
-        }
-
         User user;
 
         try {
