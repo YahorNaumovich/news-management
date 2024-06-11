@@ -35,13 +35,13 @@ public class DoRegistration implements Command {
 
                 response.sendRedirect("Controller?command=go_to_index_page");
 
-            } else {
-                response.sendRedirect("Controller?command=go_to_registration_page&authError=Passwords do not match");
             }
 
         } catch (ServiceException e) {
-            String errorMessage = e.getMessage();
-            response.sendRedirect("Controller?command=go_to_registration_page&authError=" + errorMessage);
+
+            request.getSession().setAttribute("errorMessage", "error.user.registration");
+            response.sendRedirect("Controller?command=go_to_registration_page");
+
         }
     }
 

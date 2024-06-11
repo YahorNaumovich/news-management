@@ -19,22 +19,20 @@
 <jsp:include page="header.jsp" />
 
 <div class="main-container">
-    <c:if test="${sessionScope.isInEditMode}">
-        <h2 class="action-title"><fmt:message key="editArticleModeTitle" /></h2>
-    </c:if>
-    <c:if test="${sessionScope.isInDeleteMode}">
-        <h2 class="action-title"><fmt:message key="deleteArticleModeTitle" /></h2>
-    </c:if>
-    <div class="error-message" id="error-message">
-        <c:if test="${not empty errorMessage}">
-            <div style="color: red;">
-                ${errorMessage}
-            </div>
-        </c:if>
-        <c:if test="${not (param.errorMessage eq null) }">
-            <c:out value="${param.errorMessage}"/>
-        </c:if>
+
+<c:if test="${not empty sessionScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${sessionScope.errorMessage}"/>
     </div>
+    <c:remove var="errorMessage" scope="session"/>
+</c:if>
+
+<c:if test="${not empty requestScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${requestScope.errorMessage}"/>
+    </div>
+</c:if>
+
     <main>
         <c:forEach var="news" items="${requestScope.mainNews}">
             <c:choose>

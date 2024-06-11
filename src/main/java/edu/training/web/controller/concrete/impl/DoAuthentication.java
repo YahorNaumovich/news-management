@@ -37,12 +37,11 @@ public class DoAuthentication implements Command {
 
                 response.sendRedirect("Controller?command=go_to_index_page");
 
-            } else {
-                response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");
             }
 
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=go_to_login_page&authError=Wrong login or password");
+            request.getSession().setAttribute("errorMessage", "error.user.authentication");
+            response.sendRedirect("Controller?command=go_to_login_page");
         }
 
     }

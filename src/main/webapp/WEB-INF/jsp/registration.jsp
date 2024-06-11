@@ -15,11 +15,20 @@
 </head>
 <body>
 <h1><fmt:message key="registrationPageTitle" /></h1>
-<div class="error-message" id="error-message">
-    <c:if test="${not (param.authError eq null) }">
-        <c:out value="${param.authError}"/>
-    </c:if>
-</div>
+
+<c:if test="${not empty sessionScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${sessionScope.errorMessage}"/>
+    </div>
+    <c:remove var="errorMessage" scope="session"/>
+</c:if>
+
+<c:if test="${not empty requestScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${requestScope.errorMessage}"/>
+    </div>
+</c:if>
+
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="do_registration"/>
     <div>

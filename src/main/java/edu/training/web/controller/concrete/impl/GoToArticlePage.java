@@ -33,15 +33,10 @@ public class GoToArticlePage implements Command {
             request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
 
         } catch (ServiceException e) {
-            handleError(response, "Error retrieving article: " + e.getMessage());
-        } catch (Exception e) {
-            handleError(response, "Unexpected error: " + e.getMessage());
+            request.setAttribute("errorMessage", "error.article.get");
+            request.getRequestDispatcher("WEB-INF/jsp/article.jsp").forward(request, response);
         }
 
     }
 
-    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
-        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
-        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
-    }
 }

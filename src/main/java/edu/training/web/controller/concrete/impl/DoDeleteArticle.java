@@ -26,16 +26,11 @@ public class DoDeleteArticle implements Command {
             response.sendRedirect("Controller?command=go_to_index_page");
 
         } catch (ServiceException e) {
-            handleError(response, "Error deleting article: " + e.getMessage());
-        } catch (Exception e) {
-            handleError(response, "Unexpected error: " + e.getMessage());
+            request.getSession().setAttribute("errorMessage", "error.article.delete");
+            response.sendRedirect("Controller?command=go_to_index_page");
+            return;
         }
 
-    }
-
-    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
-        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
-        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
     }
 
 }

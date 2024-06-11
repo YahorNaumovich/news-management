@@ -39,18 +39,11 @@ public class DoAddArticle implements Command {
             newsService.addArticle(new AddArticleInfo(title, articleText, imagePath, tileSize));
             response.sendRedirect("Controller?command=go_to_index_page");
 
-        } catch (IOException | ServletException e) {
-            handleError(response, "Error uploading file: " + e.getMessage());
-        } catch (ServiceException e) {
-            handleError(response, "Error adding article: " + e.getMessage());
-        } catch (Exception e) {
-            handleError(response, "Unexpected error: " + e.getMessage());
+        } catch (IOException | ServletException | ServiceException e) {
+            request.getSession().setAttribute("errorMessage", "error.article.add");
+            response.sendRedirect("Controller?command=go_to_index_page");
+            return;
         }
-    }
-
-    private void handleError(HttpServletResponse response, String errorMessage) throws IOException {
-        String encodedMessage = URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
-        response.sendRedirect("Controller?command=go_to_index_page&errorMessage=" + encodedMessage);
     }
 
     // Method to extract file name from Part
