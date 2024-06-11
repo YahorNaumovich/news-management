@@ -22,9 +22,8 @@ public class GoToArticlePage implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int articleId = Integer.parseInt(request.getParameter("articleId"));
-        System.out.println("Article id associated with this tile is: " + articleId);
 
-        Article article = null;
+        Article article;
 
         try {
 
