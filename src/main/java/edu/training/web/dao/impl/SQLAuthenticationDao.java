@@ -63,12 +63,19 @@ public class SQLAuthenticationDao implements AuthenticationDao {
             statement.setString(1, email);
 
             try (ResultSet resultSet = statement.executeQuery()) {
-                return !resultSet.next();
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    if (count > 0) {
+                        return true;
+                    }
+                }
             }
 
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Error occurred while checking user existence", e);
         }
+
+        return false;
     }
 
 
