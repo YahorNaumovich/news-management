@@ -33,6 +33,13 @@
     </div>
 </c:if>
 
+    <c:if test="${sessionScope.isInEditMode}">
+        <h2 class="action-title"><fmt:message key="mode.edit.title" /></h2>
+    </c:if>
+    <c:if test="${sessionScope.isInDeleteMode}">
+        <h2 class="action-title"><fmt:message key="mode.delete.title" /></h2>
+    </c:if>
+
     <main>
         <c:forEach var="news" items="${requestScope.mainNews}">
             <c:choose>

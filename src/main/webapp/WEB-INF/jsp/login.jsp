@@ -10,11 +10,11 @@
 <html>
 <head>
     <meta charset="ISO-8859-1"/>
-    <title>Войти</title>
+    <title><fmt:message key="page.login.title" /></title>
     <link href="styles/login.css" rel="stylesheet">
 </head>
 <body>
-<h1><fmt:message key="loginPageTitle" /></h1>
+<h1><fmt:message key="page.login.title" /></h1>
 
 <c:if test="${not empty sessionScope.errorMessage}">
     <div class="error-message">
@@ -36,7 +36,7 @@
             type="text"
             id="login"
             name="login"
-            placeholder="<fmt:message key="emailPlaceholder" />"
+            placeholder="<fmt:message key="user.form.emailPlaceholder" />"
             required
         />
     </div>
@@ -45,20 +45,20 @@
             type="password"
             id="password"
             name="password"
-            placeholder="<fmt:message key="passwordPlaceholder" />"
+            placeholder="<fmt:message key="user.form.passwordPlaceholder" />"
             required
         />
     </div>
     <div>
         <input type="checkbox" id="checkbox" name="checkbox"/>
-        <label for="checkbox"><fmt:message key="loginRememberMe" /></label>
+        <label for="checkbox"><fmt:message key="user.form.rememberMe" /></label>
     </div>
     <div>
-        <button type="submit"><fmt:message key="signIn" /></button>
+        <button type="submit"><fmt:message key="user.action.signIn" /></button>
     </div>
 </form>
 <a href="Controller?command=GO_TO_REGISTRATION_PAGE">
-    <fmt:message key="loginRegistration" />
+    <fmt:message key="user.form.registrationLink" />
 </a>
 </body>
 </html>

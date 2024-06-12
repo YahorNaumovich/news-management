@@ -78,24 +78,24 @@
     <form action="Controller" method="post">
         <input type="hidden" name="command" value="do_edit_article"/>
         <div class="form-group">
-            <label for="articleId"><fmt:message key="articleFormId" /></label>
+            <label for="articleId"><fmt:message key="article.form.id" /></label>
             <textarea id="articleId" name="articleId" rows="1" cols="50" readonly>${article.id}</textarea>
         </div>
         <div class="form-group">
-            <label for="title"><fmt:message key="articleFormTitle" /></label>
+            <label for="title"><fmt:message key="article.form.title" /></label>
             <textarea id="title" name="title" rows="2" cols="50">${article.title}</textarea>
         </div>
         <div class="form-group">
-            <label for="articleText"><fmt:message key="articleFormText" /></label>
+            <label for="articleText"><fmt:message key="article.form.text" /></label>
             <textarea id="articleText" name="articleText" rows="10" cols="50">${article.text}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="image"><fmt:message key="articleFormImage" /></label>
+            <label for="image"><fmt:message key="article.form.image" /></label>
             <input type="file" id="image" name="image" accept="image/*">
         </div>
         <div class="form-group">
-            <label for="tileSize"><fmt:message key="articleFormTileSize" /></label>
+            <label for="tileSize"><fmt:message key="article.form.tileSize" /></label>
             <select id="tileSize" name="tileSize">
                 <option value="r1c1">1x1</option>
                 <option value="r1c2">1x2</option>
@@ -104,7 +104,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="submit"><fmt:message key="editArticleFormAction" /></button>
+            <button type="submit"><fmt:message key="editArticle.form.action" /></button>
         </div>
     </form>
 </div>

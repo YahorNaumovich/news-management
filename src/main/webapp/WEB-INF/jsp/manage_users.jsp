@@ -95,11 +95,11 @@
     <table>
         <thead>
             <tr>
-                <th><fmt:message key="manageUsersTableHeaderId" /></th>
-                <th><fmt:message key="manageUsersTableHeaderEmail" /></th>
-                <th><fmt:message key="manageUsersTableHeaderUsername" /></th>
-                <th><fmt:message key="manageUsersTableHeaderRole" /></th>
-                <th><fmt:message key="manageUsersTableHeaderActions" /></th>
+                <th><fmt:message key="manageUsers.table.header.id" /></th>
+                <th><fmt:message key="manageUsers.table.header.email" /></th>
+                <th><fmt:message key="manageUsers.table.header.username" /></th>
+                <th><fmt:message key="manageUsers.table.header.role" /></th>
+                <th><fmt:message key="manageUsers.table.header.actions" /></th>
             </tr>
         </thead>
         <tbody>
@@ -119,7 +119,7 @@
                             </select>
                         </form>
                     </td>
-                    <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}"><fmt:message key="manageUsersTableDeleteButtonLabel" /></a></td>
+                    <td><a class="delete-button" href="Controller?command=do_delete_user&userId=${entry.value.id}"><fmt:message key="manageUsers.table.button.delete" /></a></td>
                 </tr>
             </c:forEach>
         </tbody>

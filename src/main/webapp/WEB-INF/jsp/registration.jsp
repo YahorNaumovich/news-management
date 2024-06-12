@@ -10,11 +10,11 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Регистрация</title>
+    <title><fmt:message key="page.registration.title" /></title>
     <link href="styles/registration.css" rel="stylesheet">
 </head>
 <body>
-<h1><fmt:message key="registrationPageTitle" /></h1>
+<h1><fmt:message key="page.registration.title" /></h1>
 
 <c:if test="${not empty sessionScope.errorMessage}">
     <div class="error-message">
@@ -32,19 +32,19 @@
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="do_registration"/>
     <div>
-        <input type="text" id="username" name="username" placeholder="<fmt:message key="usernamePlaceholder" />" required>
+        <input type="text" id="username" name="username" placeholder="<fmt:message key="user.form.usernamePlaceholder" />" required>
     </div>
     <div>
-        <input type="text" id="email" name="email" placeholder="<fmt:message key="emailPlaceholder" />" required>
+        <input type="text" id="email" name="email" placeholder="<fmt:message key="user.form.emailPlaceholder" />" required>
     </div>
     <div>
-        <input type="password" id="password" name="password" placeholder="<fmt:message key="passwordPlaceholder" />" required>
+        <input type="password" id="password" name="password" placeholder="<fmt:message key="user.form.passwordPlaceholder" />" required>
     </div>
     <div>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="<fmt:message key="confirmPasswordPlaceholder" />" required>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="<fmt:message key="user.from.confirmPasswordPlaceholder" />" required>
     </div>
     <div>
-        <button type="submit"><fmt:message key="signUp" /></button>
+        <button type="submit"><fmt:message key="user.action.signUp" /></button>
     </div>
 </form>
 </body>

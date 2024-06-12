@@ -97,25 +97,25 @@
     </div>
 </c:if>
 
-    <div class="info-label"><fmt:message key="userProfileUsername" /></div>
+    <div class="info-label"><fmt:message key="user.profile.username" /></div>
     <div class="info-value">${sessionScope.user.name}</div>
 
-    <div class="info-label"><fmt:message key="userProfileRole" /></div>
+    <div class="info-label"><fmt:message key="user.profile.role" /></div>
     <div class="info-value">${sessionScope.user.role}</div>
 
     <form class="user-form" action="Controller" method="post">
         <input type="hidden" name="command" value="do_change_user_password" />
         <input type="hidden" name="userId" value="${sessionScope.user.id}" />
         <div class="form-field">
-            <label for="new-password" class="info-label"><fmt:message key="userProfileNewPassword" /></label>
+            <label for="new-password" class="info-label"><fmt:message key="user.profile.newPassword" /></label>
             <input type="password" id="new-password" name="newPassword" required />
         </div>
         <div class="form-field">
-            <label for="confirm-password" class="info-label"><fmt:message key="userProfileConfirmPassword" /></label>
+            <label for="confirm-password" class="info-label"><fmt:message key="user.profile.confirmPassword" /></label>
             <input type="password" id="confirm-password" name="confirmPassword" required />
         </div>
         <div class="button-container">
-            <button type="submit" class="button"><fmt:message key="userProfileChangePassword" /></button>
+            <button type="submit" class="button"><fmt:message key="user.profile.changePassword" /></button>
         </div>
     </form>
 </div>
