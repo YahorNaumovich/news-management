@@ -6,4 +6,8 @@ public interface UserValidatorService {
 
     boolean doesUserExist(String email) throws ServiceException;
 
+    boolean isPasswordValid(String password);
+
+    boolean isPasswordLengthValid(String password);
+
 }

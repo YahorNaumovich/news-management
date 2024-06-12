@@ -23,4 +23,28 @@ public class UserValidatorServiceImpl implements UserValidatorService {
             throw new ServiceException(e);
         }
     }
+
+    private static final String ALLOWED_CHARACTERS_REGEX = "^[A-Za-z0-9~`!@#$%^&*()_\\-+={[}\\]|:;\"'<,>.?/]+$";
+
+    @Override
+    public boolean isPasswordValid(String password) {
+
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+
+        return password.matches(ALLOWED_CHARACTERS_REGEX);
+    }
+
+    @Override
+    public boolean isPasswordLengthValid(String password) {
+
+        if (password == null) {
+            return false;
+        }
+
+        int length = password.length();
+
+        return length >= 8 && length <= 20;
+    }
 }

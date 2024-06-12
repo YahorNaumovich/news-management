@@ -35,6 +35,18 @@ public class DoRegistration implements Command {
                 return;
             }
 
+            if (!userValidatorService.isPasswordLengthValid(password)) {
+                request.getSession().setAttribute("errorMessage", "error.user.passwordLengthInvalid");
+                response.sendRedirect("Controller?command=go_to_registration_page");
+                return;
+            }
+
+            if (!userValidatorService.isPasswordValid(password)) {
+                request.getSession().setAttribute("errorMessage", "error.user.passwordInvalid");
+                response.sendRedirect("Controller?command=go_to_registration_page");
+                return;
+            }
+
             if (userValidatorService.doesUserExist(email)) {
                 request.getSession().setAttribute("errorMessage", "error.user.userAlreadyExists");
                 response.sendRedirect("Controller?command=go_to_registration_page");
