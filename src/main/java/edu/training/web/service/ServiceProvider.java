@@ -1,17 +1,20 @@
 package edu.training.web.service;
 
 import edu.training.web.service.impl.NewsServiceImpl;
+import edu.training.web.service.impl.NewsValidatorServiceImpl;
 import edu.training.web.service.impl.UserServiceImpl;
 import edu.training.web.service.impl.UserValidatorServiceImpl;
 
 public final class ServiceProvider {
     private static final ServiceProvider instance = new ServiceProvider();
 
-    private UserService userService = new UserServiceImpl();
+    private final UserService userService = new UserServiceImpl();
 
-    private UserValidatorService userValidatorService = new UserValidatorServiceImpl();
+    private final UserValidatorService userValidatorService = new UserValidatorServiceImpl();
 
-    private NewsService newsService = new NewsServiceImpl();
+    private final NewsService newsService = new NewsServiceImpl();
+
+    private final NewsValidatorService newsValidatorService = new NewsValidatorServiceImpl();
 
     private ServiceProvider() {
 
@@ -31,5 +34,9 @@ public final class ServiceProvider {
 
     public NewsService getNewsService() {
         return newsService;
+    }
+
+    public NewsValidatorService getNewsValidationService() {
+        return newsValidatorService;
     }
 }

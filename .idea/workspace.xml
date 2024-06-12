@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Improved error handling">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Renamed localization variables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/bean/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/bean/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoAddArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoAddArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/add_article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/add_article.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/edit_article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/edit_article.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage_users.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_profile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -134,14 +128,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Added user id">
-      <option name="closed" value="true" />
-      <created>1717426052761</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1717426052761</updated>
     </task>
     <task id="LOCAL-00061" summary="Added link to go to main page to header">
       <option name="closed" value="true" />
@@ -527,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718191302670</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Renamed localization variables">
+      <option name="closed" value="true" />
+      <created>1718194064580</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1718194064580</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -542,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added command to delete a user" />
     <MESSAGE value="Fixed an error in userExists method" />
     <MESSAGE value="Added functionality to change user roles" />
     <MESSAGE value="Moved query strings to static final variables" />
@@ -567,6 +560,7 @@
     <MESSAGE value="Added more validation for user registration" />
     <MESSAGE value="Fixed typo" />
     <MESSAGE value="Improved error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved error handling" />
+    <MESSAGE value="Renamed localization variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed localization variables" />
   </component>
 </project>

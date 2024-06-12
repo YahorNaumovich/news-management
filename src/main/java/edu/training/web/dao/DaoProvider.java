@@ -6,8 +6,8 @@ import edu.training.web.dao.impl.SQLNewsDao;
 public final class DaoProvider {
     private static final DaoProvider instance = new DaoProvider();
 
-    private AuthenticationDao authenticationDao = new SQLAuthenticationDao();
-    private NewsDao newsDao = new SQLNewsDao();
+    private final AuthenticationDao authenticationDao = new SQLAuthenticationDao();
+    private final NewsDao newsDao = new SQLNewsDao();
 
     private DaoProvider() {
     }

@@ -5,6 +5,7 @@ import edu.training.web.controller.ErrorCode;
 import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.NewsService;
+import edu.training.web.service.NewsValidatorService;
 import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
 import jakarta.servlet.ServletException;
@@ -19,12 +20,24 @@ public class DoEditArticle extends AbstractCommand {
 
     private final NewsService newsService = ServiceProvider.getInstance().getNewsService();
 
+    private final NewsValidatorService newsValidatorService = ServiceProvider.getInstance().getNewsValidationService();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String title = request.getParameter("title");
         String articleText = request.getParameter("articleText");
         String tileSize = request.getParameter("tileSize");
+
+        if (!newsValidatorService.validateArticleTitleLength(title)) {
+            setErrorAndRedirect(request, response, "Controller?command=go_to_index_page", ErrorCode.ARTICLE_TITLE);
+            return;
+        }
+
+        if (!newsValidatorService.validateArticleTextLength(articleText)) {
+            setErrorAndRedirect(request, response, "Controller?command=go_to_index_page", ErrorCode.ARTICLE_TEXT);
+            return;
+        }
 
         int articleId = Integer.parseInt(request.getParameter("articleId"));
 
