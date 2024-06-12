@@ -2,6 +2,8 @@ package edu.training.web.controller.concrete.impl;
 
 import edu.training.web.bean.AuthenticationInfo;
 import edu.training.web.bean.User;
+import edu.training.web.controller.ErrorCode;
+import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
@@ -13,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-public class DoAuthentication implements Command {
+public class DoAuthentication extends AbstractCommand {
     private final UserService userService = ServiceProvider.getInstance().getUserService();
 
     @Override
@@ -38,8 +40,8 @@ public class DoAuthentication implements Command {
             }
 
         } catch (ServiceException e) {
-            request.getSession().setAttribute("errorMessage", "error.user.authentication");
-            response.sendRedirect("Controller?command=go_to_login_page");
+            System.out.println(ErrorCode.USER_AUTHENTICATION.getCode());
+            setErrorAndRedirect(request, response, "Controller?command=go_to_login_page", ErrorCode.USER_AUTHENTICATION);
         }
 
     }

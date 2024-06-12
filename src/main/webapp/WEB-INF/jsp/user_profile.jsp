@@ -83,11 +83,19 @@
 <jsp:include page="header.jsp" />
 
 <div class="container">
-    <c:if test="${not empty param.errorMessage}">
-        <div class="error-message" id="error-message">
-            <c:out value="${param.errorMessage}"/>
-        </div>
-    </c:if>
+
+<c:if test="${not empty sessionScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${sessionScope.errorMessage}"/>
+    </div>
+    <c:remove var="errorMessage" scope="session"/>
+</c:if>
+
+<c:if test="${not empty requestScope.errorMessage}">
+    <div class="error-message">
+        <fmt:message key="${requestScope.errorMessage}"/>
+    </div>
+</c:if>
 
     <div class="info-label"><fmt:message key="userProfileUsername" /></div>
     <div class="info-value">${sessionScope.user.name}</div>

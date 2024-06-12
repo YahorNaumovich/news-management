@@ -1,5 +1,7 @@
 package edu.training.web.controller.concrete.impl;
 
+import edu.training.web.controller.ErrorCode;
+import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
@@ -13,7 +15,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class DoChangeUserRole implements Command {
+public class DoChangeUserRole extends AbstractCommand {
 
     private final UserService userService = ServiceProvider.getInstance().getUserService();
 
@@ -29,13 +31,13 @@ public class DoChangeUserRole implements Command {
         try {
 
             userService.changeUserRole(id, role);
+            response.sendRedirect("Controller?command=go_to_manage_users_page");
 
         } catch (ServiceException e) {
-            String  encodedMessage = URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8);
-            response.sendRedirect("Controller?command=go_to_manage_users_page&errorMessage=" + encodedMessage);
-        }
 
-        response.sendRedirect("Controller?command=go_to_manage_users_page");
+            setErrorAndRedirect(request, response, "Controller?command=go_to_manage_users_page", ErrorCode.ROLE_CHANGE);
+
+        }
 
     }
 }

@@ -1,6 +1,8 @@
 package edu.training.web.controller.concrete.impl;
 
 import edu.training.web.bean.AddArticleInfo;
+import edu.training.web.controller.ErrorCode;
+import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.NewsService;
 import edu.training.web.service.ServiceException;
@@ -15,7 +17,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class DoAddArticle implements Command {
+public class DoAddArticle extends AbstractCommand {
 
     private final NewsService newsService = ServiceProvider.getInstance().getNewsService();
 
@@ -26,7 +28,7 @@ public class DoAddArticle implements Command {
         String articleText = request.getParameter("articleText");
         String tileSize = request.getParameter("tileSize");
 
-        String imagePath = null;
+        String imagePath;
 
         try {
 
@@ -40,9 +42,7 @@ public class DoAddArticle implements Command {
             response.sendRedirect("Controller?command=go_to_index_page");
 
         } catch (IOException | ServletException | ServiceException e) {
-            request.getSession().setAttribute("errorMessage", "error.article.add");
-            response.sendRedirect("Controller?command=go_to_index_page");
-            return;
+            setErrorAndRedirect(request, response, "Controller?command=go_to_index_page", ErrorCode.ARTICLE_ADD);
         }
     }
 

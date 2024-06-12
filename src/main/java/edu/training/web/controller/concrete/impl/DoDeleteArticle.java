@@ -1,5 +1,7 @@
 package edu.training.web.controller.concrete.impl;
 
+import edu.training.web.controller.ErrorCode;
+import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.NewsService;
 import edu.training.web.service.ServiceException;
@@ -12,9 +14,10 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class DoDeleteArticle implements Command {
+public class DoDeleteArticle extends AbstractCommand {
 
     private final NewsService newsService = ServiceProvider.getInstance().getNewsService();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,9 +29,7 @@ public class DoDeleteArticle implements Command {
             response.sendRedirect("Controller?command=go_to_index_page");
 
         } catch (ServiceException e) {
-            request.getSession().setAttribute("errorMessage", "error.article.delete");
-            response.sendRedirect("Controller?command=go_to_index_page");
-            return;
+            setErrorAndRedirect(request, response, "Controller?command=go_to_index_page", ErrorCode.ARTICLE_DELETE);
         }
 
     }

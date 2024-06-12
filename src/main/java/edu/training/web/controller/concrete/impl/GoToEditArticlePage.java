@@ -1,6 +1,8 @@
 package edu.training.web.controller.concrete.impl;
 
 import edu.training.web.bean.Article;
+import edu.training.web.controller.ErrorCode;
+import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.NewsService;
 import edu.training.web.service.ServiceException;
@@ -14,7 +16,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class GoToEditArticlePage implements Command {
+public class GoToEditArticlePage extends AbstractCommand {
 
     private final NewsService newsService = ServiceProvider.getInstance().getNewsService();
 
@@ -35,8 +37,7 @@ public class GoToEditArticlePage implements Command {
 
         } catch (ServiceException e) {
 
-            request.setAttribute("errorMessage", "error.article.get");
-            request.getRequestDispatcher("WEB-INF/jsp/edit_article.jsp").forward(request, response);
+            setErrorAndForward(request, response, "WEB-INF/jsp/edit_article.jsp", ErrorCode.ARTICLE_GET);
 
         }
     }

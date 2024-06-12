@@ -2,6 +2,8 @@ package edu.training.web.controller.concrete.impl;
 
 import edu.training.web.bean.User;
 import edu.training.web.bean.UserRegistrationInfo;
+import edu.training.web.controller.ErrorCode;
+import edu.training.web.controller.concrete.AbstractCommand;
 import edu.training.web.controller.concrete.Command;
 import edu.training.web.service.ServiceException;
 import edu.training.web.service.ServiceProvider;
@@ -14,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-public class DoRegistration implements Command {
+public class DoRegistration extends AbstractCommand {
     private final UserService userService = ServiceProvider.getInstance().getUserService();
 
     private final UserValidatorService userValidatorService = ServiceProvider.getInstance().getUserValidatorService();
@@ -30,26 +32,22 @@ public class DoRegistration implements Command {
         try {
 
             if (!userValidatorService.doPasswordsMatch(password, passwordConfirm)) {
-                request.getSession().setAttribute("errorMessage", "error.user.passwordMismatch");
-                response.sendRedirect("Controller?command=go_to_registration_page");
+                setErrorAndRedirect(request, response, "Controller?command=go_to_registration_page", ErrorCode.PASSWORD_MISMATCH);
                 return;
             }
 
             if (!userValidatorService.isPasswordLengthValid(password)) {
-                request.getSession().setAttribute("errorMessage", "error.user.passwordLengthInvalid");
-                response.sendRedirect("Controller?command=go_to_registration_page");
+                setErrorAndRedirect(request, response, "Controller?command=go_to_registration_page", ErrorCode.PASSWORD_LENGTH_INVALID);
                 return;
             }
 
             if (!userValidatorService.isPasswordValid(password)) {
-                request.getSession().setAttribute("errorMessage", "error.user.passwordInvalid");
-                response.sendRedirect("Controller?command=go_to_registration_page");
+                setErrorAndRedirect(request, response, "Controller?command=go_to_registration_page", ErrorCode.PASSWORD_INVALID);
                 return;
             }
 
             if (userValidatorService.doesUserExist(email)) {
-                request.getSession().setAttribute("errorMessage", "error.user.userAlreadyExists");
-                response.sendRedirect("Controller?command=go_to_registration_page");
+                setErrorAndRedirect(request, response, "Controller?command=go_to_registration_page", ErrorCode.USER_ALREADY_EXISTS);
                 return;
             }
 
@@ -67,10 +65,8 @@ public class DoRegistration implements Command {
 
         } catch (ServiceException e) {
 
-            request.getSession().setAttribute("errorMessage", "error.user.registration");
-            response.sendRedirect("Controller?command=go_to_registration_page");
+            setErrorAndRedirect(request, response, "Controller?command=go_to_registration_page", ErrorCode.USER_REGISTRATION);
 
         }
     }
-
 }
