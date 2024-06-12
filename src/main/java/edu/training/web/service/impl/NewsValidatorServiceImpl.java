@@ -23,7 +23,7 @@ public class NewsValidatorServiceImpl implements NewsValidatorService {
 
     }
 
-    private static final int MAX_TEXT_LENGTH = 16777216; // 16 MB
+    private static final int MAX_TEXT_LENGTH = 65535;
 
     @Override
     public boolean validateArticleTextLength(String articleText) {

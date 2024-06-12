@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Renamed localization variables">
+    <list default="true" id="5bea30fd-4dc7-4250-9310-8049d94e2762" name="Changes" comment="Added validating for adding/editing an article">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoAddArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/controller/concrete/impl/DoAddArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsValidatorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/training/web/service/impl/NewsValidatorServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ru.properties" afterDir="false" />
     </list>
@@ -128,14 +126,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714226677466</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Added link to go to main page to header">
-      <option name="closed" value="true" />
-      <created>1717427684318</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1717427684318</updated>
     </task>
     <task id="LOCAL-00062" summary="Added button to delete user">
       <option name="closed" value="true" />
@@ -521,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718194064580</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Added validating for adding/editing an article">
+      <option name="closed" value="true" />
+      <created>1718207912856</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1718207912856</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -536,7 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed an error in userExists method" />
     <MESSAGE value="Added functionality to change user roles" />
     <MESSAGE value="Moved query strings to static final variables" />
     <MESSAGE value="Changed language selector style and placement" />
@@ -561,6 +558,7 @@
     <MESSAGE value="Fixed typo" />
     <MESSAGE value="Improved error handling" />
     <MESSAGE value="Renamed localization variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed localization variables" />
+    <MESSAGE value="Added validating for adding/editing an article" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added validating for adding/editing an article" />
   </component>
 </project>
